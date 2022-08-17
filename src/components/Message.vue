@@ -118,9 +118,9 @@ export default {
 }
 .m-message-wrap {
   position: fixed;
-  z-index: 999;
+  z-index: 999; // 突出显示该层级
   width: 100%;
-  pointer-events: none; // 突出显示改层级
+  pointer-events: none; // 保证整个message区域不遮挡背后元素响应鼠标事件
   .m-message {
     text-align: center;
     .m-message-content {
