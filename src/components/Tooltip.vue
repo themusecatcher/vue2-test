@@ -32,14 +32,16 @@ export default {
     }
   },
   methods: {
-    show (targetTop, targetLeft, targetWidth) {
+    show (target) {
       clearTimeout(this.hideTimer)
+      const rect = target.getBoundingClientRect()
+      const targetTop = rect.top + window.pageYOffset
+      const targetLeft = rect.left + window.pageXOffset
+      const targetWidth = rect.width
       this.showTooltip = true
       this.$nextTick(() => {
         const tipWidth = this.$refs.tooltip.offsetWidth // 提示框元素宽度
         const tipHeight = this.$refs.tooltip.offsetHeight // 提示框元素高度
-        console.log('tipWidth:', tipWidth)
-        console.log('tipHeight:', tipHeight)
         this.top = targetTop - tipHeight
         this.left = targetLeft - (tipWidth - targetWidth) / 2
       })
