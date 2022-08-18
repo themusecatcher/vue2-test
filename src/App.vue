@@ -4,9 +4,9 @@
     <div class="u-tag blue" @mouseenter="onShowTip($event, '《哥斯拉大战金刚》是由美国传奇影业公司出品，亚当·温佳德执导，亚历山大·斯卡斯加德、米莉·博比·布朗、丽贝卡·豪尔、凯莉·霍特尔、布莱恩·泰里·亨利、小栗旬联合主演的动作科幻片，于2021于3月26日在中国内地上映')" @mouseleave="onHideTip">哥斯拉</div>
     <br/>
     <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div> -->
-    <div class="m-area" >
-      <Loading :tip="tip" v-show="loading" />
-    </div>
+    <!-- <div class="m-area" >
+      <Loading :tip="tip" :infinite="true" :interval="200" v-show="loading" />
+    </div> -->
     <!-- <div class="m-num" id="num" ref="num">
       <p class="u-num">{{ low }}</p>
       <p class="u-num">{{ high }}</p>
@@ -23,6 +23,7 @@
         @highChange="highChange"
       />
     </div>
+    <Spin :tip="tip" v-show="loading" />
     <Tooltip ref="tooltip" :maxWidth="240">
 			<div class="u-content" v-if="content">{{ content }}</div>
 		</Tooltip>
@@ -33,14 +34,16 @@
 import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
-import Loading from '@/components/Loading'
+import Spin from '@/components/Spin'
+// import Loading from '@/components/Loading'
 export default {
   name: 'App',
   components: {
     NumSlider,
     Tooltip,
     Message,
-    Loading
+    Spin
+    // Loading
   },
   data () {
     return {
@@ -88,7 +91,7 @@ export default {
 	width: 500px;
 	height: 400px;
   border: 1px solid #1890ff;
-	background: #FFFFFF;
+	background: #000;
 }
 .m-num {
   min-width: 1200px;

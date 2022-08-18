@@ -1,10 +1,12 @@
 <template>
   <div class="m-spin">
-    <div :class="['m-spin-dot', tip ? 'mt36':'mt18']">
-      <span class="u-dot-item"></span>
-      <span class="u-dot-item"></span>
-      <span class="u-dot-item"></span>
-      <span class="u-dot-item"></span>
+    <div :class="['m-spin-dot', tip ? 'mt60':'mt30']">
+      <span :class="['u-dot-item', { infinite: infinite, disposable: !infinite&&running }]"></span>
+      <span :class="['u-dot-item', { infinite: infinite, disposable: !infinite&&running }]"></span>
+      <span :class="['u-dot-item', { infinite: infinite, disposable: !infinite&&running }]"></span>
+      <span :class="['u-dot-item', { infinite: infinite, disposable: !infinite&&running }]"></span>
+      <!-- 监听最后一个dot动画完成 -->
+      <span :class="['u-dot-item', { infinite: infinite, disposable: !infinite&&running }]" @animationend="callback"></span>
     </div>
     <p class="u-tip">{{ tip }}</p>
   </div>
@@ -16,17 +18,38 @@ export default {
     tip: { // 描述文案
       type: String,
       default: ''
+    },
+    infinite: { // 是否无限次循环动画
+      type: Boolean,
+      default: false
+    },
+    interval: { // 完成一次动画后的间隔时长，单位ms
+      type: Number,
+      default: 200
+    }
+  },
+  data () {
+    return {
+      running: true // 动画运行标识，infinite为false时生效
+    }
+  },
+  methods: {
+    callback () {
+      this.running = false
+      setTimeout(() => {
+          this.running = true
+      }, this.interval)
     }
   }
 }
 </script>
 <style lang="less" scoped>
-@themeColor: #1890ff;
+@themeColor: #FFF;
 .m-spin {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fafafa; // 加载过程背景虚化
+  // background: #000;
 }
 .u-tip {
   position: absolute;
@@ -42,62 +65,56 @@ export default {
 .m-spin-dot {
   position: absolute;
   display: inline-block;
-  width: 36px;
-  height: 36px;
+  width: 60px;
+  height: 60px;
   top: 50%;
   left: 0;
   right: 0;
   margin: 0 auto;
-  transform: rotate(45deg);
-  -ms-transform: rotate(45deg); /* Internet Explorer */
-  -moz-transform: rotate(45deg); /* Firefox */
-  -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
-  -o-transform: rotate(45deg); /* Opera */
-  animation: rotate 1.2s linear infinite;
-  -webkit-animation: rotate 1.2s linear infinite;
-  @keyframes rotate {
-    100% {transform: rotate(405deg);}
-  }
   .u-dot-item { // 单个圆点样式
     position: absolute;
     width: 10px;
     height: 10px;
-    background: @themeColor;
-    border-radius: 50%;
-    opacity: .3;
-    animation: spinMove 1s linear infinite alternate;
-    -webkit-animation: spinMove 1s linear infinite alternate;
-    @keyframes spinMove {
-      100% {opacity: 1;}
-    }
-  }
-  .u-dot-item:first-child {
     top: 0;
     left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: @themeColor;
+    border-radius: 50%;
+    transform-origin: 50% 30px; // 50%为自身高度的一半
   }
   .u-dot-item:nth-child(2) {
-    top: 0;
-    right: 0;
+    animation-delay: .2s;
+    -webkit-animation-delay: .2s;
+  }
+  .u-dot-item:nth-child(3) {
     animation-delay: .4s;
     -webkit-animation-delay: .4s;
   }
-  .u-dot-item:nth-child(3) {
-    bottom: 0;
-    right: 0;
+  .u-dot-item:nth-child(4) {
+    animation-delay: .6s;
+    -webkit-animation-delay: .6s;
+  }
+  .u-dot-item:last-child {
     animation-delay: .8s;
     -webkit-animation-delay: .8s;
   }
-  .u-dot-item:last-child {
-    bottom: 0;
-    left: 0;
-    animation-delay: 1.2s;
-    -webkit-animation-delay: 1.2s;
+  .infinite { // 无限次
+    animation: spinMove 2s ease-in-out infinite;
+    -webkit-animation: spinMove 2s ease-in-out infinite;
+  }
+  .disposable { // 一次性
+    animation: spinMove 2s ease-in-out;
+    -webkit-animation: spinMove 2s ease-in-out;
+  }
+  @keyframes spinMove {
+    to { transform: rotate(360deg); } // from: 0%  to: 100%
   }
 }
-.mt36 {
-  margin-top: -36px;
+.mt60 {
+  margin-top: -60px;
 }
-.mt18 {
-  margin-top: -18px;
+.mt30 {
+  margin-top: -30px;
 }
 </style>
