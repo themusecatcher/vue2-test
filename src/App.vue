@@ -5,7 +5,7 @@
     <br/>
     <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div> -->
     <!-- <div class="m-area" >
-      <Loading :tip="tip" :infinite="true" :interval="200" v-show="loading" />
+      <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div> -->
     <!-- <div class="m-num" id="num" ref="num">
       <p class="u-num">{{ low }}</p>
@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      loading: true,
+      loading: false,
       tip: '加载中...',
       content: '',
       low: 20,
