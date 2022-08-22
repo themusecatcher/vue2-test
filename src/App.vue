@@ -9,11 +9,23 @@
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
-    <Timeline :timelineDesc="timelineDesc" :width="480" />
+    <Timeline :timelineDesc="timelineDesc" :width="480" v-show="false" />
     <div class="m-num" id="num" ref="num" v-show="false">
       <p class="u-num">{{ low }}</p>
       <p class="u-num">{{ high }}</p>
     </div>
+    <Dialog
+      title="Title"
+      :width="720"
+      :content="content"
+      :footer="true"
+      cancelText="取消"
+      okText="确认"
+      @close="onClose"
+      @cancel="onCancel"
+      @ok="onConfirm"
+      v-show="showDialog"
+    />
     <Progress :width="600" :progress="36" v-show="false" />
     <VueAmazingSelector
       :selectData="selectData"
@@ -51,9 +63,10 @@ import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
 import Spin from '@/components/Spin'
-// import Loading from '@/components/Loading'
+import Loading from '@/components/Loading'
 import Progress from '@/components/Progress'
 import Timeline from '@/components/Timeline'
+import Dialog from '@/components/Dialog'
 export default {
   name: 'App',
   components: {
@@ -61,15 +74,17 @@ export default {
     Tooltip,
     Message,
     Spin,
+    Loading,
     Progress,
-    Timeline
-    // Loading
+    Timeline,
+    Dialog
   },
   data () {
     return {
+      showDialog: true,
       loading: false,
       tip: '加载中...',
-      content: '',
+      content: 'Content of the modal ...',
       low: 20,
       high: 80,
       timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
@@ -115,6 +130,19 @@ export default {
     this.selectedValue = 1
   },
   methods: {
+    onDialog (content) { // 调用Dialog弹出对话框
+      this.content = content
+      this.showDialog = true
+    },
+    onClose () { // 关闭dialog
+      this.showDialog = false
+    },
+    onCancel () { // “取消”按钮回调
+      this.showDialog = false
+    },
+    onConfirm () { // “确定”按钮回调
+      this.showDialog = false
+    },
     getValue (name, value, index) {
       console.log('item:', name, value, index)
     },
