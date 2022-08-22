@@ -9,6 +9,7 @@
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
+    <Timeline :timelineDesc="timelineDesc" :width="480" />
     <div class="m-num" id="num" ref="num" v-show="false">
       <p class="u-num">{{ low }}</p>
       <p class="u-num">{{ high }}</p>
@@ -52,6 +53,7 @@ import Message from '@/components/Message'
 import Spin from '@/components/Spin'
 // import Loading from '@/components/Loading'
 import Progress from '@/components/Progress'
+import Timeline from '@/components/Timeline'
 export default {
   name: 'App',
   components: {
@@ -59,7 +61,8 @@ export default {
     Tooltip,
     Message,
     Spin,
-    Progress
+    Progress,
+    Timeline
     // Loading
   },
   data () {
@@ -69,6 +72,7 @@ export default {
       content: '',
       low: 20,
       high: 80,
+      timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
       selectData: [
         {
           name: '北京市',
