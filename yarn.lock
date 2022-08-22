@@ -8336,6 +8336,15 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+vue-amazing-selector@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-amazing-selector/-/vue-amazing-selector-0.2.1.tgz#cc35e16aed40aa0f3a1353f6a6caf92b90eccf88"
+  integrity sha512-6Ht8iMAJ/NTZxQffi58CscyC7T+Ju2lmCtO3bArJWKfPCitO13mpvzeudfCleL6ArC3Y60sFud7em05ky4USxQ==
+  dependencies:
+    core-js "^3.6.5"
+    less-loader "6.0.0"
+    vue "^2.6.11"
+
 vue-eslint-parser@^7.0.0:
   version "7.11.0"
   resolved "https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-7.11.0.tgz#214b5dea961007fcffb2ee65b8912307628d0daf"
