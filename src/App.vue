@@ -26,6 +26,20 @@
       @ok="onConfirm"
       v-show="showDialog"
     />
+    <Modal
+      :title="title"
+      :content="content"
+      cancelText="取消"
+      okText="确认"
+      noticeText="知道了"
+      mode="confirm"
+      type="confirm"
+      :center="center"
+      :loading="loading"
+      @cancel="onCancel"
+      @ok="onConfirm"
+      v-show="showModal"
+      />
     <Progress :width="600" :progress="36" v-show="false" />
     <VueAmazingSelector
       :selectData="selectData"
@@ -67,6 +81,7 @@ import Loading from '@/components/Loading'
 import Progress from '@/components/Progress'
 import Timeline from '@/components/Timeline'
 import Dialog from '@/components/Dialog'
+import Modal from '@/components/Modal'
 export default {
   name: 'App',
   components: {
@@ -77,14 +92,19 @@ export default {
     Loading,
     Progress,
     Timeline,
-    Dialog
+    Dialog,
+    Modal
   },
   data () {
     return {
-      showDialog: true,
-      loading: false,
+      showModal: true,
+      title: 'Do you Want to delete these items ?',
+      content: 'Some descriptions ...',
+      loading: true,
+      center: true,
+      showDialog: false,
       tip: '加载中...',
-      content: 'Content of the modal ...',
+      // content: 'Content of the modal ...',
       low: 20,
       high: 80,
       timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
@@ -137,11 +157,22 @@ export default {
     onClose () { // 关闭dialog
       this.showDialog = false
     },
-    onCancel () { // “取消”按钮回调
-      this.showDialog = false
+    // onCancel () { // “取消”按钮回调
+    //   this.showDialog = false
+    // },
+    // onConfirm () { // “确定”按钮回调
+    //   this.showDialog = false
+    // },
+    onShowModal (content) { // 调用Modal弹出对话框
+      this.content = content
+      this.showModal = true
     },
-    onConfirm () { // “确定”按钮回调
-      this.showDialog = false
+    onCancel () { // “取消”按钮回调
+      this.showModal = false
+    },
+    onConfirm () { // “确定”,“知道了”按钮回调
+      // this.loading = true // 开启加载状态
+      this.showModal = false
     },
     getValue (name, value, index) {
       console.log('item:', name, value, index)
