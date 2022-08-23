@@ -1,8 +1,8 @@
 <template>
-  <div :class="['m-slider', { disabled: disabled }]" ref="slider" :style="`width: ${width}px;`">
-    <div class="u-slider-rail" @click="onClickPoint"></div>
+  <div :class="['m-slider', { disabled: disabled }]" @click="onClickPoint" ref="slider" :style="`width: ${width}px;`">
+    <div class="u-slider-rail"></div>
     <div class="u-slider-track" :style="`left: ${left}px; right: auto; width: ${right - left}px;`"></div>
-    <div class="u-slider-handle" tabindex="0" ref="left" @mousedown="onLeftMouseDown" :style="`left: ${left}px; right: auto; transform: translateX(-50%);`"></div>
+    <div class="u-slider-handle" v-if="range" tabindex="0" ref="left" @mousedown="onLeftMouseDown" :style="`left: ${left}px; right: auto; transform: translateX(-50%);`"></div>
     <div class="u-slider-handle" tabindex="0" ref="right" @mousedown="onRightMouseDown" :style="`left: ${right}px; right: auto; transform: translateX(-50%);`"></div>
   </div>
 </template>
@@ -33,6 +33,10 @@ export default {
     disabled: { // 是否禁用
       type: Boolean,
       default: false
+    },
+    range: { // 是否双滑块模式
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -40,10 +44,6 @@ export default {
       left: '', // 左滑块距离滑动条左端的距离
       right: '' // 右滑动距离滑动条左端的距离
     }
-  },
-  mounted () {
-    this.left = (this.initialMin - this.min) * this.scale
-    this.right = (this.initialMax - this.min) * this.scale
   },
   computed: {
     scale () {
@@ -64,20 +64,28 @@ export default {
       this.$emit('highChange', to) // 右滑块对应数字回调
     }
   },
+  mounted () {
+    this.left = this.range ? (this.initialMin - this.min) * this.scale : 0
+    this.right = (this.initialMax - this.min) * this.scale
+  },
   methods: {
     onClickPoint (e) { // 点击滑动条，移动滑块
       // 元素是absolute时，e.layerX是相对于自身元素左上角的水平位置
       var moveX = e.layerX // 鼠标点击位置距离滑动输入条左端的水平距离
-      if (moveX <= this.left) {
-        this.left = moveX
-      } else if (moveX >= this.right) {
-        this.right = moveX
-      } else {
-        if ((moveX - this.left) < (this.right - moveX)) {
+      if (this.range) { // 双滑块模式
+        if (moveX <= this.left) {
           this.left = moveX
-        } else {
+        } else if (moveX >= this.right) {
           this.right = moveX
+        } else {
+          if ((moveX - this.left) < (this.right - moveX)) {
+            this.left = moveX
+          } else {
+            this.right = moveX
+          }
         }
+      } else { // 单滑块模式
+        this.right = moveX
       }
     },
     onLeftMouseDown () { // 在滚动条上拖动左滑块
@@ -118,6 +126,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@themeColor: #1890FF;
 .m-slider {
   display: inline-block;
   height: 4px;
@@ -150,7 +159,7 @@ export default {
       background: #E3E3E3;
     }
     .u-slider-track { // 蓝色已选择滑动条背景色
-      background: #1890ff;
+      background: @themeColor;
     }
   }
   .u-slider-handle { // 滑块
@@ -165,11 +174,11 @@ export default {
     cursor: pointer;
     transition: border-color .3s,box-shadow .6s,transform .3s cubic-bezier(.18,.89,.32,1.28);
     &:focus {
-      border-color: #1890ff;
+      border-color: @themeColor;
       box-shadow: 0 0 0 5px rgba(24, 144, 255, 0.2);
     }
     &:hover {
-      border-color: #1890ff;
+      border-color: @themeColor;
     }
   }
 }

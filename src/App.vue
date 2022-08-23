@@ -10,10 +10,6 @@
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
     <Timeline :timelineDesc="timelineDesc" :width="480" v-show="false" />
-    <div class="m-num" id="num" ref="num" v-show="false">
-      <p class="u-num">{{ low }}</p>
-      <p class="u-num">{{ high }}</p>
-    </div>
     <Dialog
       title="Title"
       :width="720"
@@ -54,6 +50,7 @@
       v-show="false"
       @getValue="getValue" />
     <Table
+      v-show="false"
       :columns="columns"
       :dataSource="tableData"
       :pagination="{
@@ -72,6 +69,10 @@
         hi {{ record.job }}
       </template> -->
     </Table>
+    <div class="m-num" id="num" ref="num" v-show="false">
+      <p class="u-num">{{ low }}</p>
+      <p class="u-num">{{ high }}</p>
+    </div>
     <div class="slider" v-show="false">
       <NumSlider
         :min="0"
