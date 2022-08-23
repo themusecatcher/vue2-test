@@ -26,7 +26,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #fafafa; // 加载过程背景虚化
+  background: rgba(255, 255, 255, .5); // 加载过程背景虚化
 }
 .u-tip {
   position: absolute;

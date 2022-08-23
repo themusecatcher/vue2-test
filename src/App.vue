@@ -53,6 +53,25 @@
       :num="6"
       v-show="false"
       @getValue="getValue" />
+    <Table
+      :columns="columns"
+      :dataSource="tableData"
+      :pagination="{
+        p: queryParams.p,
+        pageSize: queryParams.pageSize
+      }"
+      :total="total"
+      :loading="tableLoading"
+      @change="onChangeTable"
+    >
+      <!-- 配置指定列数据 -->
+      <!-- <template #name="{ data: record }">
+        hello {{ record.name }}
+      </template>
+      <template v-slot:job="{ data: record }">
+        hi {{ record.job }}
+      </template> -->
+    </Table>
     <div class="slider" v-show="false">
       <NumSlider
         :min="0"
@@ -82,6 +101,7 @@ import Progress from '@/components/Progress'
 import Timeline from '@/components/Timeline'
 import Dialog from '@/components/Dialog'
 import Modal from '@/components/Modal'
+import Table from '@/components/Table'
 export default {
   name: 'App',
   components: {
@@ -93,14 +113,81 @@ export default {
     Progress,
     Timeline,
     Dialog,
-    Modal
+    Modal,
+    Table
   },
   data () {
     return {
-      showModal: true,
+      tableLoading: false,
+      total: 50,
+      queryParams: {
+				pageSize: 5,
+				p: 1,
+				mod: 'search'
+			},
+      columns: [
+        {
+          title: '名字',
+          width: 100,
+          dataIndex: 'name',
+          slot: 'name'
+        },
+        {
+          title: '年龄',
+          width: 100,
+          dataIndex: 'age'
+        },
+        {
+          title: '职业',
+          width: 100,
+          dataIndex: 'job',
+          slot: 'job'
+        },
+        {
+          title: '性别',
+          width: 100,
+          dataIndex: 'sex'
+        },
+        {
+          title: '地址',
+          width: 120,
+          dataIndex: 'address'
+        }
+      ],
+      tableData: [
+        {
+          name: 'Stephen',
+          age: 30,
+          job: 'player',
+          sex: '男',
+          address: 'CaliforniaCaliforniaCaliforniaCaliforniaCaliforniaCalifornia'
+        },
+        {
+          name: 'Leo',
+          age: 36,
+          job: 'actor',
+          sex: '男',
+          address: 'LA'
+        },
+        {
+          name: 'Mr.Dear',
+          age: 23,
+          job: 'boy',
+          sex: '男',
+          address: 'Beijing'
+        },
+        {
+          name: 'superman',
+          age: 32,
+          job: 'boy',
+          sex: '男',
+          address: 'US'
+        }
+      ],
+      showModal: false,
       title: 'Do you Want to delete these items ?',
       content: 'Some descriptions ...',
-      loading: true,
+      loading: false,
       center: true,
       showDialog: false,
       tip: '加载中...',
@@ -150,6 +237,16 @@ export default {
     this.selectedValue = 1
   },
   methods: {
+    onChangeTable (pagination) {
+      console.log('pagination:', pagination)
+      this.queryParams.p = pagination.p
+      this.queryParams.pageSize = pagination.pageSize
+      this.getData()
+    },
+    getData () {
+      this.tableLoading = true
+      // 调用分页接口获取列表数据
+    },
     onDialog (content) { // 调用Dialog弹出对话框
       this.content = content
       this.showDialog = true
