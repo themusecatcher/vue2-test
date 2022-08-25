@@ -38,7 +38,7 @@ export default {
         background-color: #1890ff;
         border-radius: 100px;
         height: 8px;
-        transition: all .3s cubic-bezier(.08,.82,.17,1) 0s;
+        transition: all .3s cubic-bezier(.08,.82,.17,1);
       }
     }
   }
