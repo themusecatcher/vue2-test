@@ -71,7 +71,6 @@
       </template> -->
     </Table>
     <TreeChart :treeData="treeData" @clickNode="getNodeData" v-show="false" />
-    <div class="loader triangle"><svg viewBox="0 0 86 80"><polygon points="43 8 79 72 7 72" stroke="url(#gradient)"></polygon></svg></div>
     <div class="m-num" id="num" ref="num" v-show="false">
       <p class="u-num">{{ low }}</p>
       <p class="u-num">{{ high }}</p>
@@ -361,14 +360,6 @@ export default {
   min-width: 1200px;
   margin: 0 auto;
   margin-top: 150px;
-}
-.loader {
-  --duration: 3s;
-  width: 44px;
-  height: 44px;
-  position: relative;
-  display: inline-block;
-  margin: 0 16px;
 }
 .m-area {
 	margin: 0 auto;
