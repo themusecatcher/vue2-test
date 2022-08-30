@@ -1,5 +1,5 @@
 <template>
-	<div :class="`m-pagination ${placement}`">
+	<div :class="[`m-pagination ${placement}`, { hidden: hideOnSinglePage && total<=pageSize }]">
 		<div class="m-pagination-wrap">
 			<span class="mr8" v-if="showTotal">共 {{ totalPage }} 页 / {{ total }} 条</span>
 			<span class="u-item" :class="{ disabled: currentPage === 1 }" @click="changePage(currentPage - 1)">
@@ -31,7 +31,7 @@
 				<span v-show="!backwardArrow" class="u-ellipsis">•••</span>
 				<svg v-show="backwardArrow" class="u-icon" viewBox="64 64 896 896" data-icon="double-right" aria-hidden="true" focusable="false"><path d="M533.2 492.3L277.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H188c-6.7 0-10.4 7.7-6.3 12.9L447.1 512 181.7 851.1A7.98 7.98 0 0 0 188 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5zm304 0L581.9 166.1c-3-3.9-7.7-6.1-12.6-6.1H492c-6.7 0-10.4 7.7-6.3 12.9L751.1 512 485.7 851.1A7.98 7.98 0 0 0 492 864h77.3c4.9 0 9.6-2.3 12.6-6.1l255.3-326.1c9.1-11.7 9.1-27.9 0-39.5z"></path></svg>
 			</span>
-			<span :class="['u-item', { active: currentPage === totalPage }]" @click="changePage(totalPage)">{{ totalPage }}</span>
+			<span v-show="totalPage!==1" :class="['u-item', { active: currentPage === totalPage }]" @click="changePage(totalPage)">{{ totalPage }}</span>
 			<span class="u-item" :class="{ disabled: currentPage === totalPage }" @click="changePage(currentPage + 1)">
 				<svg class="u-arrow" viewBox="64 64 896 896" data-icon="right" aria-hidden="true" focusable="false">
 					<path
@@ -63,6 +63,10 @@ export default {
       type: Number,
       default: 5
     },
+		hideOnSinglePage: { // 只有一页时是否隐藏分页器
+			type: Boolean,
+			default: false
+		},
 		showQuickJumper: { // 是否可以快速跳转至某页
 			type: Boolean,
 			default: false
@@ -181,6 +185,9 @@ export default {
 @themeColor: #1890ff; // 自定义主题色
 .m-pagination {
 	margin: 16px 0;
+}
+.hidden {
+	display: none;
 }
 .left {
 	text-align: left;

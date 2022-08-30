@@ -44,6 +44,7 @@
 			:current="pagination.p"
 			:pageSize="pagination.pageSize"
 			:total="total"
+			:hideOnSinglePage="hideOnSinglePage"
 			:showQuickJumper="true"
 			:showTotal="true"
 			placement="right"
@@ -52,7 +53,7 @@
 </template>
 <script>
 import Pagination from './Pagination'
-import Spin from '@/components/Spin'
+import Spin from './Spin'
 export default {
 	name: 'Table',
 	components: {
@@ -75,6 +76,10 @@ export default {
 		pagination: { // 分页器，为false时不展示和进行分页
 			type: [Boolean, Object],
 			default: false,
+		},
+		hideOnSinglePage: { // 只有一页时是否隐藏分页器
+			type: Boolean,
+			default: false
 		},
 		total: { // 数据总数
       type: Number,
