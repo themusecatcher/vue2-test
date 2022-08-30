@@ -70,7 +70,7 @@
         hi {{ record.job }}
       </template> -->
     </Table>
-    <TreeChart :treeData="treeData" />
+    <TreeChart :treeData="treeData" @clickNode="getNodeData" v-show="false" />
     <div class="loader triangle"><svg viewBox="0 0 86 80"><polygon points="43 8 79 72 7 72" stroke="url(#gradient)"></polygon></svg></div>
     <div class="m-num" id="num" ref="num" v-show="false">
       <p class="u-num">{{ low }}</p>
@@ -291,6 +291,9 @@ export default {
     this.selectedValue = 1
   },
   methods: {
+    getNodeData (data) {
+      console.log('data:', data)
+    },
     onChangeTable (pagination) {
       console.log('pagination:', pagination)
       this.queryParams.p = pagination.p
