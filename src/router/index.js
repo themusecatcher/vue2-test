@@ -10,7 +10,7 @@ const routes = [
     redirect: '/components',
     component: RouteView,
     children: [
-      {
+      { // 常用组件
         path: '/components',
         name: 'Components',
         // route level code-splitting
@@ -18,15 +18,20 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/Components.vue')
       },
-      {
+      { // 走马灯
         path: '/carousel',
         name: 'Carousel',
         component: () => import(/* webpackChunkName: "about" */ '../views/Carousel.vue')
       },
-      {
+      { // 轮播图
         path: '/swiper',
         name: 'Swiper',
         component: () => import(/* webpackChunkName: "about" */ '@/views/Swiper.vue')
+      },
+      { // 树图
+        path: '/tree',
+        name: 'Tree',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/Tree.vue')
       }
     ]
   }

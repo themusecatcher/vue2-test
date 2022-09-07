@@ -70,7 +70,6 @@
         hi {{ record.job }}
       </template> -->
     </Table>
-    <TreeChart :treeData="treeData" @clickNode="getNodeData" v-show="true" />
     <div class="m-num" id="num" ref="num" v-show="false">
       <p class="u-num">{{ low }}</p>
       <p class="u-num">{{ high }}</p>
@@ -105,7 +104,6 @@ import Timeline from '@/components/Timeline'
 import Dialog from '@/components/Dialog'
 import Modal from '@/components/Modal'
 import Table from '@/components/Table'
-import TreeChart from '@/components/TreeChart'
 export default {
   name: 'App',
   components: {
@@ -118,8 +116,7 @@ export default {
     Timeline,
     Dialog,
     Modal,
-    Table,
-    TreeChart
+    Table
   },
   data () {
     return {
@@ -235,64 +232,13 @@ export default {
           value: 8
         }
       ],
-      selectedValue: '',
-      treeData: {
-        name: 'tree',
-        children: [
-          {
-            name: '比较',
-            value: 29,
-            children: [
-              {
-                name: '折线图',
-                value: 1
-              },
-              {
-                name: '面积图',
-                value: 2
-              },
-              {
-                name: '柱状图',
-                value: 3
-              }
-            ]
-          },
-          {
-            name: '趋势趋势趋势趋势趋势趋势趋势趋势趋势趋势',
-            value: 9,
-            children: [
-              {
-                name: '折线图',
-                value: 1
-              },
-              {
-                name: '阶梯图',
-                value: 2
-              },
-              {
-                name: '面积图',
-                value: 3
-              },
-              {
-                name: '堆叠面积图',
-                value: 4
-              }
-            ]
-          },
-          {
-            name: '组成'
-          }
-        ]
-      }
+      selectedValue: ''
     }
   },
   created () {
     this.selectedValue = 1
   },
   methods: {
-    getNodeData (data) {
-      console.log('data:', data)
-    },
     onChangeTable (pagination) {
       console.log('pagination:', pagination)
       this.queryParams.p = pagination.p
