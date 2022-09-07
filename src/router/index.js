@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import RouteView from '@/layouts/RouteView.vue'
+import RouteView from '@/layouts/RouteView'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,14 +13,19 @@ const routes = [
       {
         path: '/components',
         name: 'Components',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/Components.vue')
+      },
+      {
+        path: '/carousel',
+        name: 'Carousel',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Carousel.vue')
       },
       {
         path: '/swiper',
         name: 'Swiper',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '@/views/Swiper.vue')
       }
     ]
