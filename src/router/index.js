@@ -32,6 +32,11 @@ const routes = [
         path: '/tree',
         name: 'Tree',
         component: () => import(/* webpackChunkName: "about" */ '@/views/Tree.vue')
+      },
+      { // 拖拽组件
+        path: '/drag',
+        name: 'Drag',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/Draggable.vue')
       }
     ]
   }
