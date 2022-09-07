@@ -63,7 +63,7 @@ export default {
       console.log('move:', e)
       console.log('originalEvent:', originalEvent)
       // 不允许停靠
-      if (e.relatedContext.element.num === 30) return false
+      if (e.relatedContext.element.num === 30) return false // false表示阻止，true表示不阻止
       // 不允许拖拽
       if (e.draggedContext.element.num === 11) return false
       return true;
