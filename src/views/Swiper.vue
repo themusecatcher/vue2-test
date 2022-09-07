@@ -3,18 +3,16 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <div
-          class="swiper-slide swiper-lazy"
+          class="swiper-slide"
           :title="image.title"
           v-for="(image, index) in imageData"
           :key="index">
           <div class="swiper-zoom-container">
-            <div class="swiper-zoom-target" :style="`width: 100%; height: 100%;background: url(${image.imgUrl}) no-repeat center;background-size: cover;`"></div>
+            <div class="swiper-zoom-target swiper-lazy" :data-background="image.imgUrl">
+              <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
           </div>
-          <!-- <div :data-background="require('@/assets/images/loading.jpg')"  class="swiper-lazy"> -->
-          <!-- <div class="swiper-lazy-preloader"></div>
-          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> -->
-          <!-- </div> -->
-        </div>
+        </div> 
       </div>
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination"></div>
@@ -59,11 +57,10 @@ export default {
     }
   },
   mounted () {
-    console.log('process.env:', process)
     this.swiper = new Swiper('.swiper-container', {
       lazy: {
         loadPrevNext: true, // 默认false情况下swiper只加载当前slide的图片，其他图片不加载，设置为true后，swiper会提前加载下一个slide的图片
-        loadPrevNextAmount: 2 // 默认为1，设置在延迟加载图片时，提取多少个slide
+        loadPrevNextAmount: 1 // 默认为1，设置在延迟加载图片时，提取多少个slide
       },
       zoom: { //开启缩放功能，双击slide会放大/缩小，并且在手机端可双指触摸缩放
         maxRatio: 3, // 默认3，设置缩放的最大放大比例，如果要在单个slide设置放大比例，可以在其上添加data-swiper-zoom="3"
@@ -108,9 +105,9 @@ export default {
         disableOnInteraction: false, // 用户操作之后，是否禁止autoplay，默认true，操作包括触碰，拖动，点击pagination
         waitForTransition: true, // 是否等待过渡完成，再开始自动切换的计时，默认true
       },
-      // loop: true // 循环模式选项
+      loop: true // 循环模式选项
     })
-    //6.6.2之前的版本需要通过代码实现此功能；开启后，鼠标置于swiper时暂停自动切换，离开时回复自动切换
+    // 6.6.2之前的版本需要通过代码实现此功能；开启后，鼠标置于swiper时暂停自动切换，离开时回复自动切换
     this.swiper.el.onmouseover = function() { // 鼠标覆盖停止自动切换
       this.swiper.autoplay.stop()
     }
@@ -125,7 +122,7 @@ export default {
 .swiper-container {
   --swiper-theme-color: @themeColor;/* 设置Swiper风格 */
   --swiper-navigation-color: @themeColor;/* 单独设置按钮颜色 */
-  --swiper-navigation-size: 48px;/* 设置按钮高度 */
+  --swiper-navigation-size: 48px;/* 设置导航按钮大小 */
   --swiper-pagination-color: #00ff33;/* 单独设置分页导航颜色 */
   --swiper-theme-color: #ff6600;/* 设置Swiper风格 */
   --swiper-preloader-color: @themeColor;/* 单独设置预加载圆圈的颜色 */
@@ -135,6 +132,16 @@ export default {
   .swiper-wrapper { // 自动切换过渡效果设置
     transition-timing-function: ease;
     -webkit-transition-timing-function: ease;
+    .swiper-slide { // 懒加载时背景图
+      // background: url(~@/assets/images/default.png) no-repeat center;
+      background-color: #000;
+      background-size: cover;
+    }
+    .swiper-lazy {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+    }
   }
   .swiper-pagination { // 自定义分页器样式
     /deep/ .swiper-pagination-bullet {
