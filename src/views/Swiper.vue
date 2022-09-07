@@ -60,7 +60,7 @@ export default {
     this.swiper = new Swiper('.swiper-container', {
       lazy: {
         loadPrevNext: true, // 默认false情况下swiper只加载当前slide的图片，其他图片不加载，设置为true后，swiper会提前加载下一个slide的图片
-        loadPrevNextAmount: 1 // 默认为1，设置在延迟加载图片时，提取多少个slide
+        loadPrevNextAmount: 2 // 默认为1，设置在延迟加载图片时，提前多少个slide
       },
       zoom: { //开启缩放功能，双击slide会放大/缩小，并且在手机端可双指触摸缩放
         maxRatio: 3, // 默认3，设置缩放的最大放大比例，如果要在单个slide设置放大比例，可以在其上添加data-swiper-zoom="3"

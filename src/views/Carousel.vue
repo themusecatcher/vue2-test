@@ -4,10 +4,12 @@
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
-          :style="`background: url(${image.imgUrl}) no-repeat center;background-size: cover;`"
           :title="image.title"
           v-for="(image, index) in imageData"
           :key="index">
+          <div class="swiper-lazy" :data-background="image.imgUrl">
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+          </div>
         </div>
       </div>
       <!-- 如果需要分页器 -->
@@ -49,6 +51,10 @@ export default {
   },
   mounted () {
     this.swiper = new Swiper('.swiper-container', {
+      lazy: {
+        loadPrevNext: true, // 默认false情况下swiper只加载当前slide的图片，其他图片不加载，设置为true后，swiper会提前加载下一个slide的图片
+        loadPrevNextAmount: 2 // 默认为1，设置在延迟加载图片时，提前多少个slide
+      },
       pagination: { // 如果需要分页器
         el: ".swiper-pagination",
         // dynamicBullets: true, // 动态分页器，分页器小点的数量部分隐藏
@@ -63,7 +69,7 @@ export default {
       },
       mousewheel: true, // 是否开启鼠标滚轮控制swiper切换 ，默认false
       direction: 'horizontal', // 滑动方向
-      speed: 2000, // 切换速度，自动滑动开始到结束的时间
+      speed: 3000, // 切换速度，自动滑动开始到结束的时间
       grabCursor: true, // 悬浮时鼠标样式切换
       slidesPerView : 3, // slider容器能够同时显示的slides数量，默认为1，auto自动根据slide宽度来设定数量
       slidesPerGroup : 1, // 定义多少slide为一组，默认为1
@@ -98,6 +104,16 @@ export default {
   .swiper-wrapper { // 自动切换过渡效果设置
     transition-timing-function: linear; // 线性过渡模拟走马灯效果
     -webkit-transition-timing-function: linear;
+    .swiper-slide { // 懒加载时背景图
+      // background: url(~@/assets/images/default.png) no-repeat center;
+      background-color: #000;
+      background-size: cover;
+    }
+    .swiper-lazy {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+    }
   }
   .swiper-pagination { // 自定义分页器样式
     /deep/ .swiper-pagination-bullet {
