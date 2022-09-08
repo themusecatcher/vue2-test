@@ -1,10 +1,11 @@
 <template>
   <div class="components">
-    <div v-show="false">
+    <div v-show="true">
       <div class="u-tag yellow mr20" @mouseenter="onShowTip($event, '特斯拉(Tesla)是美国一家电动汽车及能源公司，总部位于帕洛阿托(Palo Alto)，市值达2100亿美元，产销电动汽车、太阳能板、及储能设备')" @mouseleave="onHideTip">特斯拉</div>
       <div class="u-tag blue" @mouseenter="onShowTip($event, '《哥斯拉大战金刚》是由美国传奇影业公司出品，亚当·温佳德执导，亚历山大·斯卡斯加德、米莉·博比·布朗、丽贝卡·豪尔、凯莉·霍特尔、布莱恩·泰里·亨利、小栗旬联合主演的动作科幻片，于2021于3月26日在中国内地上映')" @mouseleave="onHideTip">哥斯拉</div>
       <br/>
       <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div>
+      <div class="u-tag blue" @click="onShowNotification">特斯拉</div>
     </div>
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
@@ -17,7 +18,7 @@
       :footer="true"
       cancelText="取消"
       okText="确认"
-      @close="onClose"
+      @close="Notification"
       @cancel="onCancel"
       @ok="onConfirm"
       v-show="showDialog"
@@ -91,6 +92,12 @@
 			<div class="u-content" v-if="content">{{ content }}</div>
 		</Tooltip>
     <Message ref="message" :duration="3000" :top="30" />
+    <Notification
+      ref="notification"
+      placement="bottomRight"
+      :duration="null"
+      :top="30"
+      @close="onNotificationClose" />
   </div>
 </template>
 <script>
@@ -101,6 +108,7 @@ Vue.use(VueAmazingSelector)
 import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
+import Notification from '@/components/Notification'
 import Spin from '@/components/Spin'
 import Loading from '@/components/Loading'
 import Progress from '@/components/Progress'
@@ -114,6 +122,7 @@ export default {
     NumSlider,
     Tooltip,
     Message,
+    Notification,
     Spin,
     Loading,
     Progress,
@@ -257,7 +266,7 @@ export default {
       this.content = content
       this.showDialog = true
     },
-    onClose () { // 关闭dialog
+    Notification () { // 关闭dialog
       this.showDialog = false
     },
     // onCancel () { // “取消”按钮回调
@@ -300,6 +309,20 @@ export default {
       // this.$refs.message.success(content) // success调用
       // this.$refs.message.error(content) // error调用
       // this.$refs.message.warning(content) // warning调用
+    },
+    onShowNotification () {
+      const notification = {
+        title: 'Notification Title',
+        description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
+      }
+      // this.$refs.notification.open(notification) // 默认使用
+      this.$refs.notification.info(notification) // info调用
+      // this.$refs.notification.success(notification) // success调用
+      // this.$refs.notification.error(notification) // error调用
+      // this.$refs.notification.warning(notification) // warning调用
+    },
+    onNotificationClose () { // 点击默认关闭按钮时触发的回调函数	
+      console.log('关闭notification')
     }
   }
 }

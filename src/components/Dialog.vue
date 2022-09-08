@@ -89,7 +89,7 @@ export default {
         font-size: 18px;
         line-height: 22px;
         cursor: pointer;
-        transition: color .3s;
+        transition: fill .3s;
         &:hover {
           fill: rgba(0,0,0,.75);
         }
