@@ -94,6 +94,10 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
+import VueAmazingSelector from 'vue-amazing-selector'
+import 'vue-amazing-selector/lib/selector.css' // 引入样式
+Vue.use(VueAmazingSelector)
 import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
@@ -301,6 +305,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.components {
+  width: 1200px;
+  margin: 0 auto;
+}
 .m-area {
 	margin: 0 auto;
 	width: 500px;
