@@ -38,19 +38,6 @@
       v-show="showModal"
       />
     <Progress :width="600" :progress="36" v-show="false" />
-    <VueAmazingSelector
-      class="mt60"
-      :selectData="selectData"
-      :selectedValue="selectedValue"
-      name="name"
-      value="value"
-      placeholder="请选择城市"
-      :disabled="false"
-      :width="160"
-      :height="36"
-      :num="6"
-      v-show="true"
-      @getValue="getValue" />
     <Table
       v-show="false"
       :columns="columns"
@@ -102,10 +89,6 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import VueAmazingSelector from 'vue-amazing-selector'
-import 'vue-amazing-selector/lib/selector.css' // 引入样式
-Vue.use(VueAmazingSelector)
 import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
@@ -211,46 +194,7 @@ export default {
       low: 20,
       high: 80,
       timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
-      selectData: [
-        {
-          name: '北京市',
-          value: 1
-        },
-        {
-          name: '上海市上海市上海市上海市',
-          value: 2,
-          disabled: true
-        },
-        {
-          name: '郑州市',
-          value: 3
-        },
-        {
-          name: '纽约市纽约市纽约市纽约市',
-          value: 4
-        },
-        {
-          name: '旧金山',
-          value: 5
-        },
-        {
-          name: '悉尼市',
-          value: 6
-        },
-        {
-          name: '伦敦市',
-          value: 7
-        },
-        {
-          name: '巴黎市',
-          value: 8
-        }
-      ],
-      selectedValue: ''
     }
-  },
-  created () {
-    this.selectedValue = 1
   },
   methods: {
     onChangeTable (pagination) {
@@ -286,9 +230,6 @@ export default {
     onConfirm () { // “确定”,“知道了”按钮回调
       // this.loading = true // 开启加载状态
       this.showModal = false
-    },
-    getValue (name, value, index) {
-      console.log('item:', name, value, index)
     },
     lowChange (val) {
       this.low = val

@@ -37,6 +37,11 @@ const routes = [
         path: '/drag',
         name: 'Drag',
         component: () => import(/* webpackChunkName: "about" */ '@/views/Draggable.vue')
+      },
+      { // 下拉组件
+        path: '/selector',
+        name: 'Selector',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/Selector.vue')
       }
     ]
   }

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import '@/assets/less/common.less' // global CSS
+import '@/assets/less/global.less' // global CSS
 
 Vue.config.productionTip = false
 
