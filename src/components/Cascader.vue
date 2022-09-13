@@ -28,7 +28,7 @@
       @getValue="getCityCode" />
     <VueAmazingSelector
       ref="area"
-      :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
+      :style="`z-index: ${zIndex};`"
       :selectData="areaData"
       :selectedValue="address.area"
       name="dictVal"
@@ -111,7 +111,7 @@ export default {
         parentDictKey: ''
       },
       address: {
-        province: this.selectedAddress.province || '',
+        province: '',
         city: this.selectedAddress.city || '',
         area: this.selectedAddress.area || ''
       },
@@ -133,7 +133,8 @@ export default {
         if (res.message.code === 0) {
           if (res.data.dataList && res.data.dataList.length) {
             this.provinceData = res.data.dataList
-            if (this.address.province) {
+            if (this.selectedAddress.province) {
+              this.address.province = this.selectedAddress.province
               this.getCity(this.address.province)
             }
           }

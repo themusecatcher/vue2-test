@@ -11,15 +11,22 @@
       :width="160"
       :height="36"
       :num="6"
-      v-show="true"
+      v-show="false"
       @getValue="getValue" />
     <br/>
     <Cascader
+      :selectedAddress="selectedAddress"
+      :zIndex="9"
+      :gap="8"
+      :provinceWidth="160"
+      :cityWidth="160"
+      :areaWidth="160"
       :width="160"
       :height="36"
+      :provinceDisabled="false"
+      :cityDisabled="false"
+      :disabled="false"
       :num="8"
-      :selectedAddress="address"
-      :zIndex="996"
       @getAddress="getAddress" />
   </div>
 </template>
@@ -36,7 +43,9 @@ export default {
   },
   data () {
     return {
-      address: {},
+      selectedAddress: {
+        province: 'P29'
+      },
       selectData: [
         {
           name: '北京市',
