@@ -1,7 +1,6 @@
 <template>
   <div class="m-cascader-wrap" :style="`height: ${height}px;`">
     <VueAmazingSelector
-      ref="province"
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
       :selectData="provinceData"
       :selectedValue="address.province"
@@ -14,7 +13,6 @@
       placeholder="请选择省"
       @getValue="getProvinceCode" />
     <VueAmazingSelector
-      ref="city"
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
       :selectData="cityData"
       :selectedValue="address.city"
@@ -27,7 +25,6 @@
       placeholder="请选择市"
       @getValue="getCityCode" />
     <VueAmazingSelector
-      ref="area"
       :style="`z-index: ${zIndex};`"
       :selectData="areaData"
       :selectedValue="address.area"
@@ -112,14 +109,17 @@ export default {
       },
       address: {
         province: '',
-        city: this.selectedAddress.city || '',
-        area: this.selectedAddress.area || ''
+        city: '',
+        area: ''
       },
       addressName: {
         provinceName: '',
         cityName: '',
         areaName: ''
-      }
+      },
+      initialProvince: true,
+      initialCity: true,
+      initialArea: true
     }
   },
   created () {
@@ -133,7 +133,8 @@ export default {
         if (res.message.code === 0) {
           if (res.data.dataList && res.data.dataList.length) {
             this.provinceData = res.data.dataList
-            if (this.selectedAddress.province) {
+            if (this.selectedAddress.province && this.initialProvince) {
+              this.initialProvince = false
               this.address.province = this.selectedAddress.province
               this.getCity(this.address.province)
             }
@@ -148,7 +149,9 @@ export default {
         if (res.message.code === 0) {
           if (res.data.dataList && res.data.dataList.length) {
             this.cityData = res.data.dataList
-            if (this.address.city) {
+            if (this.selectedAddress.city && this.initialCity) {
+              this.initialCity = false
+              this.address.city = this.selectedAddress.city
               this.getArea(this.address.city)
             }
           }
@@ -162,6 +165,10 @@ export default {
         if (res.message.code === 0) {
           if (res.data.dataList && res.data.dataList.length) {
             this.areaData = res.data.dataList
+            if (this.selectedAddress.area && this.initialArea) {
+              this.initialArea = false
+              this.address.area = this.selectedAddress.area
+            }
           }
         }
       })
@@ -171,8 +178,6 @@ export default {
       if (this.address.province !== key) {
         this.address.province = key
         this.addressName.provinceName = name
-        this.$refs.city.selectedName = ''
-        this.$refs.area.selectedName = ''
         this.address.city = ''
         this.address.area = ''
         this.cityData = []
@@ -186,7 +191,6 @@ export default {
       if (this.address.city !== key) {
         this.address.city = key
         this.addressName.cityName = name
-        this.$refs.area.selectedName = ''
         this.address.area = ''
         this.areaData = []
         // 获取区下拉列表
