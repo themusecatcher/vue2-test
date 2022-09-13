@@ -19,11 +19,11 @@
 export default {
   name: 'Notification',
   props: {
-    duration: { // 自动关闭的延时,单位ms
+    duration: { // 自动关闭的延时时长,单位ms，默认4500ms；设置null时，不自动关闭
       type: Number,
       default: 4500
     },
-    top: { // 消息从顶部弹出时，距离顶部的位置，单位像素
+    top: { // 消息从顶部弹出时，距离顶部的位置，单位像素px
       type: Number,
       default: 24
     },
@@ -31,7 +31,7 @@ export default {
       type: Number,
       default: 24
     },
-    placement: { // 弹出位置，可选topLeft,topRight,bottomLeft,bottomRight
+    placement: { // 消息弹出位置，可选topLeft,topRight,bottomLeft,bottomRight
       type: String,
       default: 'topRight'
     }
@@ -44,7 +44,7 @@ export default {
         error: '#f5222d',
         warning: '#faad14'
       },
-      mode: 'info',
+      mode: 'info', // 调用方法对应的样式主题
       resetTimer: null,
       showNotification: [],
       hideTimers: [],

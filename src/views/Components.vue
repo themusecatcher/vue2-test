@@ -39,6 +39,7 @@
       />
     <Progress :width="600" :progress="36" v-show="false" />
     <VueAmazingSelector
+      class="mt60"
       :selectData="selectData"
       :selectedValue="selectedValue"
       name="name"
@@ -48,7 +49,7 @@
       :width="160"
       :height="36"
       :num="6"
-      v-show="false"
+      v-show="true"
       @getValue="getValue" />
     <Table
       v-show="false"
@@ -94,7 +95,7 @@
     <Message ref="message" :duration="3000" :top="30" />
     <Notification
       ref="notification"
-      placement="bottomRight"
+      placement="topRight"
       :duration="null"
       :top="30"
       @close="onNotificationClose" />
@@ -316,12 +317,12 @@ export default {
         description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
       }
       // this.$refs.notification.open(notification) // 默认使用
-      this.$refs.notification.info(notification) // info调用
+      // this.$refs.notification.info(notification) // info调用
       // this.$refs.notification.success(notification) // success调用
       // this.$refs.notification.error(notification) // error调用
-      // this.$refs.notification.warning(notification) // warning调用
+      this.$refs.notification.warning(notification) // warning调用
     },
-    onNotificationClose () { // 点击默认关闭按钮时触发的回调函数	
+    onNotificationClose () { // 点击默认关闭按钮时触发的回调函数
       console.log('关闭notification')
     }
   }
