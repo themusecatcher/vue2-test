@@ -18,15 +18,15 @@
       :selectedAddress="selectedAddress"
       :zIndex="9"
       :gap="8"
-      :provinceWidth="160"
-      :cityWidth="160"
-      :areaWidth="160"
-      :width="160"
+      :provinceWidth="120"
+      :cityWidth="120"
+      :areaWidth="120"
+      :width="120"
       :height="36"
       :provinceDisabled="false"
       :cityDisabled="false"
       :disabled="false"
-      :num="8"
+      :num="6"
       @getAddress="getAddress" />
   </div>
 </template>
