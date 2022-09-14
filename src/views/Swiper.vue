@@ -19,8 +19,6 @@
       <!-- 如果需要导航按钮 -->
       <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
       <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
-      <!-- 如果需要滚动条 -->
-      <!-- <div class="swiper-scrollbar"></div> -->
     </div>
   </div>
 </template>
