@@ -10,7 +10,7 @@
       :width="provinceWidth || width"
       :height="height"
       :num="num"
-      placeholder="请选择省"
+      :placeholder="provincePlaceholder || placeholder"
       @getValue="getProvinceCode" />
     <VueAmazingSelector
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
@@ -22,7 +22,7 @@
       :width="cityWidth || width"
       :height="36"
       :num="num"
-      placeholder="请选择市"
+      :placeholder="cityPlaceholder || placeholder"
       @getValue="getCityCode" />
     <VueAmazingSelector
       :style="`z-index: ${zIndex};`"
@@ -34,7 +34,7 @@
       :width="areaWidth || width"
       :height="height"
       :num="num"
-      placeholder="请选择区"
+      :placeholder="areaPlaceholder || placeholder"
       @getValue="getAreaCode" />
   </div>
 </template>
@@ -57,7 +57,7 @@ export default {
       type: Number,
       default: 1
     },
-    gap: { // 级联下拉相互间隙宽度，单位px，默认8px
+    gap: { // 级联下拉框相互间隙宽度，单位px，默认8px
       type: Number,
       default: 8
     },
@@ -73,27 +73,43 @@ export default {
       type: Number,
       default: null
     },
-    width: { // 单个下拉框宽度
+    width: { // 省市区统一宽度
       type: Number,
-      default: 200
+      default: 160
     },
-    height: { // 单个下拉框高度
+    height: { // 下拉框高度
       type: Number,
       default: 36
     },
-    provinceDisabled: { // 禁用省下拉
+    provinceDisabled: { // 是否禁用省下拉
       type: Boolean,
       default: false
     },
-    cityDisabled: { // 禁用市下拉
+    cityDisabled: { // 是否禁用市下拉
       type: Boolean,
       default: false
     },
-    disabled: { // 是否全部禁用
+    disabled: { // 省市区统一是否全部禁用
       type: Boolean,
       default: false
     },
-    num: { // 下拉面板最多能展示的下拉项数，超过滚后动显示
+    provincePlaceholder: { // 省占位文本
+      type: String,
+      default: '请选择省'
+    },
+    cityPlaceholder: { // 市占位文本
+      type: String,
+      default: '请选择市'
+    },
+    areaPlaceholder: { // 区占位文本
+      type: String,
+      default: '请选择区'
+    },
+    placeholder: { // 省市区统一占位文本
+      type: String,
+      default: '请选择'
+    },
+    num: { // 下拉面板最多能展示的下拉项数，超过后滚动显示
       type: Number,
       default: 6
     }
@@ -124,10 +140,9 @@ export default {
   },
   created () {
     this.getProvince()
-    console.log('address:', this.address)
   },
   methods: {
-    getProvince () {
+    getProvince () { // 获取省数据
       dictByType(this.regionParams).then(res => {
         console.log('province-res:', res)
         if (res.message.code === 0) {
@@ -173,7 +188,7 @@ export default {
         }
       })
     },
-    getProvinceCode (name, key) {
+    getProvinceCode (name, key) { // 省下拉回调
       console.log('province:', name, key)
       if (this.address.province !== key) {
         this.address.province = key
@@ -186,7 +201,7 @@ export default {
         this.getCity(key)
       }
     },
-    getCityCode (name, key) {
+    getCityCode (name, key) { // 市下拉回调
       console.log('city:', name, key)
       if (this.address.city !== key) {
         this.address.city = key
@@ -197,7 +212,7 @@ export default {
         this.getArea(key)
       }
     },
-    getAreaCode (name, key) {
+    getAreaCode (name, key) { // 区下拉回调
       console.log('area:', name, key)
       this.address.area = key
       this.addressName.areaName = name

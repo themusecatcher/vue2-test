@@ -44,9 +44,9 @@ export default {
   data () {
     return {
       selectedAddress: {
-        province: 'P29',
-        city: 'C247',
-        area: 'D2067'
+        province: '',
+        city: '',
+        area: ''
       },
       selectData: [
         {

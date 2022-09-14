@@ -33,7 +33,7 @@
 export default {
   name: 'VueAmazingSelector',
   props: {
-    selectData: {
+    selectData: { // 下拉框字典数据
       type: Array,
       default: () => {
         return []
@@ -41,13 +41,13 @@ export default {
     },
     selectedValue: { // 下拉初始默认值
       type: [Number, String],
-      default: ''
+      default: null
     },
-    name: { // 下拉字典项的name值
+    name: { // 下拉字典项的文本
       type: String,
       default: 'name'
     },
-    value: { // 下拉字典项的value值
+    value: { // 下拉字典项的值
       type: String,
       default: 'value'
     },
@@ -67,15 +67,15 @@ export default {
       type: Number,
       default: 36
     },
-    num: { // 下拉面板最多能展示的下拉项数，超过滚后动显示
+    num: { // 下拉面板最多能展示的下拉项数，超过后滚动显示
       type: Number,
       default: 6
     }
   },
   data () {
     return {
-      selectedName: '',
-      hoverValue: this.selectedValue, // 鼠标悬浮项的value值
+      selectedName: null,
+      hoverValue: null, // 鼠标悬浮项的value值
       showOptions: false
     }
   },
@@ -104,13 +104,14 @@ export default {
       this.$emit('getValue', name, value, index)
     }
   },
-  mounted () {
-    for (let item of this.selectData) {
-      if (item[this.value] === this.selectedValue) {
-        this.selectedName = item[this.name]
-        break
-      }
+  watch: {
+    selectedValue (to) {
+      this.hoverValue = to
+      const target = this.selectData.find(item => item[this.value] === to)
+      this.selectedName = target ? target[this.name] : null
     }
+  },
+  mounted () {
     addEventListener('mousedown', this.blur) // 添加blur监听事件
   }
 }
