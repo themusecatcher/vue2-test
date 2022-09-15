@@ -114,6 +114,8 @@ export default {
 }
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(-16px);
+  -ms-transform: translateY(-16px); /* IE 9 */
+	-webkit-transform: translateY(-16px); /* Safari and Chrome */
   opacity: 0;
 }
 .m-message-wrap {
