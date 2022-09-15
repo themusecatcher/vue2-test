@@ -6,7 +6,7 @@
       <br/>
       <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div>
       <div class="u-tag blue" @click="onShowNotification">特斯拉</div>
-    </div>
+    </div>1
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
@@ -302,7 +302,7 @@ export default {
   // position: relative;
 }
 .u-tag {
-  margin-top: 60px;
+  margin-top: 160px;
   display: inline-block;
   padding: 6px 12px;
   border-radius: 15px;
