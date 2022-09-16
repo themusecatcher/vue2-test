@@ -42,6 +42,11 @@ const routes = [
         path: '/selector',
         name: 'Selector',
         component: () => import(/* webpackChunkName: "about" */ '@/views/Selector.vue')
+      },
+      { // 图片轮播组件
+        path: '/imgSlider',
+        name: 'ImgSlider',
+        component: () => import(/* webpackChunkName: "about" */ '@/views/ImgSlider.vue')
       }
     ]
   }

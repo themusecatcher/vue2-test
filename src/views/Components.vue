@@ -7,6 +7,7 @@
       <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div>
       <div class="u-tag blue" @click="onShowNotification">特斯拉</div>
     </div>
+    <!-- 方法2.使用position: relative;和position: absolute; left: ${-left}px; -->
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
