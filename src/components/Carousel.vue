@@ -37,7 +37,7 @@ import Vue from 'vue'
 import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad) // 图片懒加载插件
 export default {
-  name: 'ImageSlider',
+  name: 'Carousel',
   props: {
     imageData: { // 轮播图片数组
       type: Array,

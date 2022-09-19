@@ -25,7 +25,7 @@
       :height="36"
       :provinceDisabled="false"
       :cityDisabled="false"
-      :disabled="false"
+      :disabled="true"
       :num="6"
       @getAddress="getAddress" />
   </div>

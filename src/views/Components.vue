@@ -7,7 +7,7 @@
       <div class="u-tag yellow" @click="onShowMessage('This is a normal message')">哥斯拉</div>
       <div class="u-tag blue" @click="onShowNotification">特斯拉</div>
     </div>
-    <!-- 方法2.使用position: relative;和position: absolute; left: ${-left}px; -->
+    <Switcher v-show="false" :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
     <div class="m-area" v-show="false">
       <Loading :tip="tip" :infinite="false" :interval="200" v-show="loading" />
     </div>
@@ -101,8 +101,9 @@ import Timeline from '@/components/Timeline'
 import Dialog from '@/components/Dialog'
 import Modal from '@/components/Modal'
 import Table from '@/components/Table'
+import Switcher from '@/components/Switcher'
 export default {
-  name: 'App',
+  name: 'Components',
   components: {
     NumSlider,
     Tooltip,
@@ -114,7 +115,8 @@ export default {
     Timeline,
     Dialog,
     Modal,
-    Table
+    Table,
+    Switcher
   },
   data () {
     return {
@@ -273,7 +275,8 @@ export default {
 <style lang="less" scoped>
 .components {
   width: 1200px;
-  margin: 0 auto;
+  min-height: 100vh;
+  margin: 60px auto;
 }
 .m-area {
 	margin: 0 auto;
