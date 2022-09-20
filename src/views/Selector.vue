@@ -11,8 +11,8 @@
       :width="160"
       :height="36"
       :num="6"
-      v-show="false"
-      @getValue="getValue" />
+      v-show="true"
+      @change="onChange" />
     <br/>
     <Cascader
       :selectedAddress="selectedAddress"
@@ -25,9 +25,9 @@
       :height="36"
       :provinceDisabled="false"
       :cityDisabled="false"
-      :disabled="true"
+      :disabled="false"
       :num="6"
-      @getAddress="getAddress" />
+      @change="getAddress" />
   </div>
 </template>
 <script>
@@ -37,7 +37,7 @@ import 'vue-amazing-selector/lib/selector.css' // 引入相关样式
 Vue.use(VueAmazingSelector)
 import Cascader from '@/components/Cascader'
 export default {
-  name: 'Select',
+  name: 'Selector',
   components: {
     Cascader
   },
@@ -90,7 +90,7 @@ export default {
     this.selectedValue = ''
   },
   methods: {
-    getValue (name, value, index) {
+    onChange (name, value, index) {
       console.log('item:', name, value, index)
     },
     getAddress (address, addressName) {

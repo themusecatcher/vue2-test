@@ -11,7 +11,7 @@
       :height="height"
       :num="num"
       :placeholder="provincePlaceholder || placeholder"
-      @getValue="getProvinceCode" />
+      @change="getProvinceCode" />
     <VueAmazingSelector
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
       :selectData="cityData"
@@ -23,7 +23,7 @@
       :height="36"
       :num="num"
       :placeholder="cityPlaceholder || placeholder"
-      @getValue="getCityCode" />
+      @change="getCityCode" />
     <VueAmazingSelector
       :style="`z-index: ${zIndex};`"
       :selectData="areaData"
@@ -35,7 +35,7 @@
       :height="height"
       :num="num"
       :placeholder="areaPlaceholder || placeholder"
-      @getValue="getAreaCode" />
+      @change="getAreaCode" />
   </div>
 </template>
 <script>
@@ -216,7 +216,7 @@ export default {
       console.log('area:', name, key)
       this.address.area = key
       this.addressName.areaName = name
-      this.$emit('getAddress', this.address, this.addressName)
+      this.$emit('change', this.address, this.addressName)
     }
   }
 }

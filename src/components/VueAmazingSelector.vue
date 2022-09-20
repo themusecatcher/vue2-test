@@ -1,8 +1,10 @@
 <template>
-  <div class="vue-amazing-selector" id="vue-amazing-selector" :style="`height: ${height}px;`">
+  <div class="vue-amazing-selector" :style="`height: ${height}px;`">
     <div
-      :class="['m-select-wrap', { 'hover': !disabled, 'focus': showOptions, 'disabled': disabled }]"
+      :class="['m-select-wrap', { 'hover focus': !disabled, 'disabled': disabled }]"
       :style="`width: ${width - 2}px; height: ${height - 2}px;`"
+      tabindex="0"
+      @blur="onBlur"
       @click="disabled ? e => e.preventDefault() : openSelect()">
       <div
         :class="['u-select-input', { 'placeholder': !selectedName }]"
@@ -20,7 +22,7 @@
           :class="['u-option', {'option-selected': item[name]===selectedName, 'option-hover': !item.disabled&&item[value]===hoverValue, 'option-disabled': item.disabled }]"
           :title="item[name]"
           @mouseenter="onEnter(item[value])"
-          @click="item.disabled ? e => e.preventDefault() : getValue(item[name], item[value], index)"
+          @click="item.disabled ? e => e.preventDefault() : onChange(item[name], item[value], index)"
           v-for="(item, index) in selectData" :key="index"
         >
           {{ item[name] }}
@@ -79,31 +81,6 @@ export default {
       showOptions: false
     }
   },
-  methods: {
-    blur (e) {
-      let el = document.getElementById('vue-amazing-selector')
-      // 当点击事件的e.path不包括目标指定元素时，并且下拉面板为展开状态
-      if (!e.path.includes(el) && this.showOptions) {
-        this.showOptions = false
-      }
-      // 自动清理自己，避免内存泄漏
-      this.$once('hook:beforeDestroy', function () {
-        removeEventListener('mousedown', this.blur)
-      })
-    },
-    onEnter (value) {
-      this.hoverValue = value
-    },
-    openSelect () {
-      this.showOptions = !this.showOptions
-    },
-    getValue (name, value, index) { // 选中下拉项后的回调
-      this.selectedName = name
-      this.hoverValue = value
-      this.showOptions = false
-      this.$emit('getValue', name, value, index)
-    }
-  },
   watch: {
     selectedValue (to) {
       this.hoverValue = to
@@ -111,8 +88,24 @@ export default {
       this.selectedName = target ? target[this.name] : null
     }
   },
-  mounted () {
-    addEventListener('mousedown', this.blur) // 添加blur监听事件
+  methods: {
+    onBlur () {
+      if (this.showOptions) {
+        this.showOptions = false
+      }
+    },
+    onEnter (value) {
+      this.hoverValue = value
+    },
+    openSelect () {
+      this.showOptions = !this.showOptions
+    },
+    onChange (name, value, index) { // 选中下拉项后的回调
+      this.selectedName = name
+      this.hoverValue = value
+      this.showOptions = false
+      this.$emit('change', name, value, index)
+    }
   }
 }
 </script>
@@ -181,8 +174,10 @@ input, p {
   }
 }
 .focus { // 激活时样式
-  border-color: @themeColor;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 20%);
+  &:focus { // 需设置元素的tabindex属性
+    border-color: @themeColor;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 20%);
+  }
 }
 .disabled { // 下拉禁用样式
   color: rgba(0,0,0,.25);

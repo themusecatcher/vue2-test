@@ -41,6 +41,7 @@ const routes = [
       { // 下拉组件
         path: '/selector',
         name: 'Selector',
+        meta: { title: '下拉组件', keepAlive: true },
         component: () => import(/* webpackChunkName: "about" */ '@/views/Selector.vue')
       },
       { // 图片轮播组件
@@ -70,10 +71,13 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
-// router.beforeEach((to, from, next) => {
-//   to.meta && typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} - ${domTitle}`)
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  console.log('to:', to)
+  console.log('from:', from)
+  // console.log('next:', next)
+  to.meta && (document.title = `${to.meta.title}`)
+  next()
+})
 // hack router push callback
 // const originalPush = VueRouter.prototype.push
 // VueRouter.prototype.push = function push (location, onResolve, onReject) {
