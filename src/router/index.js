@@ -1,55 +1,55 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import RouteView from '@/layouts/RouteView'
+// import RouteView from '@/layouts/RouteView'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    redirect: '/components',
-    component: RouteView,
-    children: [
-      { // 常用组件
-        path: '/components',
-        name: 'Components',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Components.vue')
-      },
-      { // 走马灯
-        path: '/carousel',
-        name: 'Carousel',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Carousel.vue')
-      },
-      { // 轮播图
-        path: '/swiper',
-        name: 'Swiper',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/Swiper.vue')
-      },
-      { // 树图
-        path: '/tree',
-        name: 'Tree',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/Tree.vue')
-      },
-      { // 拖拽组件
-        path: '/drag',
-        name: 'Drag',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/Draggable.vue')
-      },
-      { // 下拉组件
-        path: '/selector',
-        name: 'Selector',
-        meta: { title: '下拉组件', keepAlive: true },
-        component: () => import(/* webpackChunkName: "about" */ '@/views/Selector.vue')
-      },
-      { // 图片轮播组件
-        path: '/imgSlider',
-        name: 'ImgSlider',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/ImgSlider.vue')
-      }
-    ]
+    redirect: '/components'
+  },
+  { // 常用组件
+    path: '/components',
+    name: 'Components',
+    component: () => import(/* webpackChunkName: "test" */ '../views/Components.vue')
+  },
+  { // 走马灯
+    path: '/carousel',
+    name: 'Carousel',
+    component: () => import(/* webpackChunkName: "test" */ '../views/Carousel.vue')
+  },
+  { // 轮播图
+    path: '/swiper',
+    name: 'Swiper',
+    meta: { depth: 2 },
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Swiper.vue')
+  },
+  { // 树图
+    path: '/tree',
+    name: 'Tree',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Tree.vue')
+  },
+  { // 拖拽组件
+    path: '/drag',
+    name: 'Drag',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Draggable.vue')
+  },
+  { // 下拉组件
+    path: '/selector',
+    name: 'Selector',
+    meta: { title: '下拉组件', keepAlive: true, depth: 1 },
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Selector.vue')
+  },
+  { // 图片轮播组件
+    path: '/imgSlider',
+    name: 'ImgSlider',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/ImgSlider.vue')
+  },
+  { // 步骤条组件
+    path: '/steps',
+    name: 'Steps',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Steps.vue')
   }
   // {
   //   path: '/500',
@@ -72,10 +72,10 @@ const router = new VueRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  console.log('to:', to)
-  console.log('from:', from)
+  // console.log('to:', to)
+  // console.log('from:', from)
   // console.log('next:', next)
-  to.meta && (document.title = `${to.meta.title}`)
+  to.meta && (document.title = `${to.meta.title || to.name}`)
   next()
 })
 // hack router push callback

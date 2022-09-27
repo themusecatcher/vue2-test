@@ -15,10 +15,12 @@
     <Dialog
       title="Title"
       :width="720"
+      :height="480"
       :content="content"
       :footer="true"
       cancelText="取消"
       okText="确认"
+      switchFullscreen
       @close="Notification"
       @cancel="onCancel"
       @ok="onConfirm"

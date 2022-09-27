@@ -1,33 +1,37 @@
 <template>
   <div class="selector">
-    <VueAmazingSelector
-      class="mt60"
-      :selectData="selectData"
-      :selectedValue="selectedValue"
-      name="name"
-      value="value"
-      placeholder="请选择城市"
-      :disabled="false"
-      :width="160"
-      :height="36"
-      :num="6"
-      v-show="true"
-      @change="onChange" />
-    <br/>
-    <Cascader
-      :selectedAddress="selectedAddress"
-      :zIndex="9"
-      :gap="8"
-      :provinceWidth="120"
-      :cityWidth="120"
-      :areaWidth="120"
-      :width="120"
-      :height="36"
-      :provinceDisabled="false"
-      :cityDisabled="false"
-      :disabled="false"
-      :num="6"
-      @change="getAddress" />
+    <div class="m-tab">
+      <div class="u-tab" @click="onClick"></div>
+      <VueAmazingSelector
+        class="mt60"
+        :selectData="selectData"
+        :selectedValue="selectedValue"
+        name="name"
+        value="value"
+        placeholder="请选择城市"
+        :disabled="false"
+        :width="160"
+        :height="36"
+        :num="6"
+        v-if="show"
+        @change="onChange" />
+      <br/>
+      <Cascader
+        :selectedAddress="selectedAddress"
+        :zIndex="9"
+        :gap="8"
+        :provinceWidth="120"
+        :cityWidth="120"
+        :areaWidth="120"
+        :width="120"
+        :height="36"
+        :provinceDisabled="false"
+        :cityDisabled="false"
+        :disabled="false"
+        :num="6"
+        v-if="!show"
+        @change="getAddress" />
+    </div>
   </div>
 </template>
 <script>
@@ -43,6 +47,8 @@ export default {
   },
   data () {
     return {
+      currentTabComponent: 'VueAmazingSelector',
+      show: false,
       selectedAddress: {
         province: '',
         city: '',
@@ -89,7 +95,18 @@ export default {
   created () {
     this.selectedValue = ''
   },
+  activated () {
+    console.log('selector activated')
+  },
   methods: {
+    onClick () {
+      this.show = !this.show
+      if (this.show) {
+        this.currentTabComponent = 'Cascader'
+      } else {
+        this.currentTabComponent = 'VueAmazingSelector'
+      }
+    },
     onChange (name, value, index) {
       console.log('item:', name, value, index)
     },
@@ -104,5 +121,14 @@ export default {
 .selector {
   width: 1200px;
   margin: 0 auto;
+}
+.m-tab {
+  border: 1px solid @themeColor;
+  padding: 60px;
+  .u-tab {
+    width: 60px;
+    height: 60px;
+    background: @themeColor;
+  }
 }
 </style>
