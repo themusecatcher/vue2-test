@@ -40,7 +40,7 @@
       @ok="onConfirm"
       v-show="showModal"
       />
-    <Progress :width="600" :progress="36" v-show="false" />
+    <Progress :width="600" :progress="36" :strokeWidth="10" :showInfo="true" v-show="false" />
     <Table
       v-show="false"
       :columns="columns"
