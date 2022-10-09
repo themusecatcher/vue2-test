@@ -50,6 +50,11 @@ const routes = [
     path: '/steps',
     name: 'Steps',
     component: () => import(/* webpackChunkName: "test" */ '@/views/Steps.vue')
+  },
+  { // 视频播放组件
+    path: '/video',
+    name: 'Video',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Video.vue')
   }
   // {
   //   path: '/500',

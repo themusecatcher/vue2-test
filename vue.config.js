@@ -20,9 +20,10 @@ const assetsCDN = {
   css: [],
   // https://unpkg.com/browse/vue@2.6.10/
   js: [
-    '//alicdn.jinhui365.com/npm/vue@2.6.12/vue.min.js',
-    '//alicdn.jinhui365.com/npm/vue-router@3.2.0/vue-router.min.js',
-    '//alicdn.jinhui365.com/npm/echarts@4.9.0/echarts.min.js',
+    '//cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js',
+    '//cdn.jsdelivr.net/npm/vue-router@3.6.4/dist/vue-router.min.js',
+    '//cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js',
+    '//cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js'
   ]
 }
 const time = new Date().getTime()
@@ -48,23 +49,8 @@ const vueConfig = {
   },
 
   chainWebpack: config => {
-    config.resolve.alias.set('@$', resolve('src'))
-
-    const svgRule = config.module.rule('svg')
-    svgRule.uses.clear()
-    svgRule
-      .oneOf('inline')
-      .resourceQuery(/inline/)
-      .use('vue-svg-icon-loader')
-      .loader('vue-svg-icon-loader')
-      .end()
-      .end()
-      .oneOf('external')
-      .use('file-loader')
-      .loader('file-loader')
-      .options({
-        name: 'assets/[name].[hash:8].[ext]'
-      })
+    config.resolve.alias.set('@', resolve('src'))
+      .set('components', resolve('src/components')) // 组件目录别名
 
     // if prod is on
     // assets require on cdn

@@ -142,7 +142,7 @@ export default {
     }
   }
   .swiper-pagination { // 自定义分页器样式
-    /deep/ .swiper-pagination-bullet {
+    :deep(.swiper-pagination-bullet) {
       width: 20px;
       height: 20px;
       text-align: center;
@@ -152,7 +152,7 @@ export default {
       opacity: 1;
       background: rgba(0,0,0,0.2);
     }
-    /deep/ .swiper-pagination-bullet-active {
+    :deep(.swiper-pagination-bullet-active) {
       color: #fff;
       background: #007aff;
     }
