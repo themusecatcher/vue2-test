@@ -1,6 +1,7 @@
 <template>
   <div>
     <VideoPlay
+      :hidden="false"
       videoUrl="https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4"
       videoCover="https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg"
       :width="800"
@@ -10,8 +11,8 @@
       :loop="false"
       :muted="false"
       preload="auto"
-      :playWidth="72"
-      />
+      :playWidth="96"
+    />
   </div>
 </template>
 <script>
@@ -23,7 +24,6 @@ export default {
   },
   data () {
     return {
-      //
     }
   },
   methods: {
