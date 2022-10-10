@@ -4,10 +4,11 @@
       v-model="dragData"
       group="player"
       animation="500"
-      :disabled="false"
       delay="0"
+      :disabled="false"
       ghostClass="ghost"
       chosenClass="chosen"
+      forceFallback
       @start="onStart"
       @end="onEnd"
       :move="onMove">
@@ -18,7 +19,7 @@
 <script>
 import draggable from 'vuedraggable'
 export default {
-  name: 'Tree',
+  name: 'Draggable',
   components: {
     draggable
   },
@@ -49,12 +50,12 @@ export default {
     }
   },
   methods: {
-    onStart (e) { // 开始拖拽事件
+    onStart (e) { // 开始拖动时触发的事件
       console.log('start:', e)
       console.log('拖拽操作前的索引oldIndex:', e.oldIndex)
       console.log('拖拽完成后的索引newIndex:', e.newIndex)
     },
-    onEnd (e) { // 结束拖拽事件
+    onEnd (e) { // 拖动完成时触发的事件
       console.log('end:', e)
       console.log('拖拽操作前的索引oldIndex:', e.oldIndex)
       console.log('拖拽完成后的索引newIndex:', e.newIndex)
@@ -62,10 +63,8 @@ export default {
     onMove (e, originalEvent) { // 拖拽move事件回调
       console.log('move:', e)
       console.log('originalEvent:', originalEvent)
-      // 不允许停靠
-      if (e.relatedContext.element.num === 30) return false // false表示阻止，true表示不阻止
       // 不允许拖拽
-      if (e.draggedContext.element.num === 11) return false
+      if (e.draggedContext.element.num === 11) return false // false表示阻止，true表示不阻止
       return true;
     }
   }
