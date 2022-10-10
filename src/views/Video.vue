@@ -21,14 +21,6 @@ export default {
   name: 'Video',
   components: {
     VideoPlay
-  },
-  data () {
-    return {
-    }
-  },
-  methods: {
   }
 }
 </script>
-<style lang="less" scoped>
-</style>

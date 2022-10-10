@@ -1,5 +1,5 @@
 <template>
-  <div class="m-video" :style="`width: ${width}px; height: ${height}px;`">
+  <div :class="['m-video', { hover: !originPlay }]" :style="`width: ${width}px; height: ${height}px;`">
     <video
       ref="veo"
       :class="[originPlay ? 'back':'back cursor']"
@@ -26,11 +26,12 @@ export default {
   props: {
     videoUrl: { // 视频文件url
       type: String,
-      default: ''
+      default: null,
+      required: true
     },
-    videoCover: { // 视频封面链接
+    videoCover: { // 视频封面url
       type: String,
-      default: ''
+      default: null
     },
     width: { // 视频播放器宽度
       type: Number,
@@ -44,9 +45,9 @@ export default {
       type: Boolean,
       default: false
     },
-    controls: { // 是否向用户显示控件，比如播放按钮
+    controls: { // 是否向用户显示控件，比如进度条，全屏
       type: Boolean,
-      default: false
+      default: true
     },
     loop: { // 视频播放完成后，是否循环播放
       type: Boolean,
@@ -60,7 +61,7 @@ export default {
       type: String,
       default: 'auto' // auto:一旦页面加载，则开始加载视频; metadata:当页面加载后仅加载视频的元数据 none:页面加载后不应加载视频
     },
-    playWidth: { // 播放按钮的边长
+    playWidth: { // 中间播放暂停按钮的边长
       type: Number,
       default: 96
     }
@@ -105,32 +106,39 @@ export default {
 </script>
 <style lang="less" scoped>
 .m-video {
-  display: inline-block;
-  margin: 0 auto;
+  // display: inline-block;
+  margin: 60px auto;
   position: relative;
-}
-.back {
-  background-color: #000;
-}
-.cursor {
-  cursor: pointer;
-}
-.play {
-  fill: none;
-  color: #FFF;
-  opacity: 0.7;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  transition: all .3s;
-  &:hover {
-    opacity: 1;
+  .back {
+    background-color: #000;
+  }
+  .cursor {
+    cursor: pointer;
+  }
+  .play {
+    fill: none;
+    color: #FFF;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    transition: opacity .3s;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  .hidden {
+    display: none;
   }
 }
-.hidden {
-  display: none;
+.hover {
+  &:hover {
+    .play {
+      opacity: 0.9;
+    }
+  }
 }
 </style>
