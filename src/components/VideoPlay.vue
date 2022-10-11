@@ -106,8 +106,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .m-video {
-  // display: inline-block;
-  margin: 60px auto;
+  display: inline-block;
   position: relative;
   .back {
     background-color: #000;

@@ -32,9 +32,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.router-view {
+#app {
   min-height: 100vh;
   min-width: 1200px;
+  width: 1200px;
   margin: 0 auto;
 }
 </style>
