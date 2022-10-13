@@ -51,6 +51,7 @@ const vueConfig = {
   chainWebpack: config => {
     config.resolve.alias.set('@', resolve('src'))
       .set('components', resolve('src/components')) // 组件目录别名
+      .set('images', resolve('src/assets/images')) // 组件目录别名
 
     // if prod is on
     // assets require on cdn
