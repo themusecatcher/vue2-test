@@ -78,7 +78,11 @@
         @highChange="highChange"
       />
     </div>
-    <Spin :tip="tip" v-show="loading" />
+    <div style="width: 800px; height: 450px;">
+      <Spin :tip="tip" :spinning="spinning" :delay="300">
+        <p>可以点击‘切换’按钮，延迟显示 loading 效果。当 spinning 状态在 `delay` 时间内结束，则不显示 loading 状态。</p>
+      </Spin>
+    </div>
     <Tooltip ref="tooltip" :maxWidth="240">
 			<div class="u-content" v-if="content">{{ content }}</div>
 		</Tooltip>
@@ -122,6 +126,7 @@ export default {
   },
   data () {
     return {
+      spinning: false,
       tableLoading: false,
       total: 11,
       queryParams: {

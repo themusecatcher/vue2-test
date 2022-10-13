@@ -33,9 +33,11 @@ const vueConfig = {
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new webpack.DefinePlugin({
-        APP_VERSION: `"${require('./package.json').version}"`,
+      // 在引入moment时，build之后的包比不引入moment的包文件大了整整两百多kb，webpack会把moment的语言包也一起打包，隐藏忽略moment模块
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // 忽略regExp匹配的模块
+      // DefinePlugin是webpack注入全局变量的插件，通常使用该插件来判别代码运行的环境变量。
+      // 在使用该插件需要注意的是，如果在该插件配置了相关的参数，必须要源码中使用，webpack才会注入。
+      new webpack.DefinePlugin({ // 定义全局变量
         BUILD_DATE: buildDate
       })
     ],
@@ -68,7 +70,7 @@ const vueConfig = {
       less: {
         globalVars: { // 或者globalVars
           // `themeColor` is global variables fields name
-          themeColor: '#52c41a'
+          themeColor: '#1890FF'
         }
       }
     }
