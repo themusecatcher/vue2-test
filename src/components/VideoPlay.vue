@@ -2,7 +2,8 @@
   <div :class="['m-video', { hover: !originPlay }]" :style="`width: ${width}px; height: ${height}px;`">
     <video
       ref="veo"
-      :class="[originPlay ? 'back':'back cursor']"
+      :class="[originPlay ? 'video':'video cursor']"
+      :style="`object-fit: ${zoom};`"
       :src="videoUrl"
       :poster="videoCover"
       :width="width"
@@ -64,6 +65,10 @@ export default {
     playWidth: { // 中间播放暂停按钮的边长
       type: Number,
       default: 96
+    },
+    zoom: { // video的poster默认图片和视频内容缩放规则
+      type: String,
+      default: 'none' // none:(默认)保存原有内容，不进行缩放; fill:不保持原有比例，内容拉伸填充整个内容容器; contain:保存原有比例，内容以包含方式缩放; cover:保存原有比例，内容以覆盖方式缩放
     }
   },
   data () {
@@ -108,7 +113,7 @@ export default {
 .m-video {
   display: inline-block;
   position: relative;
-  .back {
+  .video {
     background-color: #000;
   }
   .cursor {
