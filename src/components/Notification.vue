@@ -136,7 +136,7 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(408px);
   -ms-transform: translateX(408px); /* IE 9 */
-	-webkit-transform: translateX(408px); /* Safari and Chrome */
+  -webkit-transform: translateX(408px); /* Safari and Chrome */
   opacity: 0;
 }
 .topRight {

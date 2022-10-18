@@ -21,7 +21,7 @@ export default {
     height: { // 播放区域高度
       type: Number,
       default: 450
-    },
+    }
   },
   data () {
     return {
@@ -42,7 +42,7 @@ export default {
   methods: {
     onPreload () {
       // 图片序列预加载
-      for ( var i = 1; i <= this.imageSum; i++) {
+      for (var i = 1; i <= this.imageSum; i++) {
         var img = new Image()
         // img.onload = () => {
         //   console.log('this:', this)

@@ -39,11 +39,11 @@
   </div>
 </template>
 <script>
+import { dictByType } from '@/api/index'
 import Vue from 'vue'
 import VueAmazingSelector from 'vue-amazing-selector'
 import 'vue-amazing-selector/lib/selector.css' // 引入样式
 Vue.use(VueAmazingSelector)
-import { dictByType } from '@/api/index'
 export default {
   name: 'Cascader',
   props: {

@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const buildDate = JSON.stringify(new Date().toLocaleString())
 const createCompressionPlugin = require('./config/plugin.config')
 
 function resolve (dir) {
@@ -15,6 +14,7 @@ const assetsCDN = {
   externals: {
     vue: 'Vue',
     'vue-router': 'VueRouter',
+    axios: 'axios',
     echarts: 'echarts'
   },
   css: [],
@@ -37,9 +37,9 @@ const vueConfig = {
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // 忽略regExp匹配的模块
       // DefinePlugin是webpack注入全局变量的插件，通常使用该插件来判别代码运行的环境变量。
       // 在使用该插件需要注意的是，如果在该插件配置了相关的参数，必须要源码中使用，webpack才会注入。
-      new webpack.DefinePlugin({ // 定义全局变量
-        BUILD_DATE: buildDate
-      })
+      // new webpack.DefinePlugin({ // 定义全局变量
+      //   BUILD_DATE: buildDate
+      // })
     ],
     output: {
       // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
@@ -68,7 +68,7 @@ const vueConfig = {
   css: {
     loaderOptions: {
       less: {
-        globalVars: { // 或者globalVars
+        modifyVars: { // 或者globalVars
           // `themeColor` is global variables fields name
           themeColor: '#1890FF'
         }

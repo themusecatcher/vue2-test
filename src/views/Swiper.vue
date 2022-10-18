@@ -12,7 +12,7 @@
               <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination"></div>
@@ -60,13 +60,13 @@ export default {
         loadPrevNext: true, // 默认false情况下swiper只加载当前slide的图片，其他图片不加载，设置为true后，swiper会提前加载下一个slide的图片
         loadPrevNextAmount: 2 // 默认为1，设置在延迟加载图片时，提前多少个slide
       },
-      zoom: { //开启缩放功能，双击slide会放大/缩小，并且在手机端可双指触摸缩放
+      zoom: { // 开启缩放功能，双击slide会放大/缩小，并且在手机端可双指触摸缩放
         maxRatio: 3, // 默认3，设置缩放的最大放大比例，如果要在单个slide设置放大比例，可以在其上添加data-swiper-zoom="3"
         minRatio: 2, // 默认为1，最小缩放焦距（缩小倍率）
-        toggle: true // 默认为true，是否允许双击缩放，为false时，不允许双击缩放，只允许手机端触摸缩放 
+        toggle: true // 默认为true，是否允许双击缩放，为false时，不允许双击缩放，只允许手机端触摸缩放
       },
       pagination: { // 如果需要分页器
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         // dynamicBullets: true, // 动态分页器，分页器小点的数量部分隐藏
         // dynamicMainBullets: 2, // 动态分页器的主指示点数量
         clickable: true, // 点击分页器的指示点控制swiper切换
@@ -78,12 +78,12 @@ export default {
         }
       },
       navigation: { // 如果需要前进后退按钮
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
       },
       scrollbar: { // 如果需要滚动条
         el: '.swiper-scrollbar',
-        hide: true, // 滚动条是否自动隐藏，默认false
+        hide: true // 滚动条是否自动隐藏，默认false
       },
       mousewheel: true, // 是否开启鼠标滚轮控制swiper切换 ，默认false
       direction: 'horizontal', // 滑动方向
@@ -101,15 +101,15 @@ export default {
       autoplay: {
         delay: 3000, // 多少秒切换一次，默认3000ms
         disableOnInteraction: false, // 用户操作之后，是否禁止autoplay，默认true，操作包括触碰，拖动，点击pagination
-        waitForTransition: true, // 是否等待过渡完成，再开始自动切换的计时，默认true
+        waitForTransition: true // 是否等待过渡完成，再开始自动切换的计时，默认true
       },
       loop: true // 循环模式选项
     })
     // 6.6.2之前的版本需要通过代码实现此功能；开启后，鼠标置于swiper时暂停自动切换，离开时回复自动切换
-    this.swiper.el.onmouseover = function() { // 鼠标覆盖停止自动切换
+    this.swiper.el.onmouseover = function () { // 鼠标覆盖停止自动切换
       this.swiper.autoplay.stop()
     }
-    this.swiper.el.onmouseout = function() { // 鼠标离开开始自动切换
+    this.swiper.el.onmouseout = function () { // 鼠标离开开始自动切换
       this.swiper.autoplay.start()
     }
   }

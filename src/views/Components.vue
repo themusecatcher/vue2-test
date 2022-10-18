@@ -84,8 +84,8 @@
       </Spin>
     </div>
     <Tooltip ref="tooltip" :maxWidth="240">
-			<div class="u-content" v-if="content">{{ content }}</div>
-		</Tooltip>
+      <div class="u-content" v-if="content">{{ content }}</div>
+    </Tooltip>
     <Message ref="message" :duration="3000" :top="30" />
     <Notification
       ref="notification"
@@ -130,10 +130,10 @@ export default {
       tableLoading: false,
       total: 11,
       queryParams: {
-				pageSize: 5,
-				p: 1,
-				mod: 'search'
-			},
+        pageSize: 5,
+        p: 1,
+        mod: 'search'
+      },
       columns: [
         {
           title: '名字',
@@ -203,7 +203,7 @@ export default {
       // content: 'Content of the modal ...',
       low: 20,
       high: 80,
-      timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
+      timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site']
     }
   },
   methods: {
@@ -286,11 +286,11 @@ export default {
   margin: 60px auto;
 }
 .m-area {
-	margin: 0 auto;
-	width: 500px;
-	height: 400px;
+  margin: 0 auto;
+  width: 500px;
+  height: 400px;
   border: 1px solid #1890ff;
-	background: #000;
+  background: #000;
 }
 .m-num {
   min-width: 1200px;

@@ -35,11 +35,11 @@
   </div>
 </template>
 <script>
+import Cascader from '@/components/Cascader'
 import Vue from 'vue'
 import VueAmazingSelector from 'vue-amazing-selector'
 import 'vue-amazing-selector/lib/selector.css' // 引入相关样式
 Vue.use(VueAmazingSelector)
-import Cascader from '@/components/Cascader'
 export default {
   name: 'Selector',
   components: {

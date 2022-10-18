@@ -114,7 +114,7 @@ export default {
               width: 2, // 树图边的宽度
               curveness: 0.5, // 树图边的曲度
               shadowColor: 'rgba(0, 0, 0, 0.5)', // 阴影颜色
-              shadowBlur: 10, // 图形阴影的模糊大小
+              shadowBlur: 10 // 图形阴影的模糊大小
             },
             emphasis: { // 树图中图形和标签高亮的样式
               disabled: false, // 是否关闭高亮状态，默认false
@@ -136,7 +136,7 @@ export default {
                 width: 2, // 树图边的宽度
                 curveness: 0.5, // 树图边的曲度
                 shadowColor: 'rgba(0, 0, 0, 0.5)', // 阴影颜色
-                shadowBlur: 6, // 图形阴影的模糊大小
+                shadowBlur: 6 // 图形阴影的模糊大小
               },
               label: { // 高亮标签的文本样式
                 color: '#333',
@@ -146,7 +146,7 @@ export default {
             blur: { // 淡出状态的相关配置，开启emphasis.focus后有效
               itemStyle: {}, // 节点的样式
               lineStyle: {}, // 树图边的样式
-              label: {}, // 淡出标签的文本样式
+              label: {} // 淡出标签的文本样式
             },
             leaves: { // 叶子节点的特殊配置
               label: { // 叶子节点的文本标签样式
@@ -162,7 +162,7 @@ export default {
               select: {} // 叶子节点选中状态的配置
             },
             animation: true, // 是否开启动画
-            expandAndCollapse: true, // 
+            expandAndCollapse: true, // 子树折叠和展开的交互，默认打开
             animationDuration: 550, // 初始动画的时长
             animationEasing: 'linear', // 初始动画的缓动效果
             animationDelay: 0, // 初始动画的延迟

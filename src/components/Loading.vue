@@ -37,7 +37,7 @@ export default {
     callback () {
       this.running = false
       setTimeout(() => {
-          this.running = true
+        this.running = true
       }, this.interval)
     }
   }

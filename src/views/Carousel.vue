@@ -56,7 +56,7 @@ export default {
         loadPrevNextAmount: 2 // 默认为1，设置在延迟加载图片时，提前多少个slide
       },
       pagination: { // 如果需要分页器
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         // dynamicBullets: true, // 动态分页器，分页器小点的数量部分隐藏
         // dynamicMainBullets: 2, // 动态分页器的主指示点数量
         clickable: true, // 点击分页器的指示点控制swiper切换
@@ -71,24 +71,24 @@ export default {
       direction: 'horizontal', // 滑动方向
       speed: 3000, // 切换速度，自动滑动开始到结束的时间
       grabCursor: true, // 悬浮时鼠标样式切换
-      slidesPerView : 3, // slider容器能够同时显示的slides数量，默认为1，auto自动根据slide宽度来设定数量
-      slidesPerGroup : 1, // 定义多少slide为一组，默认为1
-      spaceBetween : 20, // slide之间的距离
+      slidesPerView: 3, // slider容器能够同时显示的slides数量，默认为1，auto自动根据slide宽度来设定数量
+      slidesPerGroup: 1, // 定义多少slide为一组，默认为1
+      spaceBetween: 20, // slide之间的距离
       centerInsufficientSlides: true, // 当slide总数小于slidesPerView时，slide居中
       effect: 'slide', // slide的切换效果，默认为'slide'位移切换，'fade'淡入，'cube'方块，'coverflow'3d流，'flip'3d翻转，'cards'卡片式，'creative'创意性
       // autoplay: true, // 启动自动切换，等同于以下设置
       autoplay: {
         delay: 0, // 多少秒切换一次，默认3000ms
         disableOnInteraction: false, // 用户操作之后，是否禁止autoplay，默认true，操作包括触碰，拖动，点击pagination
-        waitForTransition: true, // 是否等待过渡完成，再开始自动切换的计时，默认true
+        waitForTransition: true // 是否等待过渡完成，再开始自动切换的计时，默认true
       },
       loop: true // 循环模式选项
     })
-    //6.6.2之前的版本需要通过代码实现此功能；开启后，鼠标置于swiper时暂停自动切换，离开时回复自动切换
-    this.swiper.el.onmouseover = function() { // 鼠标覆盖停止自动切换
+    // 6.6.2之前的版本需要通过代码实现此功能；开启后，鼠标置于swiper时暂停自动切换，离开时回复自动切换
+    this.swiper.el.onmouseover = function () { // 鼠标覆盖停止自动切换
       this.swiper.autoplay.stop()
     }
-    this.swiper.el.onmouseout = function() { // 鼠标离开开始自动切换
+    this.swiper.el.onmouseout = function () { // 鼠标离开开始自动切换
       this.swiper.autoplay.start()
     }
   }

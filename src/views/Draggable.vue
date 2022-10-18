@@ -41,7 +41,7 @@ export default {
         {
           name: 'james',
           num: 23
-        },      
+        },
         {
           name: 'leo',
           num: 36
@@ -65,7 +65,7 @@ export default {
       console.log('originalEvent:', originalEvent)
       // 不允许拖拽
       if (e.draggedContext.element.num === 11) return false // false表示阻止，true表示不阻止
-      return true;
+      return true
     }
   }
 }

@@ -28,7 +28,7 @@ export default {
     },
     width: { // 滑动输入条在页面中的宽度
       type: Number,
-      default: 600,
+      default: 600
     },
     disabled: { // 是否禁用
       type: Boolean,

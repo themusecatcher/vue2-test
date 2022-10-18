@@ -54,7 +54,7 @@ export default {
       this.hideTimer = setTimeout(() => {
         this.showTooltip = false
       }, 100)
-    },
+    }
   }
 }
 </script>
@@ -67,7 +67,7 @@ export default {
   opacity: 0;
   transform: scale(0.8); // 缩放变换
   -ms-transform: scale(0.8); /* IE 9 */
-	-webkit-transform: scale(0.8); /* Safari and Chrome */
+  -webkit-transform: scale(0.8); /* Safari and Chrome */
 }
 // 滑动渐变过渡效果
 .slide-fade-enter-active {
@@ -79,7 +79,7 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(6px); // 滑动变换
   -ms-transform: translateY(6px); /* IE 9 */
-	-webkit-transform: translateY(6px); /* Safari and Chrome */
+  -webkit-transform: translateY(6px); /* Safari and Chrome */
   opacity: 0;
 }
 .m-tooltip {
