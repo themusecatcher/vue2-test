@@ -22,6 +22,7 @@ request.interceptors.request.use(config => {
   // console.log(config)
   if (config.method === 'get') {
     config.params = {
+      platformId: 2501,
       ...config.params
     }
   }
@@ -42,4 +43,4 @@ const installer = {
 
 export default request
 
-export { installer as VueAxios, request as axios }
+export { installer as VueAxios, request }

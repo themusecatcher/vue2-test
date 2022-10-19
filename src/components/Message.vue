@@ -70,7 +70,7 @@ export default {
       console.log('index:', index)
       this.$nextTick(() => { // 待异步更新队列之后显示提示框，否则过渡效果会异常
         this.$set(this.showMessage, index, true)
-        // this.onHideMessage(index)
+        this.onHideMessage(index)
       })
     },
     info (content) {

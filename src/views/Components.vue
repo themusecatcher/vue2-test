@@ -1,6 +1,6 @@
 <template>
   <div class="components limit1200">
-    <div v-show="true">
+    <div v-show="false">
       <div class="u-tag yellow mr20" @mouseenter="onShowTip($event, '特斯拉(Tesla)是美国一家电动汽车及能源公司，总部位于帕洛阿托(Palo Alto)，市值达2100亿美元，产销电动汽车、太阳能板、及储能设备')" @mouseleave="onHideTip">特斯拉</div>
       <div class="u-tag blue" @mouseenter="onShowTip($event, '《哥斯拉大战金刚》是由美国传奇影业公司出品，亚当·温佳德执导，亚历山大·斯卡斯加德、米莉·博比·布朗、丽贝卡·豪尔、凯莉·霍特尔、布莱恩·泰里·亨利、小栗旬联合主演的动作科幻片，于2021于3月26日在中国内地上映')" @mouseleave="onHideTip">哥斯拉</div>
       <br/>
@@ -287,7 +287,7 @@ export default {
 }
 .components {
   // width: 1200px;
-  min-height: 100vh;
+  // min-height: 100vh;
   margin: 60px auto;
 }
 .m-area {
