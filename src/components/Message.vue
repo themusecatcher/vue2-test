@@ -70,7 +70,7 @@ export default {
       console.log('index:', index)
       this.$nextTick(() => { // 待异步更新队列之后显示提示框，否则过渡效果会异常
         this.$set(this.showMessage, index, true)
-        this.onHideMessage(index)
+        // this.onHideMessage(index)
       })
     },
     info (content) {
@@ -121,7 +121,9 @@ export default {
 .m-message-wrap {
   position: fixed;
   z-index: 999; // 突出显示该层级
-  width: 100%;
+  width: 100vw;
+  left: 0;
+  right: 0;
   pointer-events: none; // 保证整个message区域不遮挡背后元素响应鼠标事件
   .m-message {
     text-align: center;

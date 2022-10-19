@@ -12,7 +12,7 @@
       :muted="false"
       preload="auto"
       :playWidth="96"
-      zoom="none"
+      zoom="cover"
     />
     <SerializeVideo :imagesData="imagesData" />
   </div>
