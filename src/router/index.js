@@ -69,6 +69,12 @@ const routes = [
     name: 'Banner',
     meta: { title: 'banner组件' },
     component: () => import(/* webpackChunkName: "test" */ '@/views/BannerSwiper.vue')
+  },
+  {
+    path: '/pdf',
+    name: 'Pdf',
+    meta: { title: 'pdf预览' },
+    component: () => import(/* webpackChunkName: "test" */ '@/views/PdfView.vue')
   }
   // {
   //   path: '/500',

@@ -1,19 +1,23 @@
 <template>
   <div class="banner">
-    <Banner :bannerData="bannerData" />
+    <BannerVideo v-show="false" :bannerData="bannerVideoData" />
+    <BannerImg :bannerData="bannerImgData" />
   </div>
 </template>
 <script>
-import Banner from '@/components/Banner'
-import { getAction } from '@/api/index'
+import BannerVideo from '@/components/BannerVideo'
+import BannerImg from '@/components/BannerImg'
+import { getAction } from 'apis/index'
 export default {
   name: 'BannerSwiper',
   components: {
-    Banner
+    BannerVideo,
+    BannerImg
   },
   data () {
     return {
-      bannerData: {},
+      bannerVideoData: {},
+      bannerImgData: [],
       url: {
         banner: '/api/banner/list'
       }
@@ -27,7 +31,8 @@ export default {
       getAction(this.url.banner).then(res => {
         console.log('banner:', res)
         if (res.message.code === 0) {
-          this.bannerData = res.data[0]
+          this.bannerVideoData = res.data[0]
+          this.bannerImgData = res.data
         }
       })
     }

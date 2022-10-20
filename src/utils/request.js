@@ -22,7 +22,7 @@ request.interceptors.request.use(config => {
   // console.log(config)
   if (config.method === 'get') {
     config.params = {
-      platformId: 2501,
+      platformId: 25,
       ...config.params
     }
   }

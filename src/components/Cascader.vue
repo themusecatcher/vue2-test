@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import { dictByType } from '@/api/index'
+import { dictByType } from 'apis/index'
 import Vue from 'vue'
 import VueAmazingSelector from 'vue-amazing-selector'
 import 'vue-amazing-selector/lib/selector.css' // 引入样式

@@ -126,7 +126,7 @@ export default {
   },
   data () {
     return {
-      spinning: false,
+      spinning: true,
       tableLoading: false,
       total: 11,
       queryParams: {

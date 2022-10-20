@@ -33,8 +33,9 @@ export default {
 </script>
 <style lang="less" scoped>
 #app {
+  // width: 100%;
   min-height: 100vh;
-  min-width: 1200px;
+  // min-width: 1200px;
   margin: 0 auto;
 }
 </style>
