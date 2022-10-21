@@ -1,6 +1,6 @@
 <template>
   <div ref="serialize" class="serialize" :style="`width: ${width}px; height: ${height}px;`">
-    <div ref="loading" class="loading" data-percent="0"></div>
+    <img :src="targetSrc" class="img" :style="`width: ${width}px; height: ${height}px; object-fit: cover;`" />
   </div>
 </template>
 <script>
@@ -25,9 +25,10 @@ export default {
   },
   data () {
     return {
-      store: { // 存储预加载的DOM对象和长度信息
+      store: { // 存储预加载的img对象和img数量信息
         length: 0
-      }
+      },
+      targetSrc: require('images/1.jpg')
     }
   },
   computed: {
@@ -35,78 +36,65 @@ export default {
       return this.imagesData.length
     }
   },
-  created () {
-    this.onPreload()
+  mounted () {
+    // this.onPreload()
+    // this.onSwiper(1)
     console.log('store:', this.store)
   },
   methods: {
+    onSwiper (index) {
+      setTimeout(() => {
+        this.targetSrc = require(`images/${index}.jpg`)
+        this.onSwiper(index % 10 + 1)
+      }, 42)
+    },
     onPreload () {
       // 图片序列预加载
+      const that = this
       for (var i = 1; i <= this.imageSum; i++) {
-        var img = new Image()
-        // img.onload = () => {
-        //   console.log('this:', this)
-        //   this.store.length++
-        //   // 存储预加载的图片对象
-        //   this.store[i] = this
-        //   console.log('store:', this.store)
-        //   this.onPlay()
-        // }
-        // img.onerror = () => {
-        //   console.log('this:', this)
-        //   this.store.length++
-        //   this.onPlay()
-        // }
-        img.src = `images/${i}.jpg`
-        this.store.length++
-        this.store[i] = img
-        this.onPlay()
+        (function (index) {
+          var img = new Image()
+          img.onload = function () {
+            // 存储预加载的图片对象
+            that.store[index] = img // 或this
+            that.store.length++
+            if (that.store.length === that.imageSum) {
+              that.onPlay()
+            }
+            console.log('this:', this === img) // true 函数运行时所在的对象即img
+          }
+          img.src = require(`images/${index}.jpg`)
+          img.style.width = that.width + 'px'
+          img.style.height = that.height + 'px'
+          img.style.objectFit = 'cover'
+          console.log('store:', that.store)
+        })(i)
       }
     },
     onPlay () {
-      // loading进度
-      var percent = Math.round(100 * this.store.length / this.imageSum)
-      // this.$refs.loading.setAttribute('data-percent', percent)
-      console.log('loading:', this.$refs.loading)
-      // this.$refs.loading.style.backgroundSize = percent + '% 100%'
-      // 全部加载完毕，无论成功还是失败
-      if (percent === 100) {
-        var index = 1
-        this.$refs.serialize.innerHTML = ''
-        // 依次append图片对象
-        var step = () => {
-          console.log('store:', this.store)
-          if (this.store[index]) {
-            this.$refs.serialize.removeChild(this.store[index])
-          }
-          this.$refs.serialize.appendChild(this.store[index])
-          // 序列增加
-          index++
-          // 如果超过最大限制
-          if (index <= this.imageSum) {
-            setTimeout(step, 500)
-          } else {
-            // 本段播放结束回调
-            // 我这里就放一个重新播放的按钮
-            this.$refs.serialize.insertAdjacentHTML('beforeEnd', '<button onclick="play()">再看一遍英姿</button>')
-          }
+      var index = 1
+      // 依次append img对象
+      const step = () => {
+        if (this.store[index - 1]) {
+          this.$refs.serialize.removeChild(this.store[index - 1])
         }
-        // 等100%动画结束后执行播放
-        setTimeout(step, 100)
+        this.$refs.serialize.appendChild(this.store[index])
+        index++
+        if (index <= this.imageSum) { // 最后一张图片时
+          setTimeout(step, 42)
+        } else {
+          this.$refs.serialize.removeChild(this.store[index - 1])
+          this.onPlay() // 循环播放
+        }
       }
+      setTimeout(step, 42)
     }
   }
 }
 </script>
 <style lang="less" scoped>
 .serialize {
-  display: inline-block;
   background: #000;
-  position: relative;
-}
-.serialize > img {
-  position: absolute;
-  width: 100%; height: 100%;
 }
 .loading {
   position: absolute;
