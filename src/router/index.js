@@ -68,7 +68,7 @@ const routes = [
     path: '/banner',
     name: 'Banner',
     meta: { title: 'banner组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/BannerSwiper.vue')
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Banner.vue')
   },
   {
     path: '/pdf',
