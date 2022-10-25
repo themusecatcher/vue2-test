@@ -1,6 +1,6 @@
 <template>
-  <div ref="serialize" class="serialize" :style="`width: ${width}px; height: ${height}px;`">
-    <img :src="targetSrc" class="img" :style="`width: ${width}px; height: ${height}px; object-fit: cover;`" />
+  <div ref="serialize" class="m-serialize" :style="`width: ${width}; height: ${height};`">
+    <img :src="targetSrc" class="u-img" />
   </div>
 </template>
 <script>
@@ -15,12 +15,12 @@ export default {
       required: true
     },
     width: { // 播放区域宽度
-      type: Number,
-      default: 800
+      type: String,
+      default: '800px'
     },
     height: { // 播放区域高度
-      type: Number,
-      default: 450
+      type: String,
+      default: '450px'
     }
   },
   data () {
@@ -28,7 +28,7 @@ export default {
       store: { // 存储预加载的img对象和img数量信息
         length: 0
       },
-      targetSrc: require('images/1.jpg')
+      targetSrc: require('images/banner/banner_0.jpg')
     }
   },
   computed: {
@@ -38,41 +38,41 @@ export default {
   },
   mounted () {
     // this.onPreload()
-    // this.onSwiper(1)
+    this.onSwiper(0)
     console.log('store:', this.store)
   },
   methods: {
     onSwiper (index) {
       setTimeout(() => {
-        this.targetSrc = require(`images/${index}.jpg`)
-        this.onSwiper(index % 10 + 1)
-      }, 42)
+        this.targetSrc = require(`images/banner/banner_${index}.jpg`)
+        this.onSwiper((index + 1) % 425)
+      }, 40)
     },
     onPreload () {
       // 图片序列预加载
       const that = this
-      for (var i = 1; i <= this.imageSum; i++) {
+      for (var i = 0; i <= 424; i++) {
         (function (index) {
           var img = new Image()
           img.onload = function () {
             // 存储预加载的图片对象
             that.store[index] = img // 或this
             that.store.length++
-            if (that.store.length === that.imageSum) {
+            if (that.store.length === 425) {
               that.onPlay()
             }
             console.log('this:', this === img) // true 函数运行时所在的对象即img
           }
-          img.src = require(`images/${index}.jpg`)
-          img.style.width = that.width + 'px'
-          img.style.height = that.height + 'px'
+          img.src = require(`images/banner/banner_${index}.jpg`)
+          img.style.width = '100%'
+          img.style.height = '100%'
           img.style.objectFit = 'cover'
-          console.log('store:', that.store)
+          // img.classList.add('u-img')
         })(i)
       }
     },
     onPlay () {
-      var index = 1
+      var index = 0
       // 依次append img对象
       const step = () => {
         if (this.store[index - 1]) {
@@ -80,37 +80,25 @@ export default {
         }
         this.$refs.serialize.appendChild(this.store[index])
         index++
-        if (index <= this.imageSum) { // 最后一张图片时
-          setTimeout(step, 42)
+        if (index <= 424) { // 最后一张图片时
+          setTimeout(step, 40)
         } else {
           this.$refs.serialize.removeChild(this.store[index - 1])
           this.onPlay() // 循环播放
         }
       }
-      setTimeout(step, 42)
+      setTimeout(step, 40)
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.serialize {
+.m-serialize {
   background: #000;
 }
-.loading {
-  position: absolute;
-  height: 8px; width: 150px;
-  border: 1px solid #eee;
-  background: linear-gradient(to top, #eee, #eee);
-  background-size: 0 100%;
-  transition: background-size .1s;
-  left: 0; top: 0; right: 0; bottom: 0;
-  margin: auto;
-}
-.loading::before {
-  content: attr(data-percent)'%';
-  position: absolute;
-  left: 0; top: -1.5em;
-  font-size: 12px;
-  color: #eee;
+.u-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 </style>
