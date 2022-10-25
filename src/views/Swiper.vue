@@ -14,7 +14,7 @@
             <img :src="image.imgUrl" class="u-img default-out zoomout" />
           </a>
           <!-- 延迟加载 -->
-          <!-- <div class="swiper-zoom-target swiper-lazy" :data-background="image.imgUrl">
+          <!-- <div class="swiper-lazy" :data-background="image.imgUrl">
             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
           </div> -->
         </div>
