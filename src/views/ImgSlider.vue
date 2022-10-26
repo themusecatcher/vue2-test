@@ -17,16 +17,16 @@ export default {
     return {
       imageData: [
         {
-          title: 'image-1,image-1,image-1,image-1,image-1,image-1,image-1,image-1,image-1',
+          title: 'image-1',
+          imgUrl: require('@/assets/images/1.jpg')
+        },
+        {
+          title: 'image-2',
           imgUrl: require('@/assets/images/2.jpg')
         },
         {
-          title: 'image-2,image-2,image-2,image-2,image-2,image-2,image-2,image-2,image-2',
-          imgUrl: require('@/assets/images/4.jpg')
-        },
-        {
-          title: 'image-3,image-3,image-3,image-3,image-3,image-3,image-3,image-3,image-3',
-          imgUrl: require('@/assets/images/4.jpg')
+          title: 'image-3',
+          imgUrl: require('@/assets/images/3.jpg')
         }
       ]
     }

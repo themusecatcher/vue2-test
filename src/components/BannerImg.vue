@@ -1,13 +1,14 @@
 <template>
-  <div class="m-banner-wrap" v-if="bannerData.length">
+  <div class="m-banner-wrap" :style="`width: ${width}; height: ${height}`" v-if="bannerData.length">
     <div class="m-banner-list">
       <div
-        :class="['u-banner-item', index%2 === 0 ? 'zoomin':'zoomout']"
+        class="u-banner-item fade"
         v-for="(item, index) in bannerData"
         :key="index"
         v-show="index===activeIndex"
-        :style="`background: url(${item.listImage}) no-repeat center; background-size: cover;`"
+        :style="`background: url(${item.imgUrl}) no-repeat center; background-size: cover;`"
         @mouseenter="onStop" @mouseleave="onStart">
+        <a :href="item.link" target="_blank"></a>
       </div>
     </div>
     <div class="m-dot-list" v-if="bannerData.length > 1">
@@ -29,6 +30,14 @@ export default {
     interval: { // 切换间隔ms
       type: Number,
       default: 3000
+    },
+    width: { // 宽度
+      type: String,
+      default: '100%'
+    },
+    height: { // 高度
+      type: String,
+      default: '600px'
     }
   },
   data () {
@@ -41,6 +50,12 @@ export default {
     setTimeout(() => {
       this.onStart()
     }, 1000)
+    window.onfocus = () => { // 页面激活
+      this.onStart()
+    }
+    window.onblur = () => { // 页面失焦
+      this.onStop()
+    }
   },
   methods: {
     onStart () {
@@ -72,9 +87,11 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@themeColor: #1890FF;
 .m-banner-wrap {
   width: 100%;
-  height: 100vh;
+  height: 585px;
+  min-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -82,31 +99,32 @@ export default {
   .m-banner-list {
     height: 100%;
     .u-banner-item {
+      min-width: 1200px;
       height: 100%;
       width: 100%;
+      a {
+        display: block;
+        height: 100%;
+      }
     }
-    .zoomin { // 放大
-      -webkit-animation: zoomin 10s;
-      animation: zoomin 10s;
+    .fade { // 切换banner时的过渡效果
+      -webkit-animation: fadein 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+      animation: fadein 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
     }
-    @keyframes zoomin {
+    @-webkit-keyframes fadein {
       0% {
-        transform: scale(1);
+        opacity: 0;
       }
       100% {
-        transform: scale(1.2);
+        opacity: 1;
       }
     }
-    .zoomout { // 缩小
-      -webkit-animation: zoomout 10s;
-      animation: zoomout 10s;
-    }
-    @keyframes zoomout {
+    @keyframes fadein {
       0% {
-        transform: scale(1.2);
+        opacity: 0;
       }
       100% {
-        transform: scale(1);
+        opacity: 1;
       }
     }
   }

@@ -17,14 +17,27 @@ export default {
   data () {
     return {
       bannerVideoData: {},
-      bannerImgData: [],
+      bannerImgData: [
+        {
+          title: 'image-1',
+          link: 'javascript:;',
+          imgUrl: require('@/assets/images/1.jpg')
+        },
+        {
+          title: 'image-2',
+          link: 'javascript:;',
+          imgUrl: require('@/assets/images/2.jpg')
+        },
+        {
+          title: 'image-3',
+          link: 'javascript:;',
+          imgUrl: require('@/assets/images/3.jpg')
+        }
+      ],
       url: {
         banner: '/api/banner/list'
       }
     }
-  },
-  created () {
-    this.getBanner()
   },
   methods: {
     getBanner () {
