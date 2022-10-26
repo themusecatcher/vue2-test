@@ -1,6 +1,6 @@
 <template>
   <div class="m-carousel mt60">
-    <div class="swiper-container">
+    <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
@@ -22,31 +22,25 @@ import 'swiper/css/swiper.css'
 import Swiper from 'swiper'
 export default {
   name: 'Carousel',
+  props: {
+    imageData: { // 图片数组
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    width: { // 宽度
+      type: String,
+      default: '1200px'
+    },
+    height: { // 高度
+      type: String,
+      default: '400px'
+    }
+  },
   data () {
     return {
-      swiper: null,
-      imageData: [
-        {
-          title: 'image-1',
-          imgUrl: require('@/assets/images/1.jpg')
-        },
-        {
-          title: 'image-2',
-          imgUrl: require('@/assets/images/2.jpg')
-        },
-        {
-          title: 'image-3',
-          imgUrl: require('@/assets/images/3.jpg')
-        },
-        {
-          title: 'image-4',
-          imgUrl: require('@/assets/images/4.jpg')
-        },
-        {
-          title: 'image-5',
-          imgUrl: require('@/assets/images/5.jpg')
-        }
-      ]
+      swiper: null
     }
   },
   mounted () {
@@ -98,8 +92,6 @@ export default {
 .swiper-container {
   --swiper-theme-color: #1890FF;/* 设置Swiper风格 */
   --swiper-pagination-color: #00ff33;/* 单独设置分页导航颜色 */
-  width: 1200px;
-  height: 400px;
   margin: 0 auto;
   .swiper-wrapper { // 自动切换过渡效果设置
     transition-timing-function: linear; // 线性过渡模拟走马灯效果

@@ -1,22 +1,17 @@
 <template>
   <div class="m-swiper">
-    <div class="swiper-container">
+    <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
           :title="image.title"
           v-for="(image, index) in imageData"
           :key="index">
-          <a href="https://www.baidu.com" class="u-link" target="_blank">
-            <!-- 奇数时放大zoomin，偶数时缩小zoomout，但图片需传偶数个效果最佳 -->
-            <!-- <img :src="image.imgUrl" :class="['u-img', index%2 === 0 ? 'default-in zoomin':'default-out zoomout']" /> -->
-            <!-- 全部缩小zoomout的渐变效果 -->
-            <img :src="image.imgUrl" class="u-img default-out zoomout" />
-          </a>
-          <!-- 延迟加载 -->
-          <!-- <div class="swiper-lazy" :data-background="image.imgUrl">
-            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-          </div> -->
+          <div class="swiper-zoom-container">
+            <div class="swiper-zoom-target swiper-lazy" :data-background="image.imgUrl">
+              <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+            </div>
+          </div>
         </div>
       </div>
       <!-- 如果需要分页器 -->
@@ -31,36 +26,26 @@
 import 'swiper/css/swiper.css'
 import Swiper from 'swiper'
 export default {
-  name: 'Swiper',
+  name: 'BannerSlide',
+  props: {
+    imageData: { // 图片数组
+      type: Array,
+      default: () => {
+        return []
+      }
+    },
+    width: { // 宽度
+      type: String,
+      default: '400px'
+    },
+    height: { // 高度
+      type: String,
+      default: '300px'
+    }
+  },
   data () {
     return {
-      swiper: null,
-      imageData: [
-        {
-          title: 'image-1',
-          imgUrl: require('@/assets/images/1.jpg')
-        },
-        {
-          title: 'image-2',
-          imgUrl: require('@/assets/images/2.jpg')
-        },
-        {
-          title: 'image-3',
-          imgUrl: require('@/assets/images/3.jpg')
-        },
-        {
-          title: 'image-4',
-          imgUrl: require('@/assets/images/4.jpg')
-        },
-        {
-          title: 'image-5',
-          imgUrl: require('@/assets/images/5.jpg')
-        },
-        {
-          title: 'image-6',
-          imgUrl: require('@/assets/images/6.jpg')
-        }
-      ]
+      swiper: null
     }
   },
   mounted () {
@@ -96,23 +81,20 @@ export default {
       },
       mousewheel: true, // 是否开启鼠标滚轮控制swiper切换 ，默认false
       direction: 'horizontal', // 滑动方向
-      speed: 1000, // 切换速度，自动滑动开始到结束的时间
+      speed: 500, // 切换速度，自动滑动开始到结束的时间
       grabCursor: true, // 悬浮时鼠标样式切换
       centerInsufficientSlides: true, // 当slide总数小于slidesPerView时，slide居中
-      effect: 'fade', // slide的切换效果，默认为'slide'位移切换，'fade'淡入，'cube'方块，'coverflow'3d流，'flip'3d翻转，'cards'卡片式，'creative'创意性
-      fadeEffect: {
-        crossFade: true
+      effect: 'slide', // slide的切换效果，默认为'slide'位移切换，'fade'淡入，'cube'方块，'coverflow'3d流，'flip'3d翻转，'cards'卡片式，'creative'创意性
+      cubeEffect: { // cube效果参数
+        slideShadows: false, // 是否开启slide投影，默认true
+        shadow: false, // 是否开启投影，默认true
+        shadowOffset: 20, // 投影距离。默认 20，单位px。
+        shadowScale: 1 // 投影缩放比例。默认0.94。
       },
-      // cubeEffect: { // cube效果参数
-      //   slideShadows: false, // 是否开启slide投影，默认true
-      //   shadow: false, // 是否开启投影，默认true
-      //   shadowOffset: 20, // 投影距离。默认 20，单位px。
-      //   shadowScale: 1 // 投影缩放比例。默认0.94。
-      // },
       // autoplay: true, // 启动自动切换，等同于以下设置
       autoplay: {
         delay: 3000, // 多少秒切换一次，默认3000ms
-        disableOnInteraction: true, // 用户操作之后，是否禁止autoplay，默认true，操作包括触碰，拖动，点击pagination
+        disableOnInteraction: false, // 用户操作之后，是否禁止autoplay，默认true，操作包括触碰，拖动，点击pagination
         waitForTransition: true // 是否等待过渡完成，再开始自动切换的计时，默认true
       },
       loop: true // 循环模式选项
@@ -136,43 +118,14 @@ export default {
   --swiper-pagination-color: #00ff33;/* 单独设置分页导航颜色 */
   --swiper-theme-color: #ff6600;/* 设置Swiper风格 */
   --swiper-preloader-color: @themeColor;/* 单独设置预加载圆圈的颜色 */
-  width: 100vw;
-  height: 100vh;
   margin: 0 auto;
   .swiper-wrapper { // 自动切换过渡效果设置
     transition-timing-function: ease;
     -webkit-transition-timing-function: ease;
     .swiper-slide { // 懒加载时背景图
       // background: url(~@/assets/images/default.png) no-repeat center;
-      // background-color: #000;
-      // background-size: cover;
-      .u-link {
-        display: block;
-        height: 100%;
-      }
-      .u-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .default-in {
-        transition: 1s linear 2s;
-        transform: scale(1);
-      }
-      .default-out {
-        transition: 1s linear 2s;
-        transform: scale(1.1);
-      }
-    }
-    .swiper-slide-active {
-      .zoomin { // 放大
-        transition: 6s linear;
-        transform: scale(1.1);
-      }
-      .zoomout {
-        transition: 6s linear;
-        transform: scale(1);
-      }
+      background-color: #000;
+      background-size: cover;
     }
     .swiper-lazy {
       width: 100%;
@@ -181,7 +134,7 @@ export default {
     }
   }
   .swiper-pagination { // 自定义分页器样式
-    :deep(.swiper-pagination-bullet) {
+    /deep/ .swiper-pagination-bullet {
       width: 20px;
       height: 20px;
       text-align: center;
@@ -191,7 +144,7 @@ export default {
       opacity: 1;
       background: rgba(0,0,0,0.2);
     }
-    :deep(.swiper-pagination-bullet-active) {
+    /deep/ .swiper-pagination-bullet-active {
       color: #fff;
       background: #007aff;
     }

@@ -10,10 +10,10 @@
   </div>
 </template>
 <script>
-import Pdfh5 from 'components/Pdfh5'
-import VuePdf from 'components/VuePdf'
-import VuePdfPaging from 'components/VuePdfPaging'
-import VuePdfJump from 'components/VuePdfJump'
+import Pdfh5 from 'components/pdf/Pdfh5'
+import VuePdf from 'components/pdf/VuePdf'
+import VuePdfPaging from 'components/pdf/VuePdfPaging'
+import VuePdfJump from 'components/pdf/VuePdfJump'
 export default {
   name: 'PdfView',
   components: {

@@ -1,14 +1,20 @@
 <template>
   <div class="m-swiper">
-    <SwiperBanner :imageData="imageData" height="" width="" />
+    <Carousel :imageData="imageData" width="1200px" height="400px" v-if="false" />
+    <BannerFade class="mt60" :imageData="imageData" width="540px" height="360px" v-if="false" />
+    <BannerSlide class="mt60" :imageData="imageData" width="540px" height="360px" v-if="true" />
   </div>
 </template>
 <script>
-import SwiperBanner from 'components/SwiperBanner'
+import Carousel from 'components/swiper/Carousel'
+import BannerFade from 'components/swiper/BannerFade'
+import BannerSlide from 'components/swiper/BannerSlide'
 export default {
   name: 'Swiper',
   components: {
-    SwiperBanner
+    Carousel,
+    BannerFade,
+    BannerSlide
   },
   data () {
     return {
@@ -32,10 +38,6 @@ export default {
         {
           title: 'image-5',
           imgUrl: require('@/assets/images/5.jpg')
-        },
-        {
-          title: 'image-6',
-          imgUrl: require('@/assets/images/6.jpg')
         }
       ]
     }

@@ -17,15 +17,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "test" */ '../views/Components.vue')
   },
   {
-    path: '/carousel',
-    name: 'Carousel',
-    meta: { title: '走马灯' },
-    component: () => import(/* webpackChunkName: "test" */ '../views/Carousel.vue')
-  },
-  {
     path: '/swiper',
     name: 'Swiper',
-    meta: { title: '轮播图', depth: 2 },
+    meta: { title: '触摸滑动插件', depth: 2 },
     component: () => import(/* webpackChunkName: "test" */ '@/views/Swiper.vue')
   },
   {
