@@ -45,7 +45,4 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@themeColor: #1890FF;
-.m-swiper {
-}
 </style>
