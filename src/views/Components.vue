@@ -78,7 +78,7 @@
         @highChange="highChange"
       />
     </div>
-    <div style="width: 500px; height: 200px;">
+    <div style="width: 500px; height: 200px;" v-show="false">
       <Spin :tip="tip" :spinning="spinning">
         <p class="spin-content">当 spinning 为 false 时，不显示 loading 状态；当 spinning 为 true 时，延迟`delay`ms时间后，显示 loading 效果；如果 spinning 状态在 `delay` 时间内结束，则不显示 loading 状态；如果不设置 tip 描述文案时，则只有 loading 效果水平垂直居中；如果设置了 tip 描述文案，则 loading 效果和 tip 描述文案一起水平垂直居中。</p>
       </Spin>
@@ -96,6 +96,7 @@
   </div>
 </template>
 <script>
+import { format } from 'date-fns'
 import NumSlider from '@/components/NumSlider'
 import Tooltip from '@/components/Tooltip'
 import Message from '@/components/Message'
@@ -205,6 +206,11 @@ export default {
       high: 80,
       timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site']
     }
+  },
+  mounted () {
+    console.log(new Date().getTime())
+    console.log('format:', format(1666774388344, 'yyyy-MM-dd HH:mm:ss'))
+    console.log('format:', format(new Date(), 'yyyy-MM-dd HH:mm:ss'))
   },
   methods: {
     onChangeTable (pagination) {

@@ -1,8 +1,8 @@
 <template>
   <div class="m-swiper">
     <Carousel :imageData="imageData" width="1200px" height="400px" v-if="false" />
-    <BannerFade class="mt60" :imageData="imageData" width="540px" height="360px" v-if="false" />
-    <BannerSlide class="mt60" :imageData="imageData" width="540px" height="360px" v-if="true" />
+    <BannerFade class="mt60" :imageData="imageData" width="540px" height="360px" v-if="true" />
+    <BannerSlide class="mt60" :imageData="imageData" width="540px" height="360px" v-if="false" />
   </div>
 </template>
 <script>
