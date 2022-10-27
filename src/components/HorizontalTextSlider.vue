@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  name: 'TextSlider',
+  name: 'HorizontalTextSlider',
   props: {
     sliderData: { // 滚动文字数组
       type: Array,

@@ -1,14 +1,17 @@
 <template>
   <div>
-    <TextSlider :sliderData="sliderData" @click="onClick" :totalWidth="1200" :amount="4" :height="50" />
+    <HorizontalTextSlider v-if="false" :sliderData="sliderData" @click="onClick" :totalWidth="1200" :amount="4" :height="50" />
+    <VerticalTextSlider :sliderData="sliderData" :interval="3000" :height="60" />
   </div>
 </template>
 <script>
-import TextSlider from 'components/TextSlider'
+import HorizontalTextSlider from 'components/HorizontalTextSlider'
+import VerticalTextSlider from 'components/VerticalTextSlider'
 export default {
   name: 'Slider',
   components: {
-    TextSlider
+    HorizontalTextSlider,
+    VerticalTextSlider
   },
   data () {
     return {
@@ -22,7 +25,7 @@ export default {
           link: 'javascript:;'
         },
         {
-          title: '塞林格将故事的起止局限于16岁的中学生霍尔顿·考尔菲德从离开学校到纽约游荡的三天时间内',
+          title: '塞林格将故事的起止局限于16岁的中学生霍尔顿·考尔菲德从离开学校到纽约游荡的三天时间内,塞林格将故事的起止局限于16岁的中学生霍尔顿·考尔菲德从离开学校到纽约游荡的三天时间内',
           link: 'javascript:;'
         },
         {
