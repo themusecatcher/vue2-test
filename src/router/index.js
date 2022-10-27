@@ -69,6 +69,12 @@ const routes = [
     name: 'Pdf',
     meta: { title: 'pdf预览' },
     component: () => import(/* webpackChunkName: "test" */ '@/views/PdfView.vue')
+  },
+  {
+    path: '/slider',
+    name: 'Slider',
+    meta: { title: '文字滚动' },
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Slider.vue')
   }
   // {
   //   path: '/500',
