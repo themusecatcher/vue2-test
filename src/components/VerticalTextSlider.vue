@@ -4,7 +4,7 @@
       <a
         v-for="(item, index) in sliderData"
         class="u-slider"
-        :key="index"
+        :key="item"
         v-show="index===activeIndex"
         :title="item.title"
         :href="item.link"
