@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <a-menu v-model="current" mode="horizontal" theme="dark" @click="onClick">
-      <a-menu-item key="components">
-        <router-link to="/components">常用组件</router-link>
+      <a-menu-item key="common">
+        <router-link to="/Common">常用</router-link>
       </a-menu-item>
       <a-menu-item key="spin">
         <router-link to="/spin">加载中</router-link>

@@ -7,7 +7,7 @@
 import { format } from 'date-fns'
 import Switcher from '@/components/Switcher'
 export default {
-  name: 'Components',
+  name: 'Common',
   components: {
     Switcher
   },

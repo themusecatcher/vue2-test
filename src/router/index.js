@@ -12,10 +12,10 @@ const routes = [
     component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue'),
     children: [
       {
-        path: '/components',
-        name: 'Components',
-        meta: { title: '常用组件' },
-        component: () => import(/* webpackChunkName: "test" */ '../views/Components.vue')
+        path: '/common',
+        name: 'Common',
+        meta: { title: '常用' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/Common.vue')
       },
       {
         path: '/spin',
