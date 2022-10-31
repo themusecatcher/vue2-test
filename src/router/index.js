@@ -36,6 +36,18 @@ const routes = [
         component: () => import(/* webpackChunkName: "test" */ '../views/ModalPage.vue')
       },
       {
+        path: '/tip',
+        name: 'Tip',
+        meta: { title: '提示框' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/InfoTip.vue')
+      },
+      {
+        path: '/lines',
+        name: 'Lines',
+        meta: { title: 'Lines' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/Lines.vue')
+      },
+      {
         path: '/swiper',
         name: 'Swiper',
         meta: { title: '触摸滑动插件', depth: 2 },

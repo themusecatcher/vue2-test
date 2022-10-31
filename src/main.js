@@ -7,7 +7,7 @@ import 'wc-messagebox/style.css'
 // import Menu from 'ant-design-vue/lib/menu'
 // import 'ant-design-vue/lib/menu/style'
 import { Menu } from 'ant-design-vue'
-import 'ant-design-vue/dist/antd.css'
+// import 'ant-design-vue/dist/antd.css'
 
 Vue.use(Menu)
 Vue.use(Toast)

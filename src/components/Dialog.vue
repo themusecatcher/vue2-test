@@ -8,7 +8,7 @@
         <div class="m-dialog-header">
           <div class="u-head">{{ title }}</div>
         </div>
-        <div class="m-dialog-body" :style="`height: calc(${dialogHeight} - 110px);`">
+        <div class="m-dialog-body" :style="`height: calc(${dialogHeight} - 156px);`">
           {{ content }}
         </div>
         <div class="m-dialog-footer" v-show="footer">

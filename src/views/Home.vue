@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- <a-menu v-model="current" mode="horizontal" theme="dark" @click="onClick">
+    <a-menu v-model="current" mode="horizontal" theme="dark" @click="onClick">
       <a-menu-item key="components">
         <router-link to="/components">常用组件</router-link>
       </a-menu-item>
@@ -11,7 +11,13 @@
         <router-link to="/table">分页列表</router-link>
       </a-menu-item>
       <a-menu-item key="modal">
-        <router-link to="/table">对话框</router-link>
+        <router-link to="/modal">对话框</router-link>
+      </a-menu-item>
+      <a-menu-item key="tip">
+        <router-link to="/tip">提示框</router-link>
+      </a-menu-item>
+      <a-menu-item key="lines">
+        <router-link to="/lines">Lines</router-link>
       </a-menu-item>
       <a-menu-item key="swiper">
         <router-link to="/swiper">触摸滑动插件</router-link>
@@ -54,8 +60,8 @@
           </a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
-    </a-menu> -->
-    <router-view class="view" />
+    </a-menu>
+    <router-view class="view" :key="current[0]" />
   </div>
 </template>
 <script>
