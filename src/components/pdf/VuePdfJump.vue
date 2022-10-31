@@ -115,6 +115,7 @@ export default {
         vertical-align: middle;
       }
       .u-button {
+        color: #333;
         display: inline-block;
         padding: 0.01rem 0.2rem;
         border-radius: 0.08rem;
@@ -141,9 +142,11 @@ export default {
         height: 0.64rem;
         fill: #333;
         vertical-align: middle;
+        cursor: pointer;
       }
       .gray {
         fill: #999;
+        cursor: default;
       }
       .u-num {
         letter-spacing: 0.1rem;

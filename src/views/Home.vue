@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <a-menu v-model="current" mode="horizontal" @click="onClick">
+    <a-menu v-model="current" mode="horizontal" theme="dark" @click="onClick">
       <a-menu-item key="components">
         <router-link to="/components">常用组件</router-link>
       </a-menu-item>
@@ -52,7 +52,7 @@
         </a-menu-item-group>
       </a-sub-menu> -->
     </a-menu>
-    <router-view />
+    <router-view class="view" />
   </div>
 </template>
 <script>
@@ -73,6 +73,10 @@ export default {
 <style lang="less" scoped>
 .home {
   margin: 0 auto;
+  width: 100%;
+}
+.view {
   width: 1200px;
+  margin: 0 auto;
 }
 </style>

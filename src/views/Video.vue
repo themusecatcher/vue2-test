@@ -14,7 +14,7 @@
       :playWidth="96"
       zoom="cover"
     />
-    <SerializeVideo :imagesData="imagesData" width="100vw" height="100vh" />
+    <SerializeVideo :imagesData="imagesData" width="100%" height="100vh" />
   </div>
 </template>
 <script>

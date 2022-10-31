@@ -50,7 +50,7 @@ const routes = [
       {
         path: '/selector',
         name: 'Selector',
-        meta: { title: '下拉组件', keepAlive: true, depth: 1 },
+        meta: { title: '下拉组件', keepAlive: false, depth: 1 },
         component: () => import(/* webpackChunkName: "test" */ '@/views/Selector.vue')
       },
       {
