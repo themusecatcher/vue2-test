@@ -30,6 +30,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "test" */ '../views/TablePage.vue')
       },
       {
+        path: '/modal',
+        name: 'Modal',
+        meta: { title: '对话框' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/ModalPage.vue')
+      },
+      {
         path: '/swiper',
         name: 'Swiper',
         meta: { title: '触摸滑动插件', depth: 2 },
