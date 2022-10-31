@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HorizontalTextSlider v-if="false" :sliderData="sliderData" @click="onClick" :totalWidth="1200" :amount="4" :height="50" />
-    <VerticalTextSlider :sliderData="sliderData" :interval="3000" :height="60" />
+    <HorizontalTextSlider v-if="true" :sliderData="sliderData" @click="onClick" :totalWidth="1200" :amount="4" :height="50" />
+    <VerticalTextSlider :sliderData="sliderData" :interval="3000" width="800px" :height="60" />
   </div>
 </template>
 <script>

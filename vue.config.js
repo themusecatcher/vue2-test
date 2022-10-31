@@ -73,7 +73,9 @@ const vueConfig = {
         modifyVars: { // 或者globalVars
           // `themeColor` is global variables fields name
           themeColor: '#1890FF'
-        }
+        },
+        // DO NOT REMOVE THIS LINE
+        javascriptEnabled: true // 引入ant-design-vue时需要添加的配置
       }
     }
   },

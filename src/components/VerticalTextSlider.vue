@@ -4,7 +4,8 @@
       <a
         v-for="(item, index) in sliderData"
         class="u-slider"
-        :key="item"
+        :style="`width: ${width}`"
+        :key="item.title"
         v-show="index===activeIndex"
         :title="item.title"
         :href="item.link"
@@ -28,6 +29,10 @@ export default {
     interval: { // 文字滚动时间间隔
       type: Number,
       default: 3000
+    },
+    width: { // 展示文字宽度
+      type: String,
+      default: '800px' // 100vw
     },
     height: { // 展示文字高度
       type: Number,
@@ -74,7 +79,7 @@ export default {
 <style lang="less" scoped>
 @themeColor: #1890FF;
 .slide-enter-active, .slide-leave-active {
-  transition: all 1.2s ease-in;
+  transition: all 1.2s ease-in-out;
 }
 .slide-enter {
   transform: translateY(40px) scale(0.5);
@@ -87,7 +92,6 @@ export default {
 .m-slider {
   position: relative;
   width: 100%;
-  min-width: 1200px;
   background: #F6FFED;
   overflow: hidden;
   .u-slider {
@@ -103,7 +107,6 @@ export default {
     line-height: 24px;
     font-size: 18px;
     color: #333;
-    max-width: 1200px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
