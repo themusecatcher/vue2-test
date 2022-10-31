@@ -44,23 +44,20 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@themeColor: #FFF;
 .m-spin {
   position: relative;
   width: 100%;
   height: 100%;
-  // background: #000;
 }
 .u-tip {
   position: absolute;
   top: 50%;
   font-size: 16px;
   line-height: 20px;
-  color: @themeColor;
+  color: #FFF;
   width: 100%;
   text-align: center;
   padding-top: 16px;
-  text-shadow: 0 1px 2px #FFF;
 }
 .m-spin-dot {
   position: absolute;
@@ -79,7 +76,7 @@ export default {
     left: 0;
     right: 0;
     margin: 0 auto;
-    background: @themeColor;
+    background: #FFF;
     border-radius: 50%;
     transform-origin: 50% 30px; // 50%为自身高度的一半
   }

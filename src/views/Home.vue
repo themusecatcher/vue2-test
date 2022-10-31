@@ -2,37 +2,43 @@
   <div class="home">
     <a-menu v-model="current" mode="horizontal" @click="onClick">
       <a-menu-item key="components">
-        <router-link to="/components" target="_blank">常用组件</router-link>
+        <router-link to="/components">常用组件</router-link>
+      </a-menu-item>
+      <a-menu-item key="spin">
+        <router-link to="/spin">加载中</router-link>
+      </a-menu-item>
+      <a-menu-item key="table">
+        <router-link to="/table">分页列表</router-link>
       </a-menu-item>
       <a-menu-item key="swiper">
-        <router-link to="/swiper" target="_blank">触摸滑动插件</router-link>
+        <router-link to="/swiper">触摸滑动插件</router-link>
       </a-menu-item>
       <a-menu-item key="tree">
-        <router-link to="/tree" target="_blank">树图</router-link>
+        <router-link to="/tree">树图</router-link>
       </a-menu-item>
       <a-menu-item key="drag">
-        <router-link to="/drag" target="_blank">拖拽组件</router-link>
+        <router-link to="/drag">拖拽组件</router-link>
       </a-menu-item>
       <a-menu-item key="selector">
-        <router-link to="/selector" target="_blank">下拉组件</router-link>
+        <router-link to="/selector">下拉组件</router-link>
       </a-menu-item>
       <a-menu-item key="imgSlider">
-        <router-link to="/imgSlider" target="_blank">图片轮播组件</router-link>
+        <router-link to="/imgSlider">图片轮播组件</router-link>
       </a-menu-item>
       <a-menu-item key="steps">
-        <router-link to="/steps" target="_blank">步骤条组件</router-link>
+        <router-link to="/steps">步骤条组件</router-link>
       </a-menu-item>
       <a-menu-item key="video">
-        <router-link to="/video" target="_blank">播放组件</router-link>
+        <router-link to="/video">播放组件</router-link>
       </a-menu-item>
       <a-menu-item key="banner">
-        <router-link to="/banner" target="_blank">banner组件</router-link>
+        <router-link to="/banner">banner组件</router-link>
       </a-menu-item>
       <a-menu-item key="pdf">
-        <router-link to="/pdf" target="_blank">pdf预览</router-link>
+        <router-link to="/pdf">pdf预览</router-link>
       </a-menu-item>
       <a-menu-item key="slider">
-        <router-link to="/slider" target="_blank">文字滚动</router-link>
+        <router-link to="/slider">文字滚动</router-link>
       </a-menu-item>
       <!-- <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper">Navigation Three - Submenu</span>

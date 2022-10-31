@@ -10,9 +10,7 @@
       </thead>
       <tbody class="m-body">
         <tr v-show="loading">
-          <td class="m-loading" :colspan="columns.length">
-            <Spin />
-          </td>
+          <Spin class="m-loading" :colspan="columns.length" />
         </tr>
         <tr v-show="!total">
           <td class="m-empty" :colspan="columns.length">
@@ -130,8 +128,6 @@ export default {
         position: absolute;
         width: 100%;
         height: 100%;
-        padding: 0;
-        border: none;
       }
       .m-empty {
         padding: 48px 16px;

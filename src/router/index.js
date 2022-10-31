@@ -9,73 +9,87 @@ const routes = [
     path: '/',
     name: 'Index',
     meta: { title: '首页' },
-    component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue')
-  },
-  {
-    path: '/components',
-    name: 'Components',
-    meta: { title: '常用组件' },
-    component: () => import(/* webpackChunkName: "test" */ '../views/Components.vue')
-  },
-  {
-    path: '/swiper',
-    name: 'Swiper',
-    meta: { title: '触摸滑动插件', depth: 2 },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Swiper.vue')
-  },
-  {
-    path: '/tree',
-    name: 'Tree',
-    meta: { title: '树图' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Tree.vue')
-  },
-  {
-    path: '/drag',
-    name: 'Drag',
-    meta: { title: '拖拽组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Draggable.vue')
-  },
-  {
-    path: '/selector',
-    name: 'Selector',
-    meta: { title: '下拉组件', keepAlive: true, depth: 1 },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Selector.vue')
-  },
-  {
-    path: '/imgSlider',
-    name: 'ImgSlider',
-    meta: { title: '图片轮播组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/ImgSlider.vue')
-  },
-  {
-    path: '/steps',
-    name: 'Steps',
-    meta: { title: '步骤条组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Steps.vue')
-  },
-  { // 视频播放组件；序列化图片播放组件
-    path: '/video',
-    name: 'Video',
-    meta: { title: '播放组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Video.vue')
-  },
-  {
-    path: '/banner',
-    name: 'Banner',
-    meta: { title: 'banner组件' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Banner.vue')
-  },
-  {
-    path: '/pdf',
-    name: 'Pdf',
-    meta: { title: 'pdf预览' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/PdfView.vue')
-  },
-  {
-    path: '/slider',
-    name: 'Slider',
-    meta: { title: '文字滚动' },
-    component: () => import(/* webpackChunkName: "test" */ '@/views/Slider.vue')
+    component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue'),
+    children: [
+      {
+        path: '/components',
+        name: 'Components',
+        meta: { title: '常用组件' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/Components.vue')
+      },
+      {
+        path: '/spin',
+        name: 'Spin',
+        meta: { title: '加载中' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/SpinPage.vue')
+      },
+      {
+        path: '/table',
+        name: 'Table',
+        meta: { title: '分页列表' },
+        component: () => import(/* webpackChunkName: "test" */ '../views/TablePage.vue')
+      },
+      {
+        path: '/swiper',
+        name: 'Swiper',
+        meta: { title: '触摸滑动插件', depth: 2 },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Swiper.vue')
+      },
+      {
+        path: '/tree',
+        name: 'Tree',
+        meta: { title: '树图' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Tree.vue')
+      },
+      {
+        path: '/drag',
+        name: 'Drag',
+        meta: { title: '拖拽组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Draggable.vue')
+      },
+      {
+        path: '/selector',
+        name: 'Selector',
+        meta: { title: '下拉组件', keepAlive: true, depth: 1 },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Selector.vue')
+      },
+      {
+        path: '/imgSlider',
+        name: 'ImgSlider',
+        meta: { title: '图片轮播组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/ImgSlider.vue')
+      },
+      {
+        path: '/steps',
+        name: 'Steps',
+        meta: { title: '步骤条组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Steps.vue')
+      },
+      { // 视频播放组件；序列化图片播放组件
+        path: '/video',
+        name: 'Video',
+        meta: { title: '播放组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Video.vue')
+      },
+      {
+        path: '/banner',
+        name: 'Banner',
+        meta: { title: 'banner组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Banner.vue')
+      },
+      {
+        path: '/pdf',
+        name: 'Pdf',
+        meta: { title: 'pdf预览' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/PdfView.vue')
+      },
+      {
+        path: '/slider',
+        name: 'Slider',
+        meta: { title: '文字滚动' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Slider.vue')
+      }
+    ]
   }
   // {
   //   path: '/500',
