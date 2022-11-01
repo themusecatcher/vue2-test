@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     onClick ({ item, key, keyPath }) {
+      console.log('item:', item)
       console.log('key:', key)
       console.log('keyPath:', keyPath)
     }
