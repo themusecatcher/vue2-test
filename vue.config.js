@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const createCompressionPlugin = require('./config/plugin.config')
 
 function resolve (dir) {
@@ -107,7 +107,7 @@ const vueConfig = {
 }
 if (isProd) {
   // 依赖大小分析工具
-  // vueConfig.configureWebpack.plugins.push(new BundleAnalyzerPlugin())
+  vueConfig.configureWebpack.plugins.push(new BundleAnalyzerPlugin())
   // gizp 压缩工具
   vueConfig.configureWebpack.plugins.push(createCompressionPlugin())
 }

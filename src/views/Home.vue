@@ -2,7 +2,7 @@
   <div class="home">
     <a-menu v-model="current" mode="horizontal" theme="dark" @click="onClick">
       <a-menu-item key="common">
-        <router-link to="/Common">常用</router-link>
+        <router-link to="/common">常用</router-link>
       </a-menu-item>
       <a-menu-item key="spin">
         <router-link to="/spin">加载中</router-link>
@@ -68,7 +68,7 @@
 export default {
   data () {
     return {
-      current: ['components']
+      current: ['common']
     }
   },
   methods: {
