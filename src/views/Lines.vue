@@ -18,24 +18,44 @@
         @highChange="highChange"
       />
     </div>
+    <HorizonTimeLine :timelineData="timelineData" :activeYear="2021" />
   </div>
 </template>
 <script>
 import NumSlider from '@/components/NumSlider'
 import Progress from '@/components/Progress'
 import Timeline from '@/components/Timeline'
+import HorizonTimeLine from '@/components/HorizonTimeLine'
 export default {
   name: 'Lines',
   components: {
     NumSlider,
     Progress,
-    Timeline
+    Timeline,
+    HorizonTimeLine
   },
   data () {
     return {
       low: 20,
       high: 80,
-      timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site']
+      timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
+      timelineData: [
+        {
+          year: 2022
+        },
+        {
+          year: 2021
+        },
+        {
+          year: 2020
+        },
+        {
+          year: 2019
+        },
+        {
+          year: 2018
+        }
+      ]
     }
   },
   methods: {
