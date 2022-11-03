@@ -24,6 +24,7 @@ export default {
       routes: [
         {
           path: '/first',
+          query: { id: 1, tab: 2 },
           name: '一级路由'
         },
         {
