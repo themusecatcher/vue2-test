@@ -1,15 +1,18 @@
 <template>
   <div class="common limit1200">
     <Switcher :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
+    <Breadcrumb class="mt60" :routes="routes" :height="60" />
   </div>
 </template>
 <script>
 import { format } from 'date-fns'
 import Switcher from '@/components/Switcher'
+import Breadcrumb from '@/components/Breadcrumb'
 export default {
   name: 'Common',
   components: {
-    Switcher
+    Switcher,
+    Breadcrumb
   },
   data () {
     return {
@@ -17,7 +20,21 @@ export default {
         num: 30,
         age: '34'
       },
-      players: ['curry', 'kobe']
+      players: ['curry', 'kobe'],
+      routes: [
+        {
+          path: '/first',
+          name: '一级路由'
+        },
+        {
+          path: '/second',
+          name: '二级路由'
+        },
+        {
+          path: 'third',
+          name: '三级路由三级路由三级路由三级路由三级路由三级路由三级路由'
+        }
+      ]
     }
   },
   mounted () {
