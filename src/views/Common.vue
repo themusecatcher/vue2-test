@@ -13,9 +13,20 @@ export default {
   },
   data () {
     return {
+      player: {
+        num: 30,
+        age: '34'
+      },
+      players: ['curry', 'kobe']
     }
   },
   mounted () {
+    if ('age' in this.player) {
+      console.log('age')
+    }
+    if (2 in this.players) {
+      console.log('curry')
+    }
     console.log('global:', this.$global)
     console.log(new Date().getTime())
     console.log('format:', format(1666774388344, 'yyyy-MM-dd HH:mm:ss'))

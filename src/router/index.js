@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'Index',
     meta: { title: '首页' },
+    redirect: '/common',
     component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue'),
     children: [
       {
