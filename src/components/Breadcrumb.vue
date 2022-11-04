@@ -1,8 +1,11 @@
 <template>
   <div class="m-breadcrumb" :style="`height: ${height}px;`">
     <div class="m-bread" v-for="(route, index) in routes" :key="index">
-      <router-link :to="{ path: route.path, query: route.query || {} }" :class="['u-route',{ active: index===len-1 }]" :title="route.name">{{ route.name || '--' }}</router-link>
-      <svg class="u-arrow" v-if="index!==(len - 1)" viewBox="64 64 896 896" data-icon="right" aria-hidden="true" focusable="false"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
+      <router-link :class="['u-route',{ active: index===len-1 }]" :to="{ path: route.path, query: route.query || {} }" :title="route.name">{{ route.name || '--' }}</router-link>
+      <template v-if="index!==(len - 1)">
+        <span v-if="separator" class="u-separator">{{ separator }}</span>
+        <svg v-else class="u-arrow" viewBox="64 64 896 896" data-icon="right" aria-hidden="true" focusable="false"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
+      </template>
     </div>
     <div class="assist"></div>
   </div>
@@ -18,9 +21,13 @@ export default {
         return []
       }
     },
-    height: { // 面包屑展示高度
+    height: { // 面包屑高度
       type: Number,
       default: 60
+    },
+    separator: { // 自定义分隔符
+      type: String,
+      default: ''
     }
   },
   computed: {
@@ -32,18 +39,17 @@ export default {
 </script>
 <style lang="less" scoped>
 .m-breadcrumb {
-  border: 1px dashed @themeColor;
   .m-bread {
     display: inline-block;
     vertical-align: middle;
+    height: 22px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
     .u-route {
+      color: #333;
       display: inline-block;
       vertical-align: middle;
-      height: 22px;
-      font-size: 16px;
-      font-weight: 400;
-      color: #333333;
-      line-height: 22px;
       &:hover {
         color: @themeColor;
       }
@@ -56,9 +62,13 @@ export default {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-    .u-arrow {
+    .u-separator {
       display: inline-block;
       vertical-align: middle;
+      margin: 0 6px;
+    }
+    .u-arrow {
+      .u-separator();
       margin: 0 5px;
       width: 12px;
       height: 12px;

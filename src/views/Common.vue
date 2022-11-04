@@ -1,7 +1,7 @@
 <template>
   <div class="common limit1200">
     <Switcher :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
-    <Breadcrumb class="mt60" :routes="routes" :height="60" />
+    <Breadcrumb class="mt60" :routes="routes" :height="60" separator="/" />
   </div>
 </template>
 <script>
@@ -14,6 +14,7 @@ export default {
     Switcher,
     Breadcrumb
   },
+  props: ['route', 'name'],
   data () {
     return {
       player: {
@@ -39,6 +40,14 @@ export default {
     }
   },
   mounted () {
+    console.log('route:', this.route)
+    console.log('$route:', this.$route)
+    console.log('$route === route:', this.$route === this.route) // true
+    console.log('name:', this.name)
+    // 包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
+    console.log('$attrs:', this.$attrs)
+    console.log('$route的路由参数params:', this.$route.params)
+    console.log('$route的查询参数query:', this.$route.query)
     if ('age' in this.player) {
       console.log('age')
     }

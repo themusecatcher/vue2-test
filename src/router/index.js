@@ -13,9 +13,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue'),
     children: [
       {
-        path: '/common',
+        path: '/common/:id',
         name: 'Common',
         meta: { title: '常用' },
+        // props: true, // props设置为true时，路由参数route.params将会被设置为组件属性props
+        // props: { name: 'curry', age: '30' }, // 设置为对象时，则isDeep将会被设置为组件属性
+        props: route => ({ route: route, name: 'curry', age: '30' }),
         component: () => import(/* webpackChunkName: "test" */ '../views/Common.vue')
       },
       {
