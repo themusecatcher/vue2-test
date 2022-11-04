@@ -30,15 +30,15 @@ export default {
         {
           title: 'image-3',
           imgUrl: require('@/assets/images/3.jpg')
-        },
-        {
-          title: 'image-4',
-          imgUrl: require('@/assets/images/4.jpg')
-        },
-        {
-          title: 'image-5',
-          imgUrl: require('@/assets/images/5.jpg')
         }
+        // {
+        //   title: 'image-4',
+        //   imgUrl: require('@/assets/images/4.jpg')
+        // },
+        // {
+        //   title: 'image-5',
+        //   imgUrl: require('@/assets/images/5.jpg')
+        // }
       ]
     }
   }

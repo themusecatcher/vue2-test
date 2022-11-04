@@ -1,20 +1,18 @@
 <template>
-  <div class="m-carousel mt60">
-    <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          :title="image.title"
-          v-for="(image, index) in imageData"
-          :key="index">
-          <div class="swiper-lazy" :data-background="image.imgUrl">
-            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-          </div>
+  <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide"
+        :title="image.title"
+        v-for="(image, index) in imageData"
+        :key="index">
+        <div class="swiper-lazy" :data-background="image.imgUrl">
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
         </div>
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
     </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
   </div>
 </template>
 <script>

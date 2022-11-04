@@ -1,30 +1,28 @@
 <template>
-  <div class="m-swiper">
-    <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          :title="image.title"
-          v-for="(image, index) in imageData"
-          :key="index">
-          <a href="https://www.baidu.com" class="u-link" target="_blank">
-            <!-- 奇数时放大zoomin，偶数时缩小zoomout，但图片需传偶数个效果最佳 -->
-            <!-- <img :src="image.imgUrl" :class="['u-img', index%2 === 0 ? 'default-in zoomin':'default-out zoomout']" /> -->
-            <!-- 全部缩小zoomout的渐变效果 -->
-            <img :src="image.imgUrl" class="u-img default-out zoomout" />
-          </a>
-          <!-- 延迟加载 -->
-          <!-- <div class="swiper-lazy" :data-background="image.imgUrl">
-            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-          </div> -->
-        </div>
+  <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide"
+        :title="image.title"
+        v-for="(image, index) in imageData"
+        :key="index">
+        <a href="https://www.baidu.com" class="u-link" target="_blank">
+          <!-- 奇数时放大zoomin，偶数时缩小zoomout，但图片需传偶数个效果最佳 -->
+          <!-- <img :src="image.imgUrl" :class="['u-img', index%2 === 0 ? 'default-in zoomin':'default-out zoomout']" /> -->
+          <!-- 全部缩小zoomout的渐变效果 -->
+          <img :src="image.imgUrl" class="u-img default-out zoomout" />
+        </a>
+        <!-- 延迟加载 -->
+        <!-- <div class="swiper-lazy" :data-background="image.imgUrl">
+          <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div> -->
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
-      <!-- 如果需要导航按钮 -->
-      <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
-      <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
     </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
+    <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
   </div>
 </template>
 <script>

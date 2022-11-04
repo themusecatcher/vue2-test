@@ -1,25 +1,23 @@
 <template>
-  <div class="m-swiper">
-    <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
-      <div class="swiper-wrapper">
-        <div
-          class="swiper-slide"
-          :title="image.title"
-          v-for="(image, index) in imageData"
-          :key="index">
-          <div class="swiper-zoom-container">
-            <div class="swiper-zoom-target swiper-lazy" :data-background="image.imgUrl">
-              <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-            </div>
+  <div class="swiper-container" :style="`width: ${width}; height: ${height};`">
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide"
+        :title="image.title"
+        v-for="(image, index) in imageData"
+        :key="index">
+        <div class="swiper-zoom-container">
+          <div class="swiper-zoom-target swiper-lazy" :data-background="image.imgUrl">
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
           </div>
         </div>
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
-      <!-- 如果需要导航按钮 -->
-      <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
-      <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
     </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div><!--左箭头。如果放置在swiper外面，需要自定义样式。-->
+    <div class="swiper-button-next"></div><!--右箭头。如果放置在swiper外面，需要自定义样式。-->
   </div>
 </template>
 <script>
