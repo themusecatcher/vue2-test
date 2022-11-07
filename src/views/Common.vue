@@ -2,17 +2,21 @@
   <div class="common limit1200">
     <Switcher :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
     <Breadcrumb class="mt60" :routes="routes" :height="60" separator="/" />
+    <Three />
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import { format } from 'date-fns'
 import Switcher from '@/components/Switcher'
 import Breadcrumb from '@/components/Breadcrumb'
+import Three from 'components/Three'
 export default {
   name: 'Common',
   components: {
     Switcher,
-    Breadcrumb
+    Breadcrumb,
+    Three
   },
   props: ['route', 'name'],
   data () {
@@ -58,6 +62,7 @@ export default {
     console.log(new Date().getTime())
     console.log('format:', format(1666774388344, 'yyyy-MM-dd HH:mm:ss'))
     console.log('format:', format(new Date(), 'yyyy-MM-dd HH:mm:ss'))
+    console.log('set:', Vue.set === this.$set)
   }
 }
 </script>
