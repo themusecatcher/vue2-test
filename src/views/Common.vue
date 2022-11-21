@@ -1,7 +1,7 @@
 <template>
   <div class="common limit1200">
     <Switcher :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
-    <Breadcrumb class="mt60" :routes="routes" :height="60" separator="/" />
+    <Breadcrumb class="mt60" :routes="routes" :height="60" separator="" />
     <Three />
   </div>
 </template>

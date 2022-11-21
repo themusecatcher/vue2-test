@@ -17,7 +17,7 @@ export default {
       renderer.render(scene, camera)
     }
 
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10)
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 10)
     camera.position.z = 1
 
     const scene = new THREE.Scene()
@@ -30,7 +30,7 @@ export default {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     // renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setSize(1200, window.innerHeight)
+    renderer.setSize(1200, 600)
     renderer.setAnimationLoop(animation)
     // document.body.appendChild(renderer.domElement)
     this.$refs.container.appendChild(renderer.domElement)

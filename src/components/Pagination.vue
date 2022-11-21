@@ -282,12 +282,14 @@ export default {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.65);
     input {
+      vertical-align: top;
       width: 26px;
       height: 20px;
       padding: 5px 11px;
       margin: 0 8px;
       border: 1px solid #d9d9d9;
       border-radius: 4px;
+      background: transparent;
       text-align: left;
       outline: none;
       transition: all 0.3s;
@@ -296,7 +298,7 @@ export default {
       }
       &:focus {
         border-color: @themeColor;
-        box-shadow: 0 0 0 2px rgba(24, 144, 255, 20%);
+        box-shadow: 0 0 3px 1px @themeColor;
       }
     }
   }
