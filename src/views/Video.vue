@@ -1,7 +1,7 @@
 <template>
   <div>
     <VideoPlay
-      v-show="false"
+      v-show="true"
       videoUrl="https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4"
       videoCover="https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg"
       :width="800"
@@ -12,7 +12,7 @@
       :muted="false"
       preload="auto"
       :playWidth="96"
-      zoom="cover"
+      zoom="contain"
     />
     <SerializeVideo :imagesData="imagesData" width="100%" height="100vh" />
   </div>

@@ -2,7 +2,7 @@
   <div :class="['m-video', { hover: !originPlay }]" :style="`width: ${width}px; height: ${height}px;`">
     <video
       ref="veo"
-      :class="[originPlay ? 'video':'video cursor']"
+      :class="{ cursor: !originPlay }"
       :style="`object-fit: ${zoom};`"
       :src="videoUrl"
       :poster="videoCover"
@@ -113,9 +113,7 @@ export default {
 .m-video {
   display: inline-block;
   position: relative;
-  .video {
-    background-color: #000;
-  }
+  background: #000;
   .cursor {
     cursor: pointer;
   }
