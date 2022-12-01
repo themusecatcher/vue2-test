@@ -11,7 +11,7 @@
       :autoplay="autoplay"
       :controls="!originPlay&&controls"
       :loop="loop"
-      :muted="muted"
+      :muted="autoplay || muted"
       :preload="preload">
       您的浏览器不支持video标签。
     </video>
@@ -42,6 +42,13 @@ export default {
       type: Number,
       default: 450
     },
+    /*
+      由于目前在最新版的Chrome浏览器（以及所有以Chromium为内核的浏览器）中，
+      已不再允许自动播放音频和视频。就算你为video或audio标签设置了autoplay
+      属性也一样不能自动播放！
+      解决方法：可以将视频设置为静音muted: true，然后设置autoplay来实现自
+      动播放，然后用户可以使用控制栏开启声音，类似某宝商品的宣传视频逻辑
+    */
     autoplay: { // 视频就绪后是否马上播放
       type: Boolean,
       default: false
@@ -78,6 +85,10 @@ export default {
     }
   },
   mounted () {
+    if (this.autoplay) {
+      this.vplay = false
+      this.originPlay = false
+    }
     if (this.videoUrl) {
       this.$nextTick(() => {
         this.$refs.veo.addEventListener('pause', this.onPause)
