@@ -85,15 +85,11 @@ export default {
     }
   },
   mounted () {
+    this.$refs.veo.addEventListener('pause', this.onPause)
+    this.$refs.veo.addEventListener('playing', this.onPlaying)
     if (this.autoplay) {
       this.vplay = false
       this.originPlay = false
-    }
-    if (this.videoUrl) {
-      this.$nextTick(() => {
-        this.$refs.veo.addEventListener('pause', this.onPause)
-        this.$refs.veo.addEventListener('playing', this.onPlaying)
-      })
     }
   },
   methods: {

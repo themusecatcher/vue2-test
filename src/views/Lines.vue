@@ -14,6 +14,7 @@
         :initialMax="80"
         :width="1200"
         :disabled="false"
+        :range="true"
         @lowChange="lowChange"
         @highChange="highChange"
       />
