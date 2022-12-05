@@ -62,7 +62,7 @@ export default {
       // 调用接口获取后台设置的追悼日期范围（起始日~截止日）
       this.mournDate = {
         start: 1669824000000, // 2022-12-01
-        end: 1670601600000 // 2022-12-10
+        end: 1669824000000 // 2022-12-10
       }
       this.checkMourn(this.mournDate)
     },
