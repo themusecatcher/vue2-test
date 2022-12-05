@@ -9,6 +9,8 @@
   </div>
 </template>
 <script>
+// 登录状态使用store插件保存在客户端的localStorage中
+import storage from 'store'
 export default {
   name: 'App',
   data () {
@@ -30,8 +32,30 @@ export default {
       }
     }
   },
+  computed: {
+    token () {
+      return storage.get('TOKEN')
+    },
+    uid () {
+      return storage.get('UID')
+    }
+  },
   created () {
-    this.getMournDate()
+    this.getMournDate() // 追悼日
+  },
+  mounted () { // 监听用户是否在网站无操作
+    // document.onmousemove = () => {
+    //   console.log('move')
+    // }
+    // document.onkeydown = () => {
+    //   console.log('keydown')
+    // }
+    // document.onscroll = () => {
+    //   console.log('scroll')
+    // }
+    document.onmousemove = this.debounce(this.resetStatus, 3000)
+    document.onkeydown = this.debounce(this.resetStatus, 3000)
+    document.onscroll = this.debounce(this.resetStatus, 3000)
   },
   methods: {
     getMournDate () {
@@ -58,15 +82,29 @@ export default {
           }, mournDate.start - now)
         }
       }
+    },
+    // 使用防抖，对于短时间内(此处是3s)连续触发的事件，只执行最后一次
+    debounce (fn, delay) {
+      let timer = null
+      return function () {
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(fn, delay)
+      }
+    },
+    resetStatus () { // 重置store插件自动清除时间
+      if (this.token) {
+        storage.set('TOKEN', this.token, new Date().getTime() + 30 * 60 * 1000)
+        storage.set('UID', this.uid, new Date().getTime() + 30 * 60 * 1000)
+      }
     }
   }
 }
 </script>
 <style lang="less" scoped>
 #app {
-  // width: 100%;
+  min-width: 1200px;
   min-height: 100vh;
-  // min-width: 1200px;
-  margin: 0 auto;
 }
 </style>

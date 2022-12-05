@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="u-tag yellow mr20" style="margin-top: 2000px;" @click="onDialog('Some descriptions ...')">哥斯拉</div>
+    <div class="u-tag yellow mr20" @click="onDialog('Some descriptions ...')">哥斯拉</div>
     <div class="u-tag blue" @click="onShowModal('Some descriptions ...')">特斯拉</div>
     <Dialog
       title="Title"

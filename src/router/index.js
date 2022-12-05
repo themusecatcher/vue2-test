@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { setDocumentTitle, domTitle } from '@/utils/domUtil'
-// import RouteView from '@/layouts/RouteView'
+import BasicLayout from '@/layouts/BasicLayout'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Index',
-    meta: { title: '首页' },
+    component: BasicLayout,
     redirect: '/common',
-    component: () => import(/* webpackChunkName: "test" */ '../views/Home.vue'),
+    meta: { title: '首页' },
     children: [
       {
         path: '/common',
