@@ -2,7 +2,13 @@
   <div class="slider">
     <ImageSlider v-show="false" :imageData="imageData" :imageWidth="460" :imageHeight="320" :interval="3000" />
     <Carousel v-show="false" style="margin-top: 60px;" :imageData="imageData" :imageWidth="540" :imageHeight="360" :interval="3000" />
-    <Waterfall :imageData="imageData" :columnCount="3" :columnGap="30" :totalWidth="900" />
+    <Waterfall
+      class="mt60"
+      :imageData="imageData"
+      :columnCount="3"
+      :columnGap="30"
+      :totalWidth="900"
+      backgroundColor="#F2F4F8" />
   </div>
 </template>
 <script>

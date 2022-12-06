@@ -1,7 +1,7 @@
 <template>
-  <div class="m-waterfall-wrap" :style="`width: ${width}px; padding: ${columnGap}px; column-count: ${columnCount}; column-gap: ${columnGap}px;`">
-    <div class="m-pic" :style="`margin-bottom: ${columnGap}px;`" v-for="(item, index) in imageData" :key="index">
-      <img class="u-pic" :src="item.imgUrl" :title="item.title" :alt="item.title" />
+  <div class="m-waterfall-wrap" :style="`background: ${backgroundColor}; width: ${width}px; padding: ${columnGap}px; column-count: ${columnCount}; column-gap: ${columnGap}px;`">
+    <div class="m-img" :style="`margin-bottom: ${columnGap}px;`" v-for="(item, index) in imageData" :key="index">
+      <img class="u-img" :src="item.imgUrl" :title="item.title" :alt="item.title" />
     </div>
   </div>
 </template>
@@ -20,13 +20,17 @@ export default {
       type: Number,
       default: 3
     },
-    columnGap: { // 瀑布流列之间的间隙
+    columnGap: { // 瀑布流各列之间的间隙
       type: Number,
       default: 30
     },
     totalWidth: { // 瀑布流区域的总宽度
       type: Number,
       default: 1200
+    },
+    backgroundColor: { // 瀑布流区域背景填充色
+      type: String,
+      default: '#F2F4F8'
     }
   },
   computed: {
@@ -38,9 +42,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .m-waterfall-wrap {
-  background: #F2F4F8;
-  .m-pic {
-    .u-pic {
+  .m-img {
+    .u-img {
       width: 100%;
       vertical-align: bottom;
     }

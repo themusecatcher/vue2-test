@@ -77,10 +77,10 @@ const routes = [
         component: () => import(/* webpackChunkName: "test" */ '@/views/Selector.vue')
       },
       {
-        path: '/imgSlider',
-        name: 'ImgSlider',
-        meta: { title: '图片轮播组件' },
-        component: () => import(/* webpackChunkName: "test" */ '@/views/ImgSlider.vue')
+        path: '/image',
+        name: 'Image',
+        meta: { title: '图片组件' },
+        component: () => import(/* webpackChunkName: "test" */ '@/views/Image.vue')
       },
       {
         path: '/steps',

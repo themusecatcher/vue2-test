@@ -31,8 +31,8 @@
       <a-menu-item key="Selector">
         <router-link to="/selector">下拉组件</router-link>
       </a-menu-item>
-      <a-menu-item key="ImgSlider">
-        <router-link to="/imgSlider">图片轮播组件</router-link>
+      <a-menu-item key="Image">
+        <router-link to="/image">图片组件</router-link>
       </a-menu-item>
       <a-menu-item key="Steps">
         <router-link to="/steps">步骤条组件</router-link>
