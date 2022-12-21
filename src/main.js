@@ -1,19 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import 'components/global_use.js' // global components
 import '@/assets/less/global.less' // global CSS
-import { Toast, Loading, Alert, Confirm } from 'wc-messagebox'
-import 'wc-messagebox/style.css'
-// import Menu from 'ant-design-vue/lib/menu'
-// import 'ant-design-vue/lib/menu/style'
-import { Menu } from 'ant-design-vue'
-// import 'ant-design-vue/dist/antd.css'
-
-Vue.use(Menu)
-Vue.use(Toast)
-Vue.use(Loading)
-Vue.use(Alert)
-Vue.use(Confirm)
 
 Vue.prototype.$global = '在new Vue()时绑定到Vue的原型上以便全局使用'
 

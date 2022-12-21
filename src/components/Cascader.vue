@@ -3,9 +3,9 @@
     <VueAmazingSelector
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
       :selectData="provinceData"
-      :selectedValue="address.province"
-      name="dictVal"
-      value="dictKey"
+      v-model="address.province"
+      name="name"
+      value="zoneCode"
       :disabled="provinceDisabled || disabled"
       :width="provinceWidth || width"
       :height="height"
@@ -15,9 +15,9 @@
     <VueAmazingSelector
       :style="`margin-right: ${gap}px; z-index: ${zIndex};`"
       :selectData="cityData"
-      :selectedValue="address.city"
-      name="dictVal"
-      value="dictKey"
+      v-model="address.city"
+      name="name"
+      value="zoneCode"
       :disabled="cityDisabled || disabled"
       :width="cityWidth || width"
       :height="36"
@@ -27,9 +27,9 @@
     <VueAmazingSelector
       :style="`z-index: ${zIndex};`"
       :selectData="areaData"
-      :selectedValue="address.area"
-      name="dictVal"
-      value="dictKey"
+      v-model="address.area"
+      name="name"
+      value="zoneCode"
       :disabled="disabled"
       :width="areaWidth || width"
       :height="height"
@@ -39,19 +39,37 @@
   </div>
 </template>
 <script>
-import { dictByType } from 'apis/index'
-import Vue from 'vue'
-import VueAmazingSelector from 'vue-amazing-selector'
-import 'vue-amazing-selector/lib/selector.css' // 引入样式
-Vue.use(VueAmazingSelector)
+import { region } from 'apis/index'
+// import Vue from 'vue'
+// import VueAmazingSelector from 'vue-amazing-selector'
+// import 'vue-amazing-selector/lib/selector.css' // 引入样式
+// Vue.use(VueAmazingSelector)
+import VueAmazingSelector from './VueAmazingSelector'
 export default {
   name: 'Cascader',
+  components: {
+    VueAmazingSelector
+  },
+  model: {
+    prop: 'address',
+    event: 'model'
+  },
   props: {
-    selectedAddress: { // 省市区初始值
+    address: { // （v-model）省市区选中项
       type: Object,
       default: () => {
         return {}
       }
+    },
+    defaultAddress: { //  省市区初始值
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    changeOnSelect: { // 当此项为true时，点选每级菜单选项值（v-model）都会发生变化；否则只有选择区选项后选项值才会变化
+      type: Boolean,
+      default: false
     },
     zIndex: { // 下拉层级
       type: Number,
@@ -120,102 +138,108 @@ export default {
       cityData: [],
       areaData: [],
       regionParams: {
-        type: '1',
-        parentDictKey: ''
-      },
-      address: {
-        province: '',
-        city: '',
-        area: ''
+        level: '',
+        pcode: ''
       },
       addressName: {
         provinceName: '',
         cityName: '',
         areaName: ''
-      },
-      initialProvince: true,
-      initialCity: true,
-      initialArea: true
+      }
     }
   },
   created () {
     this.getProvince()
+    console.log('address:', this.address)
   },
   methods: {
     getProvince () { // 获取省数据
-      dictByType(this.regionParams).then(res => {
+      this.regionParams.level = 0
+      this.regionParams.pcode = ''
+      region(this.regionParams).then(res => {
         console.log('province-res:', res)
         if (res.message.code === 0) {
-          if (res.data.dataList && res.data.dataList.length) {
-            this.provinceData = res.data.dataList
-            if (this.selectedAddress.province && this.initialProvince) {
-              this.initialProvince = false
-              this.address.province = this.selectedAddress.province
+          if (res.data && res.data.length) {
+            this.provinceData = res.data
+            if (this.address.province) {
               this.getCity(this.address.province)
+            } else if (this.defaultAddress.province) {
+              this.getCity(this.defaultAddress.province)
             }
+            // if (this.defaultAddress.province && this.initialProvince) {
+            //   this.initialProvince = false
+            //   this.address.province = this.defaultAddress.province
+            //   this.getCity(this.address.province)
+            // }
           }
         }
       })
     },
     getCity (key) { // 获取市数据
-      this.regionParams.parentDictKey = key
-      dictByType(this.regionParams).then(res => {
+      this.regionParams.level = 1
+      this.regionParams.pcode = key
+      region(this.regionParams).then(res => {
         console.log('city-res:', res)
         if (res.message.code === 0) {
-          if (res.data.dataList && res.data.dataList.length) {
-            this.cityData = res.data.dataList
-            if (this.selectedAddress.city && this.initialCity) {
-              this.initialCity = false
-              this.address.city = this.selectedAddress.city
+          if (res.data && res.data.length) {
+            this.cityData = res.data
+            if (this.address.city) {
               this.getArea(this.address.city)
+            } else if (this.defaultAddress.city) {
+              this.getArea(this.defaultAddress.city)
             }
+            // if (this.defaultAddress.city && this.initialCity) {
+            //   this.initialCity = false
+            //   this.address.city = this.defaultAddress.city
+            //   this.getArea(this.address.city)
+            // }
           }
         }
       })
     },
     getArea (key) { // 获取区数据
-      this.regionParams.parentDictKey = key
-      dictByType(this.regionParams).then(res => {
+      this.regionParams.level = 2
+      this.regionParams.pcode = key
+      region(this.regionParams).then(res => {
         console.log('area-res:', res)
         if (res.message.code === 0) {
-          if (res.data.dataList && res.data.dataList.length) {
-            this.areaData = res.data.dataList
-            if (this.selectedAddress.area && this.initialArea) {
-              this.initialArea = false
-              this.address.area = this.selectedAddress.area
-            }
+          if (res.data && res.data.length) {
+            this.areaData = res.data
+            // if (this.defaultAddress.area && this.initialArea) {
+            //   this.initialArea = false
+            //   this.address.area = this.defaultAddress.area
+            // }
           }
         }
       })
     },
     getProvinceCode (name, key) { // 省下拉回调
       console.log('province:', name, key)
-      if (this.address.province !== key) {
-        this.address.province = key
-        this.addressName.provinceName = name
-        this.address.city = ''
-        this.address.area = ''
-        this.cityData = []
-        this.areaData = []
-        // 获取市下拉列表
-        this.getCity(key)
+      this.addressName.provinceName = name
+      this.cityData = []
+      this.areaData = []
+      if (this.changeOnSelect) {
+        this.$emit('model', { province: key })
+        this.$emit('change', this.address, this.addressName)
       }
+      // 获取市下拉列表
+      this.getCity(key)
     },
     getCityCode (name, key) { // 市下拉回调
       console.log('city:', name, key)
-      if (this.address.city !== key) {
-        this.address.city = key
-        this.addressName.cityName = name
-        this.address.area = ''
-        this.areaData = []
-        // 获取区下拉列表
-        this.getArea(key)
+      this.addressName.cityName = name
+      this.areaData = []
+      if (this.changeOnSelect) {
+        this.$emit('model', { ...this.address, city: key })
+        this.$emit('change', this.address, this.addressName)
       }
+      // 获取区下拉列表
+      this.getArea(key)
     },
     getAreaCode (name, key) { // 区下拉回调
       console.log('area:', name, key)
-      this.address.area = key
       this.addressName.areaName = name
+      this.$emit('model', { ...this.address, area: key })
       this.$emit('change', this.address, this.addressName)
     }
   }

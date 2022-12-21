@@ -2,23 +2,23 @@
   <div>
     <Timeline :timelineDesc="timelineDesc" :width="480" />
     <Progress :width="600" :progress="36" :strokeWidth="10" :showInfo="true" />
-    <div class="m-num" id="num" ref="num">
-      <p class="u-num">{{ low }}</p>
-      <p class="u-num">{{ high }}</p>
+    <div class="m-num">
+      <p class="u-num">{{ value[0] }}</p>
+      <p class="u-num">{{ value[1] }}</p>
     </div>
-    <div class="slider">
-      <NumSlider
-        :min="0"
-        :max="100"
-        :initialMin="20"
-        :initialMax="80"
-        :width="1200"
-        :disabled="false"
-        :range="true"
-        @lowChange="lowChange"
-        @highChange="highChange"
-      />
+    <div class="m-num">
+      <p class="u-num">{{ value }}</p>
     </div>
+    <NumSlider
+      :min="0"
+      :max="100"
+      :initialValue="[20, 80]"
+      :width="1200"
+      :disabled="false"
+      :range="true"
+      v-model="value"
+      @change="onChange"
+    />
     <HorizonTimeLine :timelineData="timelineData" :activeYear="2021" />
   </div>
 </template>
@@ -37,8 +37,6 @@ export default {
   },
   data () {
     return {
-      low: 20,
-      high: 80,
       timelineDesc: ['', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.', 'Create a services site', 'Create a services site', 'Create a services site', 'Create a services site'],
       timelineData: [
         {
@@ -56,17 +54,13 @@ export default {
         {
           year: 2018
         }
-      ]
+      ],
+      value: [20, 80]
     }
   },
   methods: {
-    lowChange (val) {
-      this.low = val
-      console.log('lowChange:', val)
-    },
-    highChange (val) {
-      this.high = val
-      console.log('highChange:', val)
+    onChange (val) {
+      console.log('change:', val)
     }
   }
 }
@@ -82,8 +76,5 @@ export default {
     color: #333;
     font-size: 24px;
   }
-}
-.slider {
-  margin: 30px auto 120px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div :class="['m-slider', { disabled: disabled }]" @click="onClickPoint" ref="slider" :style="`width: ${width}px;`">
-    <div class="u-slider-rail"></div>
+  <div :class="['m-slider', { disabled: disabled }]" ref="slider" :style="`width: ${width}px;`">
+    <div class="u-slider-rail" @click.self="onClickPoint"></div>
     <div class="u-slider-track" :style="`left: ${left}px; right: auto; width: ${right - left}px;`"></div>
     <div class="u-slider-handle" v-if="range" tabindex="0" ref="left" @mousedown="onLeftMouseDown" :style="`left: ${left}px; right: auto; transform: translateX(-50%);`"></div>
     <div class="u-slider-handle" tabindex="0" ref="right" @mousedown="onRightMouseDown" :style="`left: ${right}px; right: auto; transform: translateX(-50%);`"></div>
@@ -9,6 +9,10 @@
 <script>
 export default {
   name: 'NumSlider',
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     min: { // 滑动输入条最小值
       type: Number,
@@ -18,13 +22,11 @@ export default {
       type: Number,
       default: 100
     },
-    initialMin: { // 滑动输入条初始最小值，默认在最左侧
-      type: Number,
-      default: 0
-    },
-    initialMax: { // 滑动输入条初始最大值，默认在最右侧
-      type: Number,
-      default: 100
+    initialValue: { // 滑动输入条初始默认值，当 range 为 false 时，使用 number，否则用 [number, number]，在未设置value（v-model）时生效
+      type: [Number, Array],
+      default: () => {
+        return [0, 100]
+      }
     },
     width: { // 滑动输入条在页面中的宽度
       type: Number,
@@ -37,36 +39,46 @@ export default {
     range: { // 是否双滑块模式
       type: Boolean,
       default: false
+    },
+    value: { // （v-model）设置当前取值，当 range 为 false 时，使用 number，否则用 [number, number]
+      type: [Number, Array],
+      default: null
     }
   },
   data () {
     return {
-      left: '', // 左滑块距离滑动条左端的距离
-      right: '' // 右滑动距离滑动条左端的距离
+      left: 0, // 左滑块距离滑动条左端的距离
+      right: 0 // 右滑动距离滑动条左端的距离
     }
   },
   computed: {
     scale () {
       return this.width / (this.max - this.min)
     },
-    low () {
-      return Math.round(this.left / this.scale + this.min)
-    },
-    high () {
-      return Math.round(this.right / this.scale + this.min)
+    sliderValue () {
+      const high = Math.round(this.right / this.scale + this.min)
+      if (this.range) {
+        const low = Math.round(this.left / this.scale + this.min)
+        return [low, high]
+      }
+      return high
     }
   },
   watch: {
-    low (to) {
-      this.$emit('lowChange', to) // 左滑块对应数字回调
-    },
-    high (to) {
-      this.$emit('highChange', to) // 右滑块对应数字回调
+    sliderValue (to) {
+      this.$emit('change', to) // 通知v-model值变化
     }
   },
-  mounted () {
-    this.left = this.range ? (this.initialMin - this.min) * this.scale : 0
-    this.right = (this.initialMax - this.min) * this.scale
+  created () {
+    if (this.range) { // 双滑块模式
+      const leftVal = (this.value && (this.value[0] === 0 || this.value[0])) ? this.value[0] : this.initialValue[0]
+      this.left = (leftVal - this.min) * this.scale
+      const rightVal = (this.value && (this.value[1] === 0 || this.value[1])) ? this.value[1] : this.initialValue[1]
+      this.right = (rightVal - this.min) * this.scale
+    } else {
+      const rightVal = this.value ? this.value : (Array.isArray(this.initialValue) ? 100 : this.initialValue)
+      this.right = (rightVal - this.min) * this.scale
+    }
   },
   methods: {
     onClickPoint (e) { // 点击滑动条，移动滑块
@@ -89,16 +101,17 @@ export default {
       }
     },
     onLeftMouseDown () { // 在滚动条上拖动左滑块
-      var leftX = this.$refs.slider.getBoundingClientRect().left // 滑动条左端距离屏幕可视区域左边界的距离
+      const leftX = this.$refs.slider.getBoundingClientRect().left // 滑动条左端距离屏幕可视区域左边界的距离
       document.onmousemove = (e) => {
         // e.clientX返回事件被触发时鼠标指针相对于浏览器可视窗口的水平坐标
         var moveX = e.clientX - leftX
         if (moveX < 0) {
           this.left = 0
-        } else if (moveX >= this.right) {
-          this.left = this.right
-        } else {
+        } else if (moveX >= 0 && moveX <= this.right) {
           this.left = moveX
+        } else { // moveX > this.right
+          this.left = this.right
+          this.onRightMouseDown()
         }
       }
       document.onmouseup = () => {
@@ -106,16 +119,18 @@ export default {
       }
     },
     onRightMouseDown () { // 在滚动条上拖动右滑块
-      var leftX = this.$refs.slider.getBoundingClientRect().left // 滑动条左端距离屏幕可视区域左边界的距离
+      const leftX = this.$refs.slider.getBoundingClientRect().left // 滑动条左端距离屏幕可视区域左边界的距离
       document.onmousemove = (e) => {
         // e.clientX返回事件被触发时鼠标指针相对于浏览器可视窗口的水平坐标
+        console.log(e.clientX)
         var moveX = e.clientX - leftX
         if (moveX > this.width) {
           this.right = this.width
-        } else if (moveX <= this.left) {
-          this.right = this.left
-        } else {
+        } else if (this.left <= moveX && moveX <= this.width) {
           this.right = moveX
+        } else { // moveX < this.left
+          this.right = this.left
+          this.onLeftMouseDown()
         }
       }
       document.onmouseup = () => {
@@ -130,11 +145,9 @@ export default {
 .m-slider {
   display: inline-block;
   height: 4px;
-  padding: 6px 0;
   position: relative;
   z-index: 9;
-  cursor: pointer;
-  touch-action: none; // 禁用元素上的所有手势,使用自己的拖放和缩放api
+  touch-action: none; // 禁用元素上的所有手势,使用自己的拖动和缩放api
   .u-slider-rail { // 灰色未选择滑动条背景色
     position: absolute;
     z-index: 99;
@@ -142,6 +155,7 @@ export default {
     width: 100%;
     background: #f5f5f5;
     border-radius: 2px;
+    cursor: pointer;
     transition: background .3s;
   }
   .u-slider-track { // 蓝色已选择滑动条背景色
@@ -167,7 +181,7 @@ export default {
     z-index: 999;
     width: 12px;
     height: 12px;
-    top: 0px;
+    top: -6px;
     background: #fff;
     border: 2px solid #91d5ff;
     border-radius: 50%;

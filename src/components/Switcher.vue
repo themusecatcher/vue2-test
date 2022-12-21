@@ -9,6 +9,10 @@
 <script>
 export default {
   name: 'Switcher',
+  model: {
+    prop: 'checked',
+    event: 'model'
+  },
   props: {
     defaultChecked: { // 初始是否选中
       type: Boolean,
@@ -25,11 +29,10 @@ export default {
     disabled: { // 是否禁用
       type: Boolean,
       default: false
-    }
-  },
-  data () {
-    return {
-      checked: this.defaultChecked
+    },
+    checked: { // （v-model）指定当前是否选中
+      type: Boolean,
+      default: null
     }
   },
   methods: {

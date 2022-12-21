@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 const apis = {
-  dictByType: '/api/dict/byType'
+  region: '/api/common/region'
 }
-export function dictByType (parameter) {
+export function region (parameter) {
   return request({
-    url: apis.dictByType,
+    url: apis.region,
     method: 'get',
     params: parameter
   })

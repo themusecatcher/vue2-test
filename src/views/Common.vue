@@ -1,6 +1,47 @@
 <template>
   <div class="common limit1200">
-    <Switcher :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
+    <Button
+      type="default"
+      effect="reverse"
+      size="middle"
+      class="mr20"
+      :width="120"
+      :height="40"
+      :borderRadius="4"
+      :disabled="false"
+      :center="false"
+      @click="onClick">
+      按钮Button
+    </Button>
+    <Button
+      class="mr20"
+      type="primary"
+      effect="reverse"
+      size="middle"
+      :width="120"
+      :height="40"
+      :borderRadius="4"
+      :disabled="false"
+      :center="false"
+      @click="onClick">
+      按钮Button
+    </Button>
+    <Button
+      type="danger"
+      effect="reverse"
+      size="middle"
+      :width="120"
+      :height="40"
+      :borderRadius="4"
+      :disabled="false"
+      :center="false"
+      @click="onClick">
+      按钮Button
+    </Button>
+    <a-button size="default" type="primary">
+      Primary
+    </a-button>
+    <Switcher v-show="true" :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
     <Breadcrumb class="mt60" :routes="routes" :height="60" separator="" />
     <Three />
   </div>
@@ -8,12 +49,15 @@
 <script>
 import Vue from 'vue'
 import { format } from 'date-fns'
+import Button from '@/components/Button'
 import Switcher from '@/components/Switcher'
 import Breadcrumb from '@/components/Breadcrumb'
 import Three from 'components/Three'
+import md5 from 'md5'
 export default {
   name: 'Common',
   components: {
+    Button,
     Switcher,
     Breadcrumb,
     Three
@@ -40,10 +84,22 @@ export default {
           path: 'third',
           name: '三级路由三级路由三级路由三级路由三级路由三级路由三级路由'
         }
-      ]
+      ],
+      secret: '5f39957fcae1c4e1d2d8a25ae38e5ec6',
+      params: {
+        appkey: 'gzwl_wz_b804cc6805',
+        timestamp: 1671518625608,
+        platformId: 25,
+        tag: 'chezuojigou',
+        pageSize: 999,
+        order: {
+          1: 'sort,1'
+        }
+      }
     }
   },
   mounted () {
+    console.log(md5(this.getSigncode(this.params, 'get')))
     console.log('route:', this.route)
     console.log('$route:', this.$route)
     console.log('$route === route:', this.$route === this.route) // true
@@ -63,6 +119,39 @@ export default {
     console.log('format:', format(1666774388344, 'yyyy-MM-dd HH:mm:ss'))
     console.log('format:', format(new Date(), 'yyyy-MM-dd HH:mm:ss'))
     console.log('set:', Vue.set === this.$set)
+  },
+  methods: {
+    getSigncode (params, type) {
+      const objectKeyArr = Object.keys(params)
+      objectKeyArr.sort()
+      console.log(objectKeyArr)
+      let str = ''
+      objectKeyArr.forEach(keys => {
+        if (type === 'get') {
+          if (typeof params[keys] === 'object') {
+            str += keys
+            str += JSON.stringify(params[keys])
+          } else {
+            str += keys
+            str += params[keys]
+          }
+        } else {
+          if ((typeof params[keys] === 'string') || (typeof params[keys] === 'number')) {
+            str += keys
+            str += params[keys]
+          }
+        }
+      })
+      str = this.secret + str + this.secret
+      str = md5(str.toUpperCase())
+      return str
+    },
+    onClick () {
+      console.log('click')
+    },
+    onChange (value) {
+      console.log(value)
+    }
   }
 }
 </script>

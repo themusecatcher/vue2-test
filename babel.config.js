@@ -10,10 +10,20 @@ if (IS_PROD) {
 // if your use import on Demand, Use this code
 plugins.push(['import', {
   'libraryName': 'ant-design-vue', // 包名
-  // 'libraryDirectory': 'es', // 目录，默认lib
-  'style': true // `style: true` 会加载 less 文件
+  'libraryDirectory': 'es', // 目录，默认lib
+  'style': 'css' // `style: true` 会加载 less 文件
 }])
 
 module.exports = {
+  // presets: [
+  //   '@vue/cli-plugin-babel/preset',
+  //   [
+  //     '@babel/preset-env',
+  //     {
+  //       'useBuiltIns': 'entry',
+  //       'corejs': 3
+  //     }
+  //   ]
+  // ],
   plugins
 }

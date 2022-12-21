@@ -3,19 +3,21 @@
     <VueAmazingSelector
       class="mt60"
       :selectData="selectData"
-      :selectedValue="selectedValue"
-      name="name"
+      name="label"
       value="value"
+      :labelInValue="false"
       placeholder="请选择城市"
       :disabled="false"
       :width="160"
       :height="36"
       :num="6"
+      v-model="selectedValue"
       @change="onChange" />
     <br/>
     <Cascader
       class="mt60"
-      :selectedAddress="selectedAddress"
+      v-model="address"
+      changeOnSelect
       :zIndex="9"
       :gap="8"
       :provinceWidth="120"
@@ -28,6 +30,14 @@
       :disabled="false"
       :num="6"
       @change="getAddress" />
+    <a-cascader
+      style="width: 280px; margin-left: 20px;"
+      placeholder="请选择"
+      size="large"
+      v-model="defaultValue"
+      :options="options"
+      change-on-select
+      @change="onChange" />
   </div>
 </template>
 <script>
@@ -43,51 +53,96 @@ export default {
   },
   data () {
     return {
-      selectedAddress: {
-        province: '',
-        city: '',
-        area: ''
-      },
+      address: {},
       selectData: [
         {
-          name: '北京市',
+          label: '北京市',
           value: 1
         },
         {
-          name: '上海市上海市上海市上海市',
+          label: '上海市上海市上海市上海市',
           value: 2,
           disabled: true
         },
         {
-          name: '郑州市',
+          label: '郑州市',
           value: 3
         },
         {
-          name: '纽约市纽约市纽约市纽约市',
+          label: '纽约市纽约市纽约市纽约市',
           value: 4
         },
         {
-          name: '旧金山',
+          label: '旧金山',
           value: 5
         },
         {
-          name: '悉尼市',
+          label: '悉尼市',
           value: 6
         },
         {
-          name: '伦敦市',
+          label: '伦敦市',
           value: 7
         },
         {
-          name: '巴黎市',
+          label: '巴黎市',
           value: 8
         }
       ],
-      selectedValue: ''
+      selectedValue: 1,
+      defaultValue: ['zhejiang', 'hangzhou', 'xihu'],
+      options: [
+        {
+          value: 'zhejiang',
+          label: 'Zhejiang',
+          children: [
+            {
+              value: 'hangzhou',
+              label: 'Hangzhou',
+              children: [
+                {
+                  value: 'xihu',
+                  label: 'West Lake'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          value: 'jiangsu',
+          label: 'Jiangsu',
+          children: [
+            {
+              value: 'nanjing',
+              label: 'Nanjing',
+              children: [
+                {
+                  value: 'zhonghuamen',
+                  label: 'Zhong Hua Men'
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   },
-  created () {
-    this.selectedValue = ''
+  watch: {
+    selectedValue (to) {
+      console.log('selectedValue:', to)
+    },
+    address (to) {
+      console.log('address:', to)
+    }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.address = {
+        province: '410000',
+        city: '411700',
+        area: '411721'
+      }
+    }, 5000)
   },
   methods: {
     onChange (name, value, index) {
