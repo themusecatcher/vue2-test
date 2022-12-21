@@ -1536,10 +1536,10 @@
     postcss "^8.4.14"
     source-map "^0.6.1"
 
-"@vue/compiler-sfc@2.7.8":
-  version "2.7.8"
-  resolved "https://registry.npmmirror.com/@vue/compiler-sfc/-/compiler-sfc-2.7.8.tgz"
-  integrity sha512-2DK4YWKfgLnW9VDR9gnju1gcYRk3flKj8UNsms7fsRmFcg35slVTZEkqwBtX+wJBXaamFfn6NxSsZh3h12Ix/Q==
+"@vue/compiler-sfc@2.7.14":
+  version "2.7.14"
+  resolved "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-2.7.14.tgz#3446fd2fbb670d709277fc3ffa88efc5e10284fd"
+  integrity sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA==
   dependencies:
     "@babel/parser" "^7.18.4"
     postcss "^8.4.14"
@@ -5815,7 +5815,7 @@ launch-editor@^2.2.1, launch-editor@^2.5.0:
 
 less-loader@6.0.0:
   version "6.0.0"
-  resolved "https://registry.npmjs.org/less-loader/-/less-loader-6.0.0.tgz"
+  resolved "https://registry.npmjs.org/less-loader/-/less-loader-6.0.0.tgz#f7833177c2fc3de5014de072d5c26eca0954c1cb"
   integrity sha512-k9KrSkjkdGCQwbKPHfbJT9AfRCmOCHCCjiQCc0v2fdVCRTlJvr1Si68Zk6Z4d4UyVkp0U/nEEdQeH4wV/jW8/g==
   dependencies:
     clone "^2.1.2"
@@ -5834,7 +5834,7 @@ less-loader@^5.0.0:
 
 less@^3.11.1:
   version "3.13.1"
-  resolved "https://registry.npmjs.org/less/-/less-3.13.1.tgz"
+  resolved "https://registry.npmjs.org/less/-/less-3.13.1.tgz#0ebc91d2a0e9c0c6735b83d496b0ab0583077909"
   integrity sha512-SwA1aQXGUvp+P5XdZslUOhhLnClSLIjWvJhmd+Vgib5BFIr9lMNlQwmwUNOjXThF/A0x+MCYYPeWEfeWiLRnTw==
   dependencies:
     copy-anything "^2.0.1"
@@ -6402,7 +6402,7 @@ nanopop@^2.1.0:
 
 native-request@^1.0.5:
   version "1.1.0"
-  resolved "https://registry.npmjs.org/native-request/-/native-request-1.1.0.tgz"
+  resolved "https://registry.npmjs.org/native-request/-/native-request-1.1.0.tgz#acdb30fe2eefa3e1bc8c54b3a6852e9c5c0d3cb0"
   integrity sha512-uZ5rQaeRn15XmpgE0xoPL8YWqcX90VtCFglYwAgkvKM5e8fog+vePLAhHxuuv/gRkrQxIeh5U3q9sMNUrENqWw==
 
 natural-compare@^1.4.0:
@@ -9189,10 +9189,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-amazing-selector@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/vue-amazing-selector/-/vue-amazing-selector-0.3.0.tgz#e72b652c810795aedb1dd7ee9bb7f528f9fc3276"
-  integrity sha512-9EW8H/DIvYFXh4vKOa6Z1P90W52N51nXe5VmKKNuXDLn98BSoOYjUNos1Rx6hm2bgEFnJgxSwC3VbwpzWXZ+WA==
+vue-amazing-selector@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.npmjs.org/vue-amazing-selector/-/vue-amazing-selector-0.3.1.tgz#25f2df299b0e3a88eca0a19bd060b3c83b834b1c"
+  integrity sha512-ZpmX1J9p3W+dAkpHqxN9o6L4Wbjl7TUDYov40VvuWHa1HAYbjGf9iTYSjHJhJ9ps8cOtSlXqxCChxZ0y/EHFSg==
   dependencies:
     core-js "^3.6.5"
     less-loader "6.0.0"
@@ -9290,11 +9290,11 @@ vue-template-es2015-compiler@^1.9.0:
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
 vue@^2.6.11:
-  version "2.7.8"
-  resolved "https://registry.npmmirror.com/vue/-/vue-2.7.8.tgz"
-  integrity sha512-ncwlZx5qOcn754bCu5/tS/IWPhXHopfit79cx+uIlLMyt3vCMGcXai5yCG5y+I6cDmEj4ukRYyZail9FTQh7lQ==
+  version "2.7.14"
+  resolved "https://registry.npmjs.org/vue/-/vue-2.7.14.tgz#3743dcd248fd3a34d421ae456b864a0246bafb17"
+  integrity sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ==
   dependencies:
-    "@vue/compiler-sfc" "2.7.8"
+    "@vue/compiler-sfc" "2.7.14"
     csstype "^3.1.0"
 
 vue@^2.6.12:
