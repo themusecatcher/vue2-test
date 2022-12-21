@@ -105,6 +105,9 @@ export default {
       this.initSelector()
     }
   },
+  created () {
+    this.initSelector()
+  },
   methods: {
     initSelector () {
       if (this.selectedValue) {
