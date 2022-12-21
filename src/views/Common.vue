@@ -41,7 +41,8 @@
     <a-button size="default" type="primary">
       Primary
     </a-button>
-    <Switcher v-show="true" :defaultChecked="true" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
+    <Switcher v-show="true" :defaultChecked="true" v-model="checked" checkedInfo="开" uncheckedInfo="关" :disabled="false" />
+    <a-switch :defaultChecked="true" />
     <Breadcrumb class="mt60" :routes="routes" :height="60" separator="" />
     <Three />
   </div>
@@ -65,6 +66,7 @@ export default {
   props: ['route', 'name'],
   data () {
     return {
+      checked: true,
       player: {
         num: 30,
         age: '34'

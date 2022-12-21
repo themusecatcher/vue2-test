@@ -14,13 +14,15 @@ import 'wc-messagebox/style.css'
 import {
   Menu,
   Button,
-  Cascader
+  Cascader,
+  Switch
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
 
 Vue.use(Menu)
 Vue.use(Button)
 Vue.use(Cascader)
+Vue.use(Switch)
 
 Vue.use(Toast)
 Vue.use(Loading)

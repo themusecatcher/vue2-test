@@ -105,29 +105,6 @@ export default {
       this.initSelector()
     }
   },
-  created () {
-    // console.log(this.selectedValue)
-    // if (this.selectedValue) {
-    //   if (this.labelInValue) {
-    //     this.hoverValue = this.selectedValue[this.value] || ''
-    //     this.selectedName = this.selectedValue[this.name] || ''
-    //   } else {
-    //     this.hoverValue = this.selectedValue || ''
-    //     const target = this.selectData.find(item => item[this.value] === this.selectedValue)
-    //     this.selectedName = target ? target[this.name] : null
-    //   }
-    // }
-    // if (!this.selectedValue && this.defaultValue) {
-    //   this.hoverValue = this.defaultValue
-    //   const target = this.selectData.find(item => item[this.value] === this.defaultValue)
-    //   this.selectedName = target ? target[this.name] : null
-    //   if (this.labelInValue) {
-    //     this.$emit('model', target)
-    //   } else {
-    //     this.$emit('model', target[this.value])
-    //   }
-    // }
-  },
   methods: {
     initSelector () {
       if (this.selectedValue) {

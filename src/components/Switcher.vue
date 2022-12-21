@@ -1,8 +1,8 @@
 <template>
   <div class="m-switch-wrap">
-    <div @click="disabled ? e => e.preventDefault() : onSwitch()" :class="['m-switch', { 'switch-checked': checked, 'disabled': disabled }]">
-      <div :class="['u-switch-inner', checked ? 'inner-checked' : 'inner-unchecked' ]">{{ checked ? checkedInfo : uncheckedInfo }}</div>
-      <div :class="['u-node', { 'node-checked': checked }]"></div>
+    <div @click="disabled ? e => e.preventDefault() : onSwitch()" :class="['m-switch', { 'switch-checked': checkedVal, 'disabled': disabled }]">
+      <div :class="['u-switch-inner', checkedVal ? 'inner-checked' : 'inner-unchecked' ]">{{ checkedVal ? checkedInfo : uncheckedInfo }}</div>
+      <div :class="['u-node', { 'node-checked': checkedVal }]"></div>
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   name: 'Switcher',
   model: {
     prop: 'checked',
-    event: 'model'
+    event: 'change'
   },
   props: {
     defaultChecked: { // 初始是否选中
@@ -35,10 +35,33 @@ export default {
       default: null
     }
   },
+  data () {
+    return {
+      checkedVal: null
+    }
+  },
+  watch: {
+    checked () {
+      this.initSwitcher()
+    },
+    defaultChecked () {
+      this.initSwitcher()
+    }
+  },
+  created () {
+    this.initSwitcher()
+  },
   methods: {
+    initSwitcher () {
+      if (typeof this.checked === 'boolean') {
+        this.checkedVal = this.checked
+      } else if (typeof this.checked === 'object') {
+        this.checkedVal = this.defaultChecked
+      }
+    },
     onSwitch () {
-      this.checked = !this.checked
-      console.log('checked:', this.checked)
+      this.checkedVal = !this.checkedVal
+      this.$emit('change', this.checkedVal)
     }
   }
 }
