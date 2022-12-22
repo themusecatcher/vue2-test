@@ -3,6 +3,7 @@
     <VueAmazingSelector
       class="mt60"
       :selectData="selectData"
+      :defaultValue="defaultSelValue"
       name="label"
       value="value"
       placeholder="请选择城市"
@@ -61,12 +62,12 @@ export default {
         city: '310000',
         area: '310230'
       },
-      address: {},
-      // address: {
-      //   province: '110000',
-      //   city: '110000',
-      //   area: '110101'
-      // },
+      // address: {},
+      address: {
+        province: '110000',
+        city: '110000',
+        area: '110101'
+      },
       selectData: [
         {
           label: '北京市',
@@ -102,7 +103,8 @@ export default {
           value: 8
         }
       ],
-      selectedValue: 1,
+      defaultSelValue: 2,
+      selectedValue: null,
       defaultValue: ['zhejiang', 'hangzhou', 'xihu'],
       options: [
         {

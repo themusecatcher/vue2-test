@@ -43,16 +43,12 @@
 </template>
 <script>
 import { region } from 'apis/index'
-// import Vue from 'vue'
-// import VueAmazingSelector from 'vue-amazing-selector'
-// import 'vue-amazing-selector/lib/selector.css' // 引入样式
-// Vue.use(VueAmazingSelector)
-import VueAmazingSelector from './VueAmazingSelector'
+import Vue from 'vue'
+import VueAmazingSelector from 'vue-amazing-selector'
+import 'vue-amazing-selector/lib/selector.css' // 引入样式
+Vue.use(VueAmazingSelector)
 export default {
   name: 'Cascader',
-  components: {
-    VueAmazingSelector
-  },
   model: {
     prop: 'address',
     event: 'model'
@@ -64,7 +60,7 @@ export default {
         return {}
       }
     },
-    defaultAddress: { //  省市区初始值
+    defaultAddress: { // 省市区初始值，在未设置address（v-model）时生效
       type: Object,
       default: () => {
         return {}

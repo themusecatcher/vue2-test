@@ -9189,10 +9189,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-amazing-selector@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/vue-amazing-selector/-/vue-amazing-selector-0.3.1.tgz#25f2df299b0e3a88eca0a19bd060b3c83b834b1c"
-  integrity sha512-ZpmX1J9p3W+dAkpHqxN9o6L4Wbjl7TUDYov40VvuWHa1HAYbjGf9iTYSjHJhJ9ps8cOtSlXqxCChxZ0y/EHFSg==
+vue-amazing-selector@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/vue-amazing-selector/-/vue-amazing-selector-0.3.2.tgz#b6e825d0bbc1a5502d86fcb6a4482eea4c1231f6"
+  integrity sha512-N1Ot4nXfjT5UcAAzGdmD/opMytEJJGrNNT0RR1bJ53bO8oC9iAVqERer9Wxo77pox70GK74LbF4QFyJ3e78qYQ==
   dependencies:
     core-js "^3.6.5"
     less-loader "6.0.0"
