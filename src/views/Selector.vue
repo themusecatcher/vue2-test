@@ -104,7 +104,7 @@ export default {
         }
       ],
       defaultSelValue: 2,
-      selectedValue: null,
+      selectedValue: 1,
       defaultValue: ['zhejiang', 'hangzhou', 'xihu'],
       options: [
         {
