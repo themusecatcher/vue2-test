@@ -54,7 +54,12 @@ export default {
       for (var i = 0; i <= 424; i++) {
         (function (index) {
           var img = new Image()
-          img.onload = function () {
+          img.src = require(`images/banner/banner_${index}.jpg`)
+          img.style.width = '100%'
+          img.style.height = '100%'
+          img.style.objectFit = 'cover'
+          // img.classList.add('u-img')
+          img.onload = function () { // 图片加载完成时执行
             // 存储预加载的图片对象
             that.store[index] = img // 或this
             that.store.length++
@@ -63,11 +68,6 @@ export default {
             }
             console.log('this:', this === img) // true 函数运行时所在的对象即img
           }
-          img.src = require(`images/banner/banner_${index}.jpg`)
-          img.style.width = '100%'
-          img.style.height = '100%'
-          img.style.objectFit = 'cover'
-          // img.classList.add('u-img')
         })(i)
       }
     },

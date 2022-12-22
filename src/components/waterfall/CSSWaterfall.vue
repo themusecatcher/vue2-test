@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+// 图片顺序是从上往下排列
 export default {
   name: 'Waterfall',
   props: {
