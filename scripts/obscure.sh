@@ -1,0 +1,2 @@
+#/bin/bash
+javascript-obfuscator ../src/utils/signature.js --output ../src/utils/signaturePro.js --compact true --target 'browser-no-eval' --disable-console-output false --identifier-names-generator 'hexadecimal' --string-array true --string-array-rotate true --string-array-encoding 'rc4' --string-array-threshold 0.8

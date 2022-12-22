@@ -5,7 +5,6 @@
       :selectData="selectData"
       name="label"
       value="value"
-      :labelInValue="false"
       placeholder="请选择城市"
       :disabled="false"
       :width="160"
@@ -16,6 +15,7 @@
     <br/>
     <Cascader
       class="mt60"
+      :defaultAddress="defaultAddress"
       v-model="address"
       changeOnSelect
       :zIndex="9"
@@ -42,18 +42,31 @@
 </template>
 <script>
 import Cascader from '@/components/Cascader'
-import Vue from 'vue'
-import VueAmazingSelector from 'vue-amazing-selector'
-import 'vue-amazing-selector/lib/selector.css' // 引入相关样式
-Vue.use(VueAmazingSelector)
+// import Vue from 'vue'
+// import VueAmazingSelector from 'vue-amazing-selector'
+// import 'vue-amazing-selector/lib/selector.css' // 引入相关样式
+// Vue.use(VueAmazingSelector)
+import VueAmazingSelector from 'components/VueAmazingSelector'
 export default {
   name: 'Selector',
   components: {
+    VueAmazingSelector,
     Cascader
   },
   data () {
     return {
+      // defaultAddress: {},
+      defaultAddress: {
+        province: '310000',
+        city: '310000',
+        area: '310230'
+      },
       address: {},
+      // address: {
+      //   province: '110000',
+      //   city: '110000',
+      //   area: '110101'
+      // },
       selectData: [
         {
           label: '北京市',
@@ -138,11 +151,11 @@ export default {
   mounted () {
     setTimeout(() => {
       this.address = {
-        province: '410000',
-        city: '411700',
-        area: '411721'
+        province: '110000',
+        city: '110000',
+        area: '110101'
       }
-    }, 5000)
+    }, 3000)
   },
   methods: {
     onChange (name, value, index) {
