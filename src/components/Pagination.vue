@@ -294,11 +294,11 @@ export default {
       outline: none;
       transition: all 0.3s;
       &:hover {
-        border-color: @themeColor;
+        border-color: #40a9ff;
       }
       &:focus {
-        border-color: @themeColor;
-        box-shadow: 0 0 3px 1px @themeColor;
+        border-color: #40a9ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
       }
     }
   }
