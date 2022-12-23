@@ -159,7 +159,6 @@ export default {
         text-overflow: ellipsis;
       }
       &:hover {
-        // background: rgba(64, 169, 255, 0.1);
         background: #e6f7ff;
       }
     }
