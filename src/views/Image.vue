@@ -11,10 +11,11 @@
       :totalWidth="900"
       backgroundColor="#F2F4F8" />
     <JSWaterfall
+      v-show="true"
       class="mt60"
       :imageData="imageData"
       :columnCount="3"
-      :columnGap="10"
+      :columnGap="30"
       :totalWidth="900"
       backgroundColor="#F2F4F8" />
   </div>

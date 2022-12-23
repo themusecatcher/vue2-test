@@ -11,7 +11,9 @@
   </div>
 </template>
 <script>
-// 图片顺序是从左往右排列，从上往下，每次新图片都加入到已有几列图片中高度最低的那一列
+/*
+  主要使用js进行计算，新的图片每次都添加在最短那列的末尾
+*/
 export default {
   name: 'Waterfall',
   props: {
@@ -51,9 +53,6 @@ export default {
     },
     height () {
       return Math.max(...this.preImages) + this.columnGap
-    },
-    ready () {
-      return Boolean(this.imagesProperty.length) && this.imagesProperty.every(item => item.top >= 0)
     }
   },
   watch: {

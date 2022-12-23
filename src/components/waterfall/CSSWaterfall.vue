@@ -6,7 +6,9 @@
   </div>
 </template>
 <script>
-// 图片顺序是从上往下排列
+/*
+  纯CSS，实现简单，但图片顺序是每列从上往下排列
+*/
 export default {
   name: 'Waterfall',
   props: {
