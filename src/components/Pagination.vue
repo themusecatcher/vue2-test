@@ -99,6 +99,9 @@ export default {
     }
   },
   watch: {
+    current (to) { // 当前选中页码
+      this.currentPage = to
+    },
     currentPage (to) { // 通过更改当前页码，修改分页数据
       this.loading = true
       this.$emit('change', {
