@@ -12,7 +12,7 @@
     <Notification
       ref="notification"
       placement="topRight"
-      :duration="null"
+      :duration="3000"
       :top="30"
       @close="onClose" />
   </div>
@@ -30,7 +30,8 @@ export default {
   },
   data () {
     return {
-      content: ''
+      content: '',
+      n: 1
     }
   },
   methods: {
