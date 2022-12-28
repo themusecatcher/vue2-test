@@ -1,5 +1,5 @@
 <template>
-  <div class="m-modal-mask">
+  <div class="m-modal-mask" @click.self="onBlur">
     <div :class="['m-modal', center ? 'relative-hv-center' : 'top-center']">
       <div class="m-modal-content">
         <div class="m-spin-dot" v-show="loading">
@@ -81,6 +81,9 @@ export default {
     }
   },
   methods: {
+    onBlur () {
+      this.$emit('cancel')
+    },
     onCancel () {
       this.$emit('cancel')
     },
@@ -259,6 +262,10 @@ export default {
               color: #40a9ff;
               border-color: #40a9ff;
             }
+            &:focus {
+              color: #096dd9;
+              border-color: #096dd9;
+            }
           }
           .u-confirm {
             margin-left: 8px;
@@ -278,6 +285,10 @@ export default {
               background: #40a9ff;
               border-color: #40a9ff;
             }
+            &:focus {
+              background: #096dd9;
+              border-color: #096dd9;
+            }
           }
           .delete {
             background: #ff4d4f;
@@ -285,6 +296,10 @@ export default {
             &:hover {
               background-color: #ff7875;
               border-color: #ff7875;
+            }
+            &:focus {
+              background-color: #d9363e;
+              border-color: #d9363e;
             }
           }
         }

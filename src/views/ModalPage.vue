@@ -23,7 +23,7 @@
       okText="确认"
       noticeText="知道了"
       mode="confirm"
-      type="confirm"
+      type="delete"
       :center="center"
       :loading="loading"
       @cancel="onCancel"
@@ -63,19 +63,19 @@ export default {
     onClose () { // 关闭dialog
       this.showDialog = false
     },
-    // onCancel () { // “取消”按钮回调
-    //   this.showModal = false
-    // },
-    // onConfirm () { // “确定”,“知道了”按钮回调
-    //   // this.loading = true // 开启加载状态
-    //   this.showModal = false
-    // }
     onCancel () { // “取消”按钮回调
-      this.showDialog = false
+      this.showModal = false
     },
-    onConfirm () { // “确定”按钮回调
-      this.showDialog = false
+    onConfirm () { // “确定”,“知道了”按钮回调
+      // this.loading = true // 开启加载状态
+      this.showModal = false
     }
+    // onCancel () { // “取消”按钮回调
+    //   this.showDialog = false
+    // },
+    // onConfirm () { // “确定”按钮回调
+    //   this.showDialog = false
+    // }
   }
 }
 </script>
