@@ -14,7 +14,7 @@
       @close="onClose"
       @cancel="onCancel"
       @ok="onConfirm"
-      v-show="showDialog"
+      :visible="showDialog"
     />
     <Modal
       :title="title"
