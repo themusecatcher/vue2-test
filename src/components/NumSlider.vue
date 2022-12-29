@@ -1,9 +1,9 @@
 <template>
   <div :class="['m-slider', { disabled: disabled }]" ref="slider" :style="`width: ${width}px;`">
     <div class="u-slider-rail" @click.self="onClickPoint"></div>
-    <div class="u-slider-track" :style="`left: ${left}px; right: auto; width: ${right - left}px;`"></div>
-    <div class="u-slider-handle" v-if="range" tabindex="0" ref="left" @mousedown="onLeftMouseDown" :style="`left: ${left}px; right: auto; transform: translateX(-50%);`"></div>
-    <div class="u-slider-handle" tabindex="0" ref="right" @mousedown="onRightMouseDown" :style="`left: ${right}px; right: auto; transform: translateX(-50%);`"></div>
+    <div class="u-slider-track" :class="{trackTransition: transition}" :style="`left: ${left}px; right: auto; width: ${right - left}px;`"></div>
+    <div class="u-slider-handle" :class="{handleTransition: transition}" v-if="range" tabindex="0" ref="left" @mousedown="onLeftMouseDown" :style="`left: ${left}px; right: auto; transform: translateX(-50%);`"></div>
+    <div class="u-slider-handle" :class="{handleTransition: transition}" tabindex="0" ref="right" @mousedown="onRightMouseDown" :style="`left: ${right}px; right: auto; transform: translateX(-50%);`"></div>
   </div>
 </template>
 <script>
@@ -47,6 +47,8 @@ export default {
   },
   data () {
     return {
+      transition: false,
+      timer: null,
       left: 0, // 左滑块距离滑动条左端的距离
       right: 0 // 右滑动距离滑动条左端的距离
     }
@@ -82,6 +84,15 @@ export default {
   },
   methods: {
     onClickPoint (e) { // 点击滑动条，移动滑块
+      if (this.transition) {
+        clearTimeout(this.timer)
+        this.timer = null
+      } else {
+        this.transition = true
+      }
+      this.timer = setTimeout(() => {
+        this.transition = false
+      }, 300)
       // 元素是absolute时，e.layerX是相对于自身元素左上角的水平位置
       var moveX = e.layerX // 鼠标点击位置距离滑动输入条左端的水平距离
       if (this.range) { // 双滑块模式
@@ -168,6 +179,9 @@ export default {
     transition: background .3s;
     pointer-events: none;
   }
+  .trackTransition {
+    transition: left .2s, width .2s, background .3s;
+  }
   &:hover {
     .u-slider-rail { // 灰色未选择滑动条背景色
       background: #E3E3E3;
@@ -194,6 +208,9 @@ export default {
     &:hover {
       border-color: @themeColor;
     }
+  }
+  .handleTransition {
+    transition: left .2s, border-color .3s,box-shadow .6s,transform .3s cubic-bezier(.18,.89,.32,1.28);
   }
 }
 .disabled {
