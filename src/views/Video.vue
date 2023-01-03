@@ -2,8 +2,8 @@
   <div>
     <VideoPlay
       v-show="true"
-      videoUrl="https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4"
-      videoCover="https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg"
+      :videoUrl="videoUrl"
+      :videoCover="videoCover"
       :width="800"
       :height="450"
       :autoplay="true"
@@ -28,16 +28,18 @@ export default {
   },
   data () {
     return {
-      videoUrl: '',
-      videoCover: '',
+      // videoUrl: require('@/assets/files/Bao.mp4'),
+      videoUrl: 'https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4',
+      videoCover: require('@/assets/images/Bao.jpg'),
+      // videoCover: 'https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg',
       imagesData: ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg']
     }
   },
   mounted () {
-    setTimeout(() => { // 模拟接口调用
-      this.videoUrl = 'https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4'
-      this.videoCover = 'https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg'
-    }, 1000)
+    // setTimeout(() => { // 模拟接口调用
+    //   this.videoUrl = 'https://download.jinhui365.cn/group1/M00/00/A7/CgAAcmNCagWAejQND0jqHviL8QA869.mp4'
+    //   this.videoCover = 'https://download.jinhui365.cn//group1/M00/00/A8/CgAAcmNCddKACHUbAADB2zx3w90256.jpg'
+    // }, 1000)
   }
 }
 </script>

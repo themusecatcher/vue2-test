@@ -25,12 +25,12 @@
 export default {
   name: 'Video',
   props: {
-    videoUrl: { // 视频文件url
+    videoUrl: { // 视频文件url，必传，支持网络地址 https 和相对地址 require('@/assets/files/Bao.mp4')
       type: String,
-      default: null,
-      required: true
+      required: true,
+      default: null
     },
-    videoCover: { // 视频封面url
+    videoCover: { // 视频封面url，支持网络地址 https 和相对地址 require('@/assets/images/Bao.jpg')
       type: String,
       default: null
     },
