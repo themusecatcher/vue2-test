@@ -18,7 +18,7 @@ const assetsCDN = {
     echarts: 'echarts'
   },
   css: [],
-  // https://unpkg.com/browse/vue@2.6.10/
+  // https://unpkg.com/browse/vue@2.6.12/
   js: [
     '//cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js',
     '//cdn.jsdelivr.net/npm/vue-router@3.6.4/dist/vue-router.min.js',
