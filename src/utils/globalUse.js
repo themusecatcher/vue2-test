@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import { getAction, postAction } from 'apis/index'
 import { Toast, Loading, Alert, Confirm } from 'wc-messagebox'
 import 'wc-messagebox/style.css'
 /*
@@ -18,6 +18,11 @@ import {
   Switch
 } from 'ant-design-vue'
 // import 'ant-design-vue/dist/antd.css'
+
+// Vue.getAction = getAction // 使用时需先引入Vue，然后调用：Vue.getAction
+// Vue.prototype.$getAction = getAction // 使用：this.$getAction
+Vue.mixin({ data () { return { getAction, postAction } } }) // 全局混入到data中，使用：this.getAction
+// Vue.mixin({ methods: { getAction, postAction } }) // 全局混入到methods中，使用：this.getAction
 
 Vue.use(Menu)
 Vue.use(Button)

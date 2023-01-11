@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import 'components/global_use.js' // global components
+import '@/utils/globalUse.js' // global use
 import '@/assets/less/global.less' // global CSS
 
 Vue.prototype.$global = '在new Vue()时绑定到Vue的原型上以便全局使用'
